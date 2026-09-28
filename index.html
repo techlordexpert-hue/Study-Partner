@@ -7,13 +7,13 @@
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <style>
 :root{
-  --pink:#e6399b; --purple:#6a2bd9; --blue:#3b5bfa;
-  --grad: linear-gradient(135deg,#3b5bfa 0%,#8a2be2 45%,#f24bb2 100%);
-  --bg:#fff; --card:#f7f5fc; --text:#221a33; --muted:#6b6480; --border:#e7e2f5;
+  --pink:#16a34a; --purple:#0f766e; --blue:#0284c7;
+  --grad: linear-gradient(135deg,#0284c7 0%,#0d9488 52%,#16a34a 100%);
+  --bg:#fff; --card:#f1f8f7; --text:#10262b; --muted:#587076; --border:#d9eae8;
   padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px);
   box-sizing:border-box;
 }
-:root[data-theme="dark"]{ --bg:#150f24; --card:#1e1734; --text:#f1eefb; --muted:#a79fc4; --border:#332a4d; }
+:root[data-theme="dark"]{ --bg:#0a1a1e; --card:#112a30; --text:#e8f5f4; --muted:#8fb3b8; --border:#21444c; --purple:#2dd4bf; }
 html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;}
 *{box-sizing:border-box;}
 body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
@@ -21,7 +21,7 @@ a{color:inherit;}
 .hide{display:none!important;}
 header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border);padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .logo{display:flex;align-items:center;gap:9px;}
-.logo-mark{width:36px;height:36px;flex:none;border-radius:11px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(106,43,217,.35);}
+.logo-mark{width:36px;height:36px;flex:none;border-radius:11px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(13,148,136,.35);}
 .logo-text{font-weight:800;font-size:17px;color:var(--text);line-height:1.1;}
 .logo-text b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
 nav{display:flex;gap:4px;overflow-x:auto;}
@@ -62,6 +62,94 @@ label{font-size:12px;color:var(--muted);font-weight:600;}
 .plan{border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
 .plan.sel{border-color:var(--purple);background:var(--card);}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
+
+.hright{display:flex;align-items:center;gap:6px;}
+.menu-btn{display:none;border:none;background:transparent;color:var(--text);padding:4px;cursor:pointer;border-radius:10px;}
+.mob-only{display:none;}
+@media (max-width:720px){
+  .menu-btn{display:block;}
+  .acct-btn{display:none;}
+  .mob-only{display:block;}
+  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;padding:8px 12px 12px;box-shadow:0 10px 24px rgba(0,0,0,.14);animation:up2 .2s;}
+  nav.open{display:flex;}
+  nav button{text-align:left;padding:13px 12px;font-size:15px;}
+}
+@keyframes up2{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.timer{text-align:center;margin-bottom:16px;}
+.seg{display:inline-flex;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:4px;gap:2px;}
+.seg button{border:none;background:transparent;color:var(--muted);font-weight:700;font-size:12px;padding:8px 12px;border-radius:9px;cursor:pointer;}
+.seg button.on{background:var(--grad);color:#fff;}
+.clock{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:800;font-size:clamp(56px,16vw,96px);letter-spacing:-2px;margin:14px 0 2px;}
+.tstat{font-size:13px;color:var(--muted);}
+.voicebox{display:flex;gap:10px;text-align:left;background:#fff8e1;color:#5a3b00;border:1px solid #ffe08a;border-radius:14px;padding:12px;margin:16px auto;max-width:520px;font-size:12px;line-height:1.5;}
+.trow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.trow .big{padding:14px 26px;font-size:14px;box-shadow:0 6px 16px rgba(13,148,136,.35);}
+.amb-head{display:flex;justify-content:space-between;align-items:center;max-width:520px;margin:20px auto 8px;font-size:12px;color:var(--muted);font-weight:600;}
+.lnk{border:none;background:none;color:#1a9d5c;font-weight:700;font-size:12px;cursor:pointer;}
+.amb{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:520px;margin:0 auto;}
+.amb button{flex:1;min-width:88px;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:10px;padding:9px 6px;font-size:12px;font-weight:600;cursor:pointer;}
+.amb button.on{background:var(--grad);color:#fff;border-color:transparent;}
+
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;}
+input.rchk{appearance:none;-webkit-appearance:none;width:22px!important;height:22px;min-width:22px;border-radius:50%;border:2px solid var(--purple);padding:0!important;margin:0!important;cursor:pointer;display:grid;place-content:center;background:var(--bg);}
+input.rchk:checked{background:var(--grad);border-color:transparent;}
+input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:800;}
+.lib-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 10px;}
+.lib-top .btn{padding:11px 20px;font-size:14px;box-shadow:0 5px 14px rgba(13,148,136,.35);}
+.case{background:linear-gradient(90deg,#4a2f18,#6b4526 10%,#5e3d21 90%,#3f2814);border-radius:16px 16px 10px 10px;padding:14px 14px 0;box-shadow:0 14px 30px rgba(0,0,0,.28),inset 0 0 0 3px #36210f;position:relative;}
+.case-top{text-align:center;color:#f0d29a;font-weight:800;letter-spacing:.2em;font-size:10px;margin-bottom:10px;text-transform:uppercase;}
+.shelf-row{display:flex;align-items:flex-end;gap:3px;min-height:200px;padding:0 10px;background:linear-gradient(180deg,#1f1409,#33200f);box-shadow:inset 0 8px 14px rgba(0,0,0,.6);border-radius:4px 4px 0 0;overflow-x:auto;overflow-y:hidden;}
+.plank{height:16px;background:linear-gradient(180deg,#b07a42,#7d5228);border-radius:0 0 4px 4px;box-shadow:0 6px 8px rgba(0,0,0,.35);margin-bottom:14px;}
+.empty-note{color:#e9cf9c;font-size:12px;align-self:center;padding:0 12px;opacity:.9;}
+.bk{flex:none;position:relative;border-radius:3px 3px 1px 1px;cursor:pointer;color:#fff;display:flex;justify-content:center;align-items:center;box-shadow:inset 3px 0 4px rgba(255,255,255,.2),inset -4px 0 6px rgba(0,0,0,.4),2px 0 3px rgba(0,0,0,.45);transition:transform .2s;}
+.bk::before,.bk::after{content:'';position:absolute;left:0;right:0;height:5px;background:linear-gradient(180deg,#ffe9a8,#c99a3a);opacity:.85;}
+.bk::before{top:12px;} .bk::after{bottom:12px;}
+.bk:hover{transform:translateY(-8px);} .bk.sel{transform:translateY(-16px);outline:2px solid #ffe9a8;}
+.bt{writing-mode:vertical-rl;font-size:11px;font-weight:800;letter-spacing:.04em;max-height:78%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5);}
+.cab{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 -14px;padding:10px 14px 12px;background:#4a2f18;cursor:pointer;}
+.cab-in{position:absolute;inset:10px 14px 12px;background:#1a0f06;border-radius:6px;display:flex;align-items:center;justify-content:center;z-index:1;}
+.door{position:relative;z-index:2;height:104px;border-radius:6px;background:linear-gradient(135deg,#8f5e2e,#6b4526);border:2px solid #36210f;box-shadow:inset 0 0 0 6px rgba(255,255,255,.06);transform-origin:left center;transition:transform .5s;}
+.door.r{transform-origin:right center;}
+.door::after{content:'';position:absolute;top:50%;right:12px;width:11px;height:11px;margin-top:-5px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff1bf,#b8862a);box-shadow:0 1px 3px rgba(0,0,0,.5);}
+.door.r::after{right:auto;left:12px;}
+.cab:hover .door,.cab.open .door{transform:perspective(600px) rotateY(-62deg);}
+.cab:hover .door.r,.cab.open .door.r{transform:perspective(600px) rotateY(62deg);}
+.legs{display:flex;justify-content:space-between;padding:0 22px;}
+.legs i{width:18px;height:12px;background:#36210f;border-radius:0 0 4px 4px;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}
+.ccard{display:flex;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s;}
+.ccard:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.1);}
+.ccard.sel{border-color:var(--purple);}
+.cspine{width:12px;flex:none;}
+.cbody{padding:12px 14px;flex:1;min-width:0;}
+.cbody b{display:block;font-size:14px;margin:6px 0 2px;}
+.cbody p{font-size:12px;color:var(--muted);margin:0 0 8px;}
+.cmeta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);}
+.cmeta .btn{padding:6px 12px;font-size:12px;}
+.lib-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.lib-actions .btn{padding:9px 14px;font-size:12px;}
+.ocard{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+.ocover{background:var(--grad);color:#fff;padding:18px;font-size:34px;display:flex;justify-content:space-between;align-items:flex-start;}
+.ocover small{font-size:11px;font-weight:800;background:rgba(255,255,255,.22);padding:4px 9px;border-radius:10px;}
+.obody{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1;}
+.bar{height:7px;border-radius:6px;background:var(--border);overflow:hidden;} .bar>i{display:block;height:100%;background:var(--grad);}
+.lrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);background:var(--card);border-radius:12px;margin-top:8px;flex-wrap:wrap;}
+.lrow .t{flex:1;min-width:120px;font-size:14px;font-weight:600;}
+.lrow .btn{padding:7px 13px;font-size:12px;}
+.done-lbl{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer;}
+.done-lbl input{width:auto!important;margin:0!important;}
+.admp{margin-top:14px;}
+.admp input,.admp select,.admp textarea{margin-bottom:6px;}
+#certPaper{background:#fff;color:#10262b;border:10px double #0d9488;padding:34px 26px;text-align:center;font-family:Georgia,serif;}
+#certPaper h1{font-size:28px;margin:6px 0;color:#0f766e;letter-spacing:.06em;}
+#certPaper .nm{font-size:30px;font-style:italic;border-bottom:2px solid #0d9488;display:inline-block;padding:0 24px 4px;margin:10px 0;}
+@media print{
+  @page{size:landscape;margin:12mm;}
+  body>*:not(#m-cert){display:none!important;}
+  #m-cert{position:static!important;background:none!important;padding:0!important;}
+  #m-cert .modal{box-shadow:none;max-width:none!important;padding:0!important;max-height:none!important;overflow:visible!important;}
+  .noprint{display:none!important;}
+}
 .toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:20px;font-size:13px;z-index:99;animation:up .25s;}
 @keyframes up{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
 .wa-fab{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:40;transition:transform .2s;}
@@ -76,7 +164,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
 .res-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px;color:var(--muted);}
 .res-foot .btn{padding:7px 12px;font-size:12px;}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
-.hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,40,.35),rgba(20,10,40,.75));z-index:1;}
+.hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,28,32,.35),rgba(4,28,32,.78));z-index:1;}
 .hero>*:not(.hero-img):not(.hero-fade){position:relative;z-index:2;}
 .back-link{background:none;border:none;color:var(--purple);font-weight:700;font-size:13px;cursor:pointer;padding:0;margin-bottom:10px;}
 .upl{border:1.5px dashed var(--border);border-radius:12px;padding:14px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer;}
@@ -92,11 +180,15 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
   </div>
   <nav id="nav">
     <button data-v="home" class="active">Home</button>
-    <button data-v="timetable">Timetable</button>
+    <button data-v="timetable">Activity</button>
     <button data-v="library">Library</button>
     <button data-v="pasco">PASCO</button>
+    <button data-v="account" class="mob-only">Account</button>
   </nav>
-  <button class="acct-btn" id="acctBtn">Account</button>
+  <div class="hright">
+    <button class="acct-btn" id="acctBtn">Account</button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h14"/></svg></button>
+  </div>
 </header>
 
 <main>
@@ -113,15 +205,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
 
     <h2>Quick access</h2>
     <div class="grid">
-      <div class="card"><b>🗓 Timetable</b><p style="color:var(--muted);font-size:13px">Set your weekly classes — it powers your daily home screen.</p><button class="btn ghost" onclick="go('timetable')">Open</button></div>
+      <div class="card"><b>🗓 Activity</b><p style="color:var(--muted);font-size:13px">Set your weekly classes — it powers your daily home screen.</p><button class="btn ghost" onclick="go('timetable')">Open</button></div>
       <div class="card"><b>📖 Library</b><p style="color:var(--muted);font-size:13px">Create courses, shelve materials, read on-site.</p><button class="btn ghost" onclick="go('library')">Open</button></div>
       <div class="card"><b>📝 PASCO</b><p style="color:var(--muted);font-size:13px">This week's past questions — solve & track your score.</p><button class="btn ghost" onclick="go('pasco')">Open</button></div>
+      <div class="card"><b>🎓 Online Courses</b><p style="color:var(--muted);font-size:13px">Free video &amp; slide courses — finish one and earn a certificate.</p><button class="btn ghost" onclick="requireAuth(()=>go('online'))">Open</button></div>
     </div>
   </section>
 
   <!-- TIMETABLE -->
   <section id="v-timetable" class="hide">
-    <h2>My Timetable</h2>
+    <h2>My Activity</h2>
     <p style="color:var(--muted);font-size:13px">This feeds the "today's classes" slide on Home.</p>
     <div class="day-tab" id="ttTabs"></div>
     <div id="ttEditor"></div>
@@ -130,10 +223,33 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
 
   <!-- LIBRARY -->
   <section id="v-library" class="hide">
-    <h2>Library</h2>
-    <div class="shelf" id="shelf"></div>
-    <button class="btn" onclick="openModal('newCourse')">+ New course</button>
-    <div id="courseOpen"></div>
+    <div class="lib-top"><h2 style="margin:0">Library</h2><button class="btn" onclick="openModal('newCourse')">＋ New course</button></div>
+    <div class="case" id="case"></div>
+    <h2>My courses <span class="pill" id="cCount"></span></h2>
+    <div class="cgrid" id="cgrid"></div>
+    <div id="courseOpen" style="margin-top:16px"></div>
+    <h2>Study session</h2>
+    <div class="card timer">
+      <div class="seg"><button id="tmS" class="on" onclick="setMode('sw')">Continuous Stopwatch</button><button id="tmP" onclick="setMode('pomo')">25-Min Pomodoro</button></div>
+      <div class="clock" id="clock">00:00</div>
+      <div class="tstat" id="tstat">Ready to Start Study Session</div>
+      <div class="voicebox"><span>🔔</span><div><b>Female Voice Alert Active:</b><br>When you click <b>Start</b>, a lady's voice instructs:<br><i>"Please turn off Do Not Disturb mode or silence notifications for deep focus!"</i></div></div>
+      <div class="trow"><button class="btn big" id="startBtn" onclick="toggleTimer()">▶ START STUDY SESSION</button><button class="btn ghost" onclick="resetSave()">↺ Reset &amp; Save</button></div>
+      <div class="amb-head"><span>🎧 Ambient Focus Audio</span><button class="lnk" id="sndBtn" onclick="toggleSound()">🔊 Sound On</button></div>
+      <div class="amb" id="amb">
+        <button class="on" data-k="silent" onclick="setAmb('silent')">Silent</button>
+        <button data-k="rain" onclick="setAmb('rain')">Soft Rain</button>
+        <button data-k="lofi" onclick="setAmb('lofi')">Lo-Fi Beats</button>
+        <button data-k="white" onclick="setAmb('white')">White Noise</button>
+      </div>
+      <p class="tstat" id="todayTotal" style="margin-top:14px"></p>
+    </div>
+  </section>
+
+  <!-- ONLINE COURSES -->
+  <section id="v-online" class="hide">
+    <h2>🎓 Online Courses <span class="pill">Free · Certificate</span></h2>
+    <div id="onBody"></div>
   </section>
 
   <!-- PASCO -->
@@ -188,7 +304,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
   <div class="field"><label>Course name</label><input id="ncName" placeholder="e.g. Database Management Systems"></div>
   <div class="field"><label>Short description</label><input id="ncDesc" placeholder="What this course covers"></div>
   <div class="field"><label>Spine color</label>
-    <select id="ncColor"><option>#e6399b</option><option>#3b5bfa</option><option>#2ecc71</option><option>#e67e22</option><option>#8a2be2</option></select>
+    <select id="ncColor"><option value="#9f1d35">Crimson</option><option value="#1e3a8a">Navy</option><option value="#166534">Forest</option><option value="#b45309">Amber</option><option value="#0f766e">Teal</option><option value="#6b21a8">Plum</option><option value="#44403c">Charcoal</option><option value="#c2410c">Rust</option></select>
   </div>
   <button class="btn" style="width:100%" onclick="createCourse()">Create</button>
   <button class="btn ghost" style="width:100%;margin-top:6px" onclick="closeModal('m-newCourse')">Cancel</button>
@@ -230,26 +346,47 @@ Q: next question..."></textarea>
   <div class="field"><label>WhatsApp number (for "Buy now")</label><input id="adWa" placeholder="e.g. 233201234567"></div>
   <div class="field"><label>Pricing</label><div id="plans"></div></div>
   <div class="field" style="display:flex;gap:8px;align-items:center;margin-top:12px">
-    <input type="radio" id="agree" style="width:auto" onclick="this.checked=!this.checked" onchange="">
-    <label style="font-size:12px" for="agree">I agree to Study Partner's ad terms</label>
+    <input type="checkbox" id="agree" class="rchk" onchange="$('payBtn').disabled=!this.checked">
+    <label style="font-size:12px;cursor:pointer" for="agree">I agree to Study Partner's ad terms</label>
   </div>
-  <button class="btn" style="width:100%" onclick="payAd()">Pay Now</button>
+  <button class="btn" id="payBtn" style="width:100%" disabled onclick="payAd()">Pay Now</button>
   <p style="font-size:11px;color:var(--muted)">Payment is collected securely by Paystack. Your ad goes live once admin confirms and approves it.</p>
   <button class="btn ghost" style="width:100%;margin-top:6px" onclick="closeModal('m-newAd')">Cancel</button>
 </div></div>
 
-<div class="modal-bg hide" id="m-admin"><div class="modal" style="max-width:560px">
+<div class="modal-bg hide" id="m-viewer"><div class="modal" style="max-width:920px;padding:12px">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><b id="vTitle" style="font-size:14px"></b>
+  <div style="display:flex;gap:6px"><a id="vOpen" class="btn ghost" target="_blank" rel="noopener" style="text-decoration:none;padding:7px 12px;font-size:12px">Open in new tab</a><button class="btn" style="padding:7px 12px;font-size:12px" onclick="closeViewer()">Close</button></div></div>
+  <iframe id="vFrame" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:72vh;border:0;border-radius:10px;background:#000"></iframe>
+</div></div>
+
+<div class="modal-bg hide" id="m-cert"><div class="modal" style="max-width:760px">
+  <div id="certPaper"></div>
+  <div class="noprint" style="display:flex;gap:8px;margin-top:12px"><button class="btn" style="flex:1" onclick="window.print()">Print / Save as PDF</button><button class="btn ghost" style="flex:1" onclick="closeModal('m-cert')">Close</button></div>
+</div></div>
+
+<div class="modal-bg hide" id="m-admin"><div class="modal" style="max-width:680px">
   <h2 style="margin-top:0">Admin Dashboard</h2>
-  <b>Home slide images</b>
-  <p style="font-size:11px;color:var(--muted);margin:2px 0 6px">Change the Monday/Sunday (or any day's) photo any time.</p>
-  <div id="adminImgs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px"></div>
-  <hr style="border-color:var(--border);margin:14px 0">
-  <b>Pending ads</b>
-  <div id="adminAds"></div>
-  <hr style="border-color:var(--border);margin:14px 0">
-  <b>Account</b>
-  <div id="adminAcct"></div>
-  <button class="btn ghost" style="width:100%;margin-top:10px" onclick="signOut()">Sign out</button>
+  <div class="seg" id="admTabs" style="display:flex;overflow-x:auto;max-width:100%">
+    <button class="on" data-t="courses" onclick="admTab('courses')">Online courses</button>
+    <button data-t="ads" onclick="admTab('ads')">Ads</button>
+    <button data-t="imgs" onclick="admTab('imgs')">Home images</button>
+    <button data-t="acct" onclick="admTab('acct')">Accounts</button>
+  </div>
+  <div id="adm-courses" class="admp">
+    <div class="card"><b>Publish a new free course</b>
+      <input id="ocTitle" placeholder="Course title e.g. Digital Marketing Basics" style="margin-top:8px">
+      <textarea id="ocDesc" rows="2" placeholder="Short description"></textarea>
+      <div style="display:flex;gap:6px"><input id="ocCat" placeholder="Category"><input id="ocDur" placeholder="Duration e.g. 4 hrs"></div>
+      <button class="btn" onclick="createOnline()">Publish course</button>
+      <p style="font-size:11px;color:var(--muted);margin:6px 0 0">Published courses appear for students under Home → Quick access → Online Courses. Add lessons (videos or slides) below.</p>
+    </div>
+    <div id="adminOnline"></div>
+  </div>
+  <div id="adm-ads" class="admp hide"><div id="adminAds"></div></div>
+  <div id="adm-imgs" class="admp hide"><p style="font-size:11px;color:var(--muted);margin:0 0 6px">Change any day's Home slide photo any time.</p><div id="adminImgs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px"></div></div>
+  <div id="adm-acct" class="admp hide"><div id="adminAcct"></div></div>
+  <button class="btn ghost" style="width:100%;margin-top:12px" onclick="signOut()">Sign out</button>
   <button class="btn ghost" style="width:100%;margin-top:6px" onclick="closeModal('m-admin')">Close</button>
 </div></div>
 
@@ -272,7 +409,7 @@ function dayImages(){ return Object.assign({}, DEFAULT_DAY_IMAGES, store('sp_day
 function applyTheme(){ const h=new Date().getHours(); document.documentElement.dataset.theme = (h>=18||h<6) ? 'dark' : 'light'; }
 applyTheme(); setInterval(applyTheme, 5*60*1000);
 
-function store(k,v){ if(v===undefined){ try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;} } try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+function store(k,v){ if(v===undefined){ try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;} } try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){ toast('Storage is full — remove some files or use links instead'); return false; } }
 let user = store('sp_user') || null;
 let courses = store('sp_courses') || [];
 let pascoSets = store('sp_pasco') || [];
@@ -293,15 +430,18 @@ function requireAuth(action){
 document.getElementById('nav').addEventListener('click',e=>{
   if(e.target.tagName!=='BUTTON') return;
   const v=e.target.dataset.v;
+  document.getElementById('nav').classList.remove('open');
+  if(v==='account'){ $('acctBtn').click(); return; }
   if(v==='home'){ go('home'); return; }
   requireAuth(()=>go(v));
 });
 function go(v){
-  ['home','timetable','library','pasco'].forEach(x=>$('v-'+x).classList.toggle('hide',x!==v));
+  ['home','timetable','library','pasco','online'].forEach(x=>$('v-'+x).classList.toggle('hide',x!==v));
   [...document.querySelectorAll('#nav button')].forEach(b=>b.classList.toggle('active',b.dataset.v===v));
   if(v==='timetable') renderTT();
   if(v==='library') renderShelf();
   if(v==='pasco') renderPasco();
+  if(v==='online'){ onOpenId=null; renderOnline(); }
 }
 $('acctBtn').addEventListener('click',()=>requireAuth(()=>{
   if(user.isAdmin){ openAdmin(); return; }
@@ -349,6 +489,7 @@ function openAdmin(){
   renderAdmin(); $('m-admin').classList.remove('hide');
 }
 function renderAdmin(){
+  renderAdminOnline();
   const imgs=dayImages();
   $('adminImgs').innerHTML = DAYS.map(d=>`
     <div style="text-align:center">
@@ -397,7 +538,7 @@ function renderHero(){
 function ttSlideHTML(){
   const tt = (user && user.timetable && user.timetable[todayKey()]) || [];
   const rows = tt.length? tt.map(r=>`<div style="background:rgba(255,255,255,.15);border-radius:10px;padding:8px 12px;margin-top:6px;font-size:14px"><b>${r.time}</b> — ${r.subject}${r.venue?' · <span style="opacity:.8">'+r.venue+'</span>':''}</div>`).join('') : `<p style="font-size:13px;opacity:.9">No classes set for today yet.</p>`;
-  return `<p style="font-size:14px;margin:0;opacity:.85">Your plan for</p><h1 style="font-size:28px">${DAY_LABEL[todayKey()]}</h1>${rows}<button class="cta" onclick="requireAuth(()=>go('timetable'))">Edit timetable</button>`;
+  return `<p style="font-size:14px;margin:0;opacity:.85">Your plan for</p><h1 style="font-size:28px">${DAY_LABEL[todayKey()]}</h1>${rows}<button class="cta" onclick="requireAuth(()=>go('timetable'))">Edit activity</button>`;
 }
 function adSlideHTML(liveAds){
   if(!liveAds.length){
@@ -427,40 +568,63 @@ function ttUpdate(i,field,val){ user.timetable[ttEditDay][i][field]=val; store('
 function ttRemove(i){ user.timetable[ttEditDay].splice(i,1); store('sp_user',user); renderTT(); }
 
 // ---- LIBRARY ----
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function hashN(s){ let x=0; for(const ch of String(s)) x=(x*31+ch.charCodeAt(0))>>>0; return x; }
 function renderShelf(){
-  $('shelf').innerHTML = courses.map(c=>`<div class="book" style="background:${c.color}" onclick="openCourse('${c.id}')">${c.name}</div>`).join('') || '<p style="color:#fff;font-size:13px">No courses yet — create one!</p>';
+  const per = window.innerWidth<560 ? 4 : 7;
+  const rows = Math.max(3, Math.ceil(courses.length/per));
+  let out = '<div class="case-top">✦ Study Partner Library ✦</div>';
+  for(let r=0;r<rows;r++){
+    const items = courses.slice(r*per,(r+1)*per);
+    out += '<div class="shelf-row">' + items.map(c=>{
+      const hh=hashN(c.id), w=46+(hh%3)*8, ht=142+(hh%5)*12;
+      return `<div class="bk ${c.id===openCourseId?'sel':''}" title="${esc(c.name)}" style="width:${w}px;height:${ht}px;background:${esc(c.color)}" onclick="openCourse('${c.id}')"><span class="bt">${esc((c.code?c.code+' · ':'')+c.name)}</span></div>`;
+    }).join('') + (r===0&&!courses.length?'<div class="empty-note">Your shelf is empty — open the cabinet below or tap “＋ New course” to shelve your first book.</div>':'') + '</div><div class="plank"></div>';
+  }
+  out += `<div class="cab" onclick="this.classList.toggle('open')"><div class="cab-in"><button class="btn" onclick="event.stopPropagation();openModal('newCourse')">＋ New course</button></div><div class="door"></div><div class="door r"></div></div><div class="legs"><i></i><i></i></div>`;
+  $('case').innerHTML = out;
+  $('cCount').textContent = courses.length;
+  $('cgrid').innerHTML = courses.map(c=>`
+    <div class="ccard ${c.id===openCourseId?'sel':''}" onclick="openCourse('${c.id}')">
+      <div class="cspine" style="background:${esc(c.color)}"></div>
+      <div class="cbody">${c.code?`<span class="badge">${esc(c.code)}</span>`:''}<b>${esc(c.name)}</b><p>${esc(c.desc||'No description yet')}</p>
+        <div class="cmeta"><span>${c.materials.length} resource${c.materials.length===1?'':'s'}</span><button class="btn" onclick="event.stopPropagation();openCourse('${c.id}')">Open</button></div></div>
+    </div>`).join('') || '<p style="color:var(--muted);font-size:13px">No courses yet — tap “＋ New course” to create your first one.</p>';
 }
 function createCourse(){
   const name=$('ncName').value.trim(); if(!name){toast('Enter a course name');return;}
   courses.push({id:'c'+Date.now(),code:$('ncCode').value.trim(),name,desc:$('ncDesc').value.trim(),color:$('ncColor').value,materials:[]});
-  store('sp_courses',courses); closeModal('m-newCourse'); renderShelf(); toast('Course created');
+  store('sp_courses',courses); closeModal('m-newCourse'); ['ncCode','ncName','ncDesc'].forEach(i=>$(i).value=''); renderShelf(); toast('Course shelved as a new book 📚');
 }
 let openCourseId=null;
 function iconFor(t){ return t==='pdf'?'📄':t==='docx'?'📝':t==='ppt'?'🖥️':'🗒️'; }
 function openCourse(id){
-  openCourseId=id; const c=courses.find(x=>x.id===id);
+  openCourseId=id; const c=courses.find(x=>x.id===id); if(!c) return;
   $('courseOpen').innerHTML = `<div class="card">
     <div class="lib-head">
-      <div>${c.code?`<span class="badge">${c.code}</span>`:''}<h3 style="margin:8px 0 4px">${c.name}</h3><p style="font-size:13px;color:var(--muted);margin:0">${c.desc||''}</p></div>
-      <div style="display:flex;gap:6px"><button class="iconbtn" onclick="openModal('newMaterial')" title="Add">＋</button><button class="iconbtn" onclick="deleteCourse('${c.id}')" title="Delete">🗑</button></div>
+      <div style="min-width:0">${c.code?`<span class="badge">${esc(c.code)}</span>`:''}<h3 style="margin:8px 0 4px">${esc(c.name)}</h3><p style="font-size:13px;color:var(--muted);margin:0">${esc(c.desc||'')}</p></div>
+      <div class="lib-actions"><button class="btn" onclick="openModal('newMaterial')">＋ Add slide / note</button><button class="btn ghost" onclick="deleteCourse('${c.id}')">🗑 Delete course</button></div>
     </div>
     <div class="res-label">RESOURCES &amp; DOCUMENTS (${c.materials.length})</div>
     <div class="res-grid">${c.materials.map((m,mi)=>`
       <div class="res-card">
         <div class="res-icon">${iconFor(m.type)}</div>
-        <b style="font-size:14px">${m.title}</b>
-        <p style="font-size:12px;color:var(--muted);margin:4px 0 0">${m.sub||(m.type==='note'?'Text note':m.type.toUpperCase())}</p>
+        <b style="font-size:14px">${esc(m.title)}</b>
+        <p style="font-size:12px;color:var(--muted);margin:4px 0 0">${esc(m.sub||(m.type==='note'?'Text note':m.type.toUpperCase()))}</p>
         <div class="res-foot"><span>${m.type==='note'?'Note':m.type.toUpperCase()}</span><button class="btn" onclick="openMaterial('${c.id}',${mi})">${m.type==='note'?'Read':'Open'}</button></div>
-      </div>`).join('') || '<p style="color:var(--muted);font-size:13px">Shelf is empty — add the first resource.</p>'}</div>
+      </div>`).join('') || '<div style="grid-column:1/-1;text-align:center;padding:18px"><p style="color:var(--muted);font-size:13px;margin:0 0 10px">This book is empty — add its first slide or note.</p><button class="btn" onclick="openModal(\'newMaterial\')">＋ Add slide / note</button></div>'}</div>
   </div>
-  <button class="back-link" onclick="$('courseOpen').innerHTML=''">‹ Back to all courses</button>`;
+  <button class="back-link" style="margin-top:10px" onclick="closeCourse()">‹ Back to all courses</button>`;
+  renderShelf();
+  $('courseOpen').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function deleteCourse(id){ courses=courses.filter(c=>c.id!==id); store('sp_courses',courses); renderShelf(); $('courseOpen').innerHTML=''; toast('Course deleted'); }
+function closeCourse(){ openCourseId=null; $('courseOpen').innerHTML=''; renderShelf(); }
+function deleteCourse(id){ if(!confirm('Delete this course and everything in it?')) return; courses=courses.filter(c=>c.id!==id); store('sp_courses',courses); openCourseId=null; $('courseOpen').innerHTML=''; renderShelf(); toast('Course deleted'); }
 function addMaterial(){
   const c=courses.find(x=>x.id===openCourseId); if(!c)return;
   const title=$('matTitle').value.trim()||'Untitled', sub=$('matSub').value.trim();
   const file=$('matFile').files[0];
-  const save=(type,data)=>{ c.materials.push({title,sub,type,data:data||null,body:type==='note'?$('matBody').value:''}); store('sp_courses',courses); closeModal('m-newMaterial'); openCourse(c.id); toast('Added to course'); };
+  const save=(type,data)=>{ c.materials.push({title,sub,type,fname:file?file.name:'',data:data||null,body:type==='note'?$('matBody').value:''}); store('sp_courses',courses); closeModal('m-newMaterial'); openCourse(c.id); toast('Added to course'); };
   if(file){
     if(file.size>4*1024*1024){ toast('File too large for this demo (max ~4MB)'); return; }
     const ext=file.name.split('.').pop().toLowerCase();
@@ -471,14 +635,24 @@ function addMaterial(){
 function openMaterial(cid,mi){
   const c=courses.find(x=>x.id===cid); const m=c.materials[mi];
   if(m.type==='note'){ alert(m.title+'\n\n'+m.body); return; }
-  window.open(m.data,'_blank');
+  openFile(m.data,m.fname||m.title,m.type);
 }
+function dataToBlobUrl(d){ const i=d.indexOf(','), mime=(d.slice(0,i).match(/:(.*?)[;,]/)||[])[1]||'application/octet-stream'; const bin=atob(d.slice(i+1)), arr=new Uint8Array(bin.length); for(let k=0;k<bin.length;k++) arr[k]=bin.charCodeAt(k); return URL.createObjectURL(new Blob([arr],{type:mime})); }
+function openFile(data,title,type){
+  if(!data){ toast('File is missing'); return; }
+  const url = data.startsWith('data:') ? dataToBlobUrl(data) : data;
+  const isPdf = type==='pdf' || /^data:application\/pdf/.test(data) || /\.pdf($|\?)/i.test(data);
+  if(isPdf){ showViewer(title,url); }
+  else { const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove(); toast('Word / PowerPoint files download and open in your own app'); }
+}
+function showViewer(title,src){ $('vTitle').textContent=title||''; $('vFrame').src=src; $('vOpen').href=src; openModal('viewer'); }
+function closeViewer(){ $('vFrame').src='about:blank'; closeModal('m-viewer'); }
 
 // ---- PASCO ----
 function weekNum(){ const d=new Date(); const start=new Date(d.getFullYear(),0,1); return Math.ceil((((d-start)/86400000)+start.getDay()+1)/7); }
 function renderPasco(){
   $('weekPill').textContent = 'Week '+weekNum();
-  $('pascoList').innerHTML = pascoSets.map(p=>`<div class="card" style="margin-top:8px;display:flex;justify-content:space-between;align-items:center"><b>${p.subject}</b> ${p.type==='file'?`<button class="btn ghost" onclick="window.open(pascoSets.find(x=>x.id==='${p.id}').data,'_blank')">Open file</button>`:`<button class="btn ghost" onclick="startQuiz('${p.id}')">Solve (${p.qs.length} qs)</button>`}</div>`).join('') || '<p style="color:var(--muted);font-size:13px">No past questions uploaded yet.</p>';
+  $('pascoList').innerHTML = pascoSets.map(p=>`<div class="card" style="margin-top:8px;display:flex;justify-content:space-between;align-items:center"><b>${p.subject}</b> ${p.type==='file'?`<button class="btn ghost" onclick="openFile(pascoSets.find(x=>x.id==='${p.id}').data,'${esc(p.subject).replace(/'/g,'')}','${(p.data||'').indexOf('application/pdf')>0?'pdf':'file'}')">Open file</button>`:`<button class="btn ghost" onclick="startQuiz('${p.id}')">Solve (${p.qs.length} qs)</button>`}</div>`).join('') || '<p style="color:var(--muted);font-size:13px">No past questions uploaded yet.</p>';
 }
 function createPasco(){
   const subj=$('pqSubj').value.trim();
@@ -563,13 +737,176 @@ function payAd(){
     ref: 'SP-'+Date.now(),
     callback: function(resp){
       ads.push({id:'a'+Date.now(),biz,link,wa,plan:selectedPlan.label,price:selectedPlan.price,status:'pending',ref:resp.reference});
-      store('sp_ads',ads); closeModal('m-newAd'); toast('Payment received — pending admin approval');
+      store('sp_ads',ads); closeModal('m-newAd'); $('agree').checked=false; $('payBtn').disabled=true; toast('Payment received — pending admin approval');
     },
     onClose: function(){ toast('Payment cancelled'); }
   });
   handler.openIframe();
 }
 
+
+// ---- ONLINE COURSES ----
+let online = store('sp_online') || [];
+let progress = store('sp_progress') || {};
+let onOpenId = null;
+function admTab(t){
+  document.querySelectorAll('#admTabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+  ['courses','ads','imgs','acct'].forEach(x=>$('adm-'+x).classList.toggle('hide',x!==t));
+}
+function saveOnline(){ return store('sp_online',online); }
+function createOnline(){
+  const t=$('ocTitle').value.trim(); if(!t){ toast('Enter a course title'); return; }
+  online.push({id:'o'+Date.now(),title:t,desc:$('ocDesc').value.trim(),cat:$('ocCat').value.trim(),dur:$('ocDur').value.trim(),lessons:[]});
+  saveOnline(); ['ocTitle','ocDesc','ocCat','ocDur'].forEach(i=>$(i).value=''); renderAdminOnline(); toast('Published — now add lessons below');
+}
+function addLesson(cid){
+  const c=online.find(x=>x.id===cid); if(!c) return;
+  const title=$('lt_'+cid).value.trim(), type=$('ly_'+cid).value, url=$('lu_'+cid).value.trim(), f=$('lf_'+cid).files[0];
+  if(!title){ toast('Give the lesson a title'); return; }
+  if(!url && !f){ toast('Paste a link or choose a file'); return; }
+  const push=data=>{ c.lessons.push({id:'l'+Date.now(),title,type,url,data:data||'',fname:f?f.name:''}); if(saveOnline()){ renderAdminOnline(); toast('Lesson added'); } else c.lessons.pop(); };
+  if(f){ if(f.size>3*1024*1024){ toast('File too large (max ~3MB) — use a link instead'); return; } const r=new FileReader(); r.onload=()=>push(r.result); r.readAsDataURL(f); } else push();
+}
+function delLesson(cid,lid){ const c=online.find(x=>x.id===cid); c.lessons=c.lessons.filter(l=>l.id!==lid); saveOnline(); renderAdminOnline(); }
+function delOnline(cid){ if(!confirm('Delete this course for all students?')) return; online=online.filter(x=>x.id!==cid); saveOnline(); renderAdminOnline(); }
+function renderAdminOnline(){
+  $('adminOnline').innerHTML = online.map(c=>`
+    <div class="card" style="margin-top:10px">
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start"><div><b>${esc(c.title)}</b><div style="font-size:12px;color:var(--muted)">${esc([c.cat,c.dur].filter(Boolean).join(' · '))}</div></div><button class="btn ghost" style="padding:6px 12px;font-size:12px" onclick="delOnline('${c.id}')">Delete</button></div>
+      ${c.lessons.map((l,i)=>`<div class="lrow"><span>${l.type==='video'?'▶':'📑'}</span><span class="t">${i+1}. ${esc(l.title)}</span><button class="btn ghost" onclick="delLesson('${c.id}','${l.id}')">✕</button></div>`).join('')||'<p style="font-size:12px;color:var(--muted)">No lessons yet.</p>'}
+      <div style="margin-top:10px;border-top:1px dashed var(--border);padding-top:10px">
+        <input id="lt_${c.id}" placeholder="Lesson title">
+        <select id="ly_${c.id}"><option value="video">Video (YouTube link)</option><option value="slides">Slides (link or PDF file)</option></select>
+        <input id="lu_${c.id}" placeholder="Paste link (YouTube, Google Slides, PDF link…)">
+        <input type="file" id="lf_${c.id}" accept=".pdf,.ppt,.pptx">
+        <button class="btn" onclick="addLesson('${c.id}')">＋ Add lesson</button>
+      </div>
+    </div>`).join('') || '<p style="font-size:13px;color:var(--muted);margin-top:10px">No online courses yet.</p>';
+}
+function pkey(cid){ return (user?user.name:'guest')+'|'+cid; }
+function pdone(cid){ return (progress[pkey(cid)]||{}).done||[]; }
+function renderOnline(){
+  const box=$('onBody');
+  if(onOpenId){
+    const c=online.find(x=>x.id===onOpenId); if(!c){ onOpenId=null; return renderOnline(); }
+    const done=pdone(c.id), pct=c.lessons.length?Math.round(done.length/c.lessons.length*100):0;
+    box.innerHTML=`<button class="back-link" onclick="onOpenId=null;renderOnline()">‹ All online courses</button>
+      <div class="card"><h3 style="margin:0 0 4px">${esc(c.title)}</h3><p style="font-size:13px;color:var(--muted);margin:0 0 10px">${esc(c.desc)}</p>
+      <div class="bar"><i style="width:${pct}%"></i></div><p style="font-size:12px;color:var(--muted);margin:6px 0 0">${done.length} of ${c.lessons.length} lessons complete · ${pct}%</p>
+      ${pct===100&&c.lessons.length?`<button class="btn" style="margin-top:10px" onclick="showCert('${c.id}')">🏆 Get your certificate</button>`:''}</div>
+      ${c.lessons.map((l,i)=>`<div class="lrow"><span>${l.type==='video'?'▶':'📑'}</span><span class="t">${i+1}. ${esc(l.title)}</span>
+        <button class="btn" onclick="openLesson('${c.id}','${l.id}')">${l.type==='video'?'Watch':'View slides'}</button>
+        <label class="done-lbl"><input type="checkbox" class="rchk" ${done.includes(l.id)?'checked':''} onchange="toggleLesson('${c.id}','${l.id}')"> Done</label></div>`).join('')||'<p style="color:var(--muted);font-size:13px;margin-top:10px">Lessons are being added — check back soon.</p>'}`;
+    return;
+  }
+  box.innerHTML = online.length? '<div class="cgrid">'+online.map(c=>{
+    const done=pdone(c.id).length, tot=c.lessons.length, pct=tot?Math.round(done/tot*100):0;
+    return `<div class="ocard"><div class="ocover"><span>🎓</span><small>${esc(c.cat||'FREE COURSE')}</small></div>
+      <div class="obody"><b>${esc(c.title)}</b><p style="font-size:12px;color:var(--muted);margin:0">${esc(c.desc)}</p>
+      <div style="font-size:12px;color:var(--muted)">${tot} lesson${tot===1?'':'s'}${c.dur?' · '+esc(c.dur):''} · Certificate</div>
+      ${done?`<div class="bar"><i style="width:${pct}%"></i></div>`:''}
+      <button class="btn" style="margin-top:6px" onclick="onOpenId='${c.id}';renderOnline()">${pct===100&&tot?'✔ Completed — view':done?'Continue':'Start free course'}</button></div></div>`;
+  }).join('')+'</div>' : '<div class="card" style="text-align:center"><p style="color:var(--muted);margin:0">No online courses yet — new free courses are added here regularly. Check back soon!</p></div>';
+}
+function toggleLesson(cid,lid){
+  const k=pkey(cid), p=progress[k]||{done:[]}, i=p.done.indexOf(lid);
+  if(i>=0) p.done.splice(i,1); else p.done.push(lid);
+  const c=online.find(x=>x.id===cid);
+  if(c.lessons.length && p.done.length>=c.lessons.length && !p.at){ p.at=new Date().toDateString(); toast('🎉 Course complete — your certificate is ready!'); }
+  progress[k]=p; store('sp_progress',progress); renderOnline();
+}
+function ytEmbed(u){ const m=u.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m?'https://www.youtube-nocookie.com/embed/'+m[1]+'?rel=0':null; }
+function openLesson(cid,lid){
+  const c=online.find(x=>x.id===cid), l=c.lessons.find(x=>x.id===lid);
+  if(l.data){ openFile(l.data,l.fname||l.title,'pdf'); return; }
+  const yt=ytEmbed(l.url);
+  if(yt||/\.mp4($|\?)/i.test(l.url)) showViewer(l.title,yt||l.url);
+  else window.open(l.url,'_blank','noopener');
+}
+function showCert(cid){
+  const c=online.find(x=>x.id===cid), p=progress[pkey(cid)]||{};
+  const id='SP-'+(hashN(pkey(cid)+(p.at||'')).toString(36).toUpperCase().slice(0,8));
+  $('certPaper').innerHTML=`<div style="font-size:12px;letter-spacing:.3em;color:#587076">STUDY PARTNER</div><h1>CERTIFICATE OF COMPLETION</h1>
+    <p style="margin:14px 0 0">This is to certify that</p><div class="nm">${esc(user.name)}</div>
+    <p style="margin:6px 0">has successfully completed the free online course</p>
+    <div style="font-size:22px;font-weight:bold;margin:6px 0 18px">${esc(c.title)}</div>
+    <div style="display:flex;justify-content:space-around;font-size:12px;color:#587076;flex-wrap:wrap;gap:8px"><span>Date: ${esc(p.at||new Date().toDateString())}</span><span>Certificate ID: ${id}</span></div>`;
+  openModal('cert');
+}
+
+// ---- STUDY TIMER ----
+let tmMode='sw', tmSec=0, tmRun=false, tmInt=null, soundOn=true, ambKind='silent', ac=null, ambNodes=[], lofiTimer=null;
+function fmt(s){ return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+function drawClock(){ $('clock').textContent = fmt(tmMode==='sw'?tmSec:Math.max(0,1500-tmSec)); }
+function setMode(m){
+  if(tmRun){ toast('Pause the session first'); return; }
+  tmMode=m; tmSec=0; $('tmS').classList.toggle('on',m==='sw'); $('tmP').classList.toggle('on',m==='pomo');
+  drawClock(); $('tstat').textContent='Ready to Start Study Session'; $('startBtn').textContent='▶ START STUDY SESSION';
+}
+function speak(t){
+  if(!soundOn||!('speechSynthesis' in window)) return;
+  try{
+    const u=new SpeechSynthesisUtterance(t), vs=speechSynthesis.getVoices();
+    const v=vs.find(v=>/female|zira|samantha|susan|hazel|karen|victoria|moira|tessa/i.test(v.name))||vs.find(v=>/^en/i.test(v.lang));
+    if(v)u.voice=v; u.pitch=1.15; u.rate=.95; speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+function toggleTimer(){
+  if(tmRun){ clearInterval(tmInt); tmRun=false; $('startBtn').textContent='▶ RESUME SESSION'; $('tstat').textContent='Paused'; return; }
+  if(tmSec===0) speak('Please turn off Do Not Disturb mode or silence notifications for deep focus!');
+  tmRun=true; $('startBtn').textContent='⏸ PAUSE SESSION'; $('tstat').textContent='Deep focus in progress…';
+  tmInt=setInterval(()=>{
+    tmSec++; drawClock();
+    if(tmMode==='pomo' && tmSec>=1500){ speak('Pomodoro complete. Great work! Take a five minute break.'); resetSave(true); }
+  },1000);
+}
+function resetSave(auto){
+  clearInterval(tmInt); tmRun=false;
+  if(tmSec>=5){
+    const list=store('sp_sessions')||[]; list.push({d:new Date().toDateString(),s:tmSec,m:tmMode}); store('sp_sessions',list);
+    toast('Saved '+Math.max(1,Math.round(tmSec/60))+' min study session');
+  }
+  tmSec=0; drawClock(); $('startBtn').textContent='▶ START STUDY SESSION';
+  $('tstat').textContent = auto? 'Session complete!' : 'Ready to Start Study Session';
+  renderToday();
+}
+function renderToday(){
+  const list=(store('sp_sessions')||[]).filter(x=>x.d===new Date().toDateString());
+  const mins=Math.round(list.reduce((a,x)=>a+x.s,0)/60);
+  $('todayTotal').textContent = mins? 'Studied today: '+mins+' min across '+list.length+' session'+(list.length>1?'s':''):'';
+}
+function actx(){ if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)(); if(ac.state==='suspended') ac.resume(); return ac; }
+function stopAmb(){ ambNodes.forEach(n=>{try{n.stop&&n.stop();n.disconnect();}catch(e){}}); ambNodes=[]; clearInterval(lofiTimer); }
+function playAmb(){
+  stopAmb(); if(ambKind==='silent'||!soundOn) return;
+  try{
+    const c=actx(), g=c.createGain(); g.gain.value=.6; g.connect(c.destination); ambNodes.push(g);
+    if(ambKind==='rain'||ambKind==='white'){
+      const b=c.createBuffer(1,c.sampleRate*2,c.sampleRate), d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+      const s=c.createBufferSource(); s.buffer=b; s.loop=true;
+      const f=c.createBiquadFilter(); f.type=ambKind==='rain'?'highpass':'lowpass'; f.frequency.value=ambKind==='rain'?1400:7000;
+      const ng=c.createGain(); ng.gain.value=ambKind==='rain'?.28:.12;
+      s.connect(f); f.connect(ng); ng.connect(g); s.start(); ambNodes.push(s,f,ng);
+    } else {
+      const chords=[[220,277,330,415],[196,247,294,392],[175,220,262,349],[196,247,294,370]]; let beat=0;
+      lofiTimer=setInterval(()=>{
+        const t=c.currentTime;
+        if(beat%8===0){ chords[(beat/8)%4].forEach(fr=>{ const o=c.createOscillator(), og=c.createGain(); o.type='triangle'; o.frequency.value=fr; og.gain.setValueAtTime(.0001,t); og.gain.exponentialRampToValueAtTime(.07,t+.1); og.gain.exponentialRampToValueAtTime(.0001,t+3.6); o.connect(og); og.connect(g); o.start(t); o.stop(t+3.7); }); }
+        if(beat%4===0){ const o=c.createOscillator(), og=c.createGain(); o.frequency.setValueAtTime(120,t); o.frequency.exponentialRampToValueAtTime(40,t+.25); og.gain.setValueAtTime(.35,t); og.gain.exponentialRampToValueAtTime(.0001,t+.3); o.connect(og); og.connect(g); o.start(t); o.stop(t+.35); }
+        beat=(beat+1)%32;
+      },450);
+    }
+  }catch(e){}
+}
+function setAmb(k){ ambKind=k; document.querySelectorAll('#amb button').forEach(b=>b.classList.toggle('on',b.dataset.k===k)); playAmb(); }
+function toggleSound(){
+  soundOn=!soundOn; $('sndBtn').textContent=soundOn?'🔊 Sound On':'🔇 Sound Off';
+  $('sndBtn').style.color=soundOn?'#1a9d5c':'var(--muted)';
+  if(!soundOn){ stopAmb(); try{speechSynthesis.cancel();}catch(e){} } else playAmb();
+}
+renderToday();
+
+let _rz; window.addEventListener("resize",()=>{ clearTimeout(_rz); _rz=setTimeout(()=>{ if(!$("v-library").classList.contains("hide")) renderShelf(); },200); });
 // init
 renderHero();
 setInterval(()=>{ if(!$('v-home').classList.contains('hide')) renderHero(); }, 60000);
