@@ -27,27 +27,19 @@ photos are saved only in *their own* browser — nobody sees anyone else's data,
 Once connected: every student's account, timetable, courses, ads and the day-photos you
 upload as admin are stored centrally and visible from any device, including yours.
 
-## 3. Research (AI assistant) — back on
+## 3. AI Study Assistant — currently OFF
 
-The chat bubble in Library / PASCO / Online Courses is called **Research**. It answers
-using Google Search via the Gemini API.
+The AI chat bubble is switched off for now (it was causing deploy issues while getting a
+Gemini key set up). To turn it back on later:
 
-1. Get a free key at https://aistudio.google.com/apikey
-   - Google currently issues two key formats — the older `AIzaSy...` and the newer
-     `AQ....` "Authentication Key" format. **Both work** — this app sends the key via
-     the `x-goog-api-key` header either way, which is Google's current documented
-     method for both formats.
-2. In Vercel → your project → **Settings → Environment Variables**, add:
-   `GEMINI_API_KEY` = your key (paste the whole thing, whichever format it starts with)
-3. Redeploy.
-
-If Research replies with a message about Google rejecting the key: this is a known,
-currently-ongoing issue on Google's side affecting some newly-issued `AQ.` keys (see the
-Google AI developer forum). Regenerating the key in AI Studio and updating the Vercel
-env var usually clears it.
-
-To switch Research off again later: open `index.html`, search for `const showAI=`, and
-change it to `const showAI=false;`.
+1. Get a free key at https://aistudio.google.com/apikey (must start with `AIzaSy`)
+2. Add it in Vercel → your project → **Settings → Environment Variables** as
+   `GEMINI_API_KEY`
+3. Recreate `api/chat.js` (ask Claude for it, or restore it from an earlier version of
+   this project) and add it back to `vercel.json`'s `functions` block
+4. In `index.html`, find `const AI_ENABLED=false;` (search for `AI_ENABLED`) and change
+   it to `true`
+5. Redeploy
 
 ## 4. Admin login
 
