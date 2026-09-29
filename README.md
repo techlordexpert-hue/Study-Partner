@@ -27,17 +27,19 @@ photos are saved only in *their own* browser — nobody sees anyone else's data,
 Once connected: every student's account, timetable, courses, ads and the day-photos you
 upload as admin are stored centrally and visible from any device, including yours.
 
-## 3. Turn on the AI Study Assistant (optional)
+## 3. AI Study Assistant — currently OFF
 
-The chat bubble in Library / PASCO / Online Courses answers using **Google Search** via
-the Gemini API, so it can look things up for real.
+The AI chat bubble is switched off for now (it was causing deploy issues while getting a
+Gemini key set up). To turn it back on later:
 
-1. Get a free key at https://aistudio.google.com/apikey
-2. In Vercel → your project → **Settings → Environment Variables**, add:
-   `GEMINI_API_KEY` = your key
-3. Redeploy.
-
-Without this key, the assistant still opens but tells the student it isn't connected yet.
+1. Get a free key at https://aistudio.google.com/apikey (must start with `AIzaSy`)
+2. Add it in Vercel → your project → **Settings → Environment Variables** as
+   `GEMINI_API_KEY`
+3. Recreate `api/chat.js` (ask Claude for it, or restore it from an earlier version of
+   this project) and add it back to `vercel.json`'s `functions` block
+4. In `index.html`, find `const AI_ENABLED=false;` (search for `AI_ENABLED`) and change
+   it to `true`
+5. Redeploy
 
 ## 4. Admin login
 

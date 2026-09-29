@@ -547,7 +547,8 @@ document.getElementById('nav').addEventListener('click',e=>{
 function go(v){
   currentView=v;
   ['home','timetable','library','pasco','online','account'].forEach(x=>$('v-'+x).classList.toggle('hide',x!==v));
-  const showAI=['library','pasco','online'].includes(v); $('aiFab').classList.toggle('hide',!showAI); if(!showAI){ aiOpen=false; $('aiPanel').classList.add('hide'); }
+  const AI_ENABLED=false; // set to true (and configure GEMINI_API_KEY in Vercel) to bring the AI assistant back
+  const showAI=AI_ENABLED && ['library','pasco','online'].includes(v); $('aiFab').classList.toggle('hide',!showAI); if(!showAI){ aiOpen=false; $('aiPanel').classList.add('hide'); }
   [...document.querySelectorAll('#nav button')].forEach(b=>b.classList.toggle('active',b.dataset.v===v));
   if(v==='timetable') renderTT();
   if(v==='account') renderAccount();
