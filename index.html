@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Study Partner</title>
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 :root{
   --pink:#f43f5e; --purple:#6d28d9; --blue:#5b21b6;
@@ -175,10 +176,10 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 .drow{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px;} .drow:last-child{border-bottom:none;} .drow span:first-child{color:var(--muted);}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;} .chip{flex:1;min-width:96px;text-align:center;border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:12px;padding:11px 8px;font-size:13px;font-weight:700;cursor:pointer;} .chip.on{border-color:transparent;background:var(--grad);color:#fff;}
 .photo-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:10px;}
-.ai-fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:40;animation:pulse 3s infinite;}
+.ai-fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:60;animation:pulse 3s infinite;}
 .ai-fab small{position:absolute;top:-4px;right:-4px;background:#fff;color:#6d28d9;font-size:9px;font-weight:900;border-radius:8px;padding:2px 5px;box-shadow:0 1px 4px rgba(0,0,0,.25);}
 @keyframes pulse{0%,100%{box-shadow:0 6px 18px rgba(109,40,217,.45),0 0 0 0 rgba(192,38,211,.35)}50%{box-shadow:0 6px 18px rgba(109,40,217,.45),0 0 0 12px rgba(192,38,211,0)}}
-.ai-panel{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 130px));background:var(--bg);border:1px solid var(--border);border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.35);z-index:45;display:flex;flex-direction:column;overflow:hidden;animation:up2 .2s;}
+.ai-panel{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 130px));background:var(--bg);border:1px solid var(--border);border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.35);z-index:61;display:flex;flex-direction:column;overflow:hidden;animation:up2 .2s;}
 .ai-head{background:var(--grad);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;} .ai-head small{display:block;opacity:.9;font-size:11px;}
 .ai-head button{background:rgba(255,255,255,.22);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;}
 .ai-msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;}
@@ -189,6 +190,10 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 .aim .src{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;} .aim .src a{font-size:11px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:3px 8px;color:var(--purple);text-decoration:none;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .ai-chips{display:flex;gap:6px;padding:0 12px 8px;overflow-x:auto;} .ai-chips button{flex:none;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:6px 10px;font-size:12px;cursor:pointer;}
 .ai-in{display:flex;gap:6px;padding:10px;border-top:1px solid var(--border);align-items:flex-end;} .ai-in textarea{flex:1;margin:0;resize:none;max-height:90px;} .ai-in .btn{padding:10px 14px;}
+
+.vpdf{width:100%;height:72vh;overflow:auto;background:#241c3d;border-radius:10px;padding:14px 0;text-align:center;}
+.vpdf canvas{max-width:96%;background:#fff;box-shadow:0 3px 14px rgba(0,0,0,.45);border-radius:3px;margin-bottom:12px;}
+.vpdf-msg{color:#d8d0f0;font-size:13px;padding:24px;}
 .toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:20px;font-size:13px;z-index:99;animation:up .25s;}
 @keyframes up{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
 .wa-fab{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:40;transition:transform .2s;}
@@ -403,7 +408,8 @@ Q: next question..."></textarea>
 <div class="modal-bg hide" id="m-viewer"><div class="modal" style="max-width:920px;padding:12px">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><b id="vTitle" style="font-size:14px"></b>
   <div style="display:flex;gap:6px"><a id="vOpen" class="btn ghost" target="_blank" rel="noopener" style="text-decoration:none;padding:7px 12px;font-size:12px">Open in new tab</a><button class="btn" style="padding:7px 12px;font-size:12px" onclick="closeViewer()">Close</button></div></div>
-  <iframe id="vFrame" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:72vh;border:0;border-radius:10px;background:#000"></iframe>
+  <iframe id="vFrame" class="hide" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:72vh;border:0;border-radius:10px;background:#000"></iframe>
+  <div id="vPdf" class="vpdf hide"><p class="vpdf-msg" id="vPdfMsg"></p></div>
 </div></div>
 
 <div class="modal-bg hide" id="m-cert"><div class="modal" style="max-width:760px">
@@ -914,14 +920,38 @@ function openMaterial(cid,mi){
 function dataToBlobUrl(d){ const i=d.indexOf(','), mime=(d.slice(0,i).match(/:(.*?)[;,]/)||[])[1]||'application/octet-stream'; const bin=atob(d.slice(i+1)), arr=new Uint8Array(bin.length); for(let k=0;k<bin.length;k++) arr[k]=bin.charCodeAt(k); return URL.createObjectURL(new Blob([arr],{type:mime})); }
 function openFile(data,title,type){
   if(!data){ toast('File is missing'); return; }
-  const url = data.startsWith('data:') ? dataToBlobUrl(data) : data;
   const isPdf = type==='pdf' || /^data:application\/pdf/.test(data) || /\.pdf($|\?)/i.test(data);
-  if(isPdf){ showViewer(title,url); }
-  else { const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove(); toast('Word / PowerPoint files download and open in your own app'); }
+  if(isPdf){ showPdf(title,data); return; }
+  const url = data.startsWith('data:') ? dataToBlobUrl(data) : data;
+  const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove(); toast('Word / PowerPoint files download and open in your own app');
 }
-function showViewer(title,src){ $('vTitle').textContent=title||''; $('vFrame').srcdoc=''; $('vFrame').src=src; $('vOpen').href=src; openModal('viewer'); }
-function showNote(title,body){ $('vTitle').textContent=title; $('vFrame').removeAttribute('src'); $('vFrame').srcdoc='<body style="font:15px/1.6 system-ui,sans-serif;padding:18px;white-space:pre-wrap;color:#222;background:#fff">'+esc(body)+'</body>'; $('vOpen').classList.add('hide'); openModal('viewer'); }
-function closeViewer(){ $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vOpen').classList.remove('hide'); closeModal('m-viewer'); }
+function showViewer(title,src){ $('vTitle').textContent=title||''; $('vFrame').srcdoc=''; $('vFrame').classList.remove('hide'); $('vFrame').src=src; $('vPdf').classList.add('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg"></p>'; $('vOpen').href=src; $('vOpen').classList.remove('hide'); openModal('viewer'); }
+async function showPdf(title,dataUrl){
+  $('vTitle').textContent=title||'';
+  $('vFrame').classList.add('hide'); $('vFrame').src='about:blank';
+  $('vPdf').classList.remove('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg">Loading document…</p>';
+  $('vOpen').href=dataUrl; $('vOpen').classList.remove('hide');
+  openModal('viewer');
+  try{
+    if(!window.pdfjsLib) throw new Error('pdfjs missing');
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const i=dataUrl.indexOf(','), bin=atob(dataUrl.slice(i+1)), bytes=new Uint8Array(bin.length);
+    for(let k=0;k<bin.length;k++) bytes[k]=bin.charCodeAt(k);
+    const doc=await pdfjsLib.getDocument({data:bytes}).promise;
+    $('vPdf').innerHTML='';
+    const availW=Math.max(280,($('vPdf').clientWidth||860)-24);
+    for(let n=1;n<=doc.numPages;n++){
+      const page=await doc.getPage(n), base=page.getViewport({scale:1}), scale=availW/base.width, vp=page.getViewport({scale});
+      const canvas=document.createElement('canvas'); canvas.width=vp.width; canvas.height=vp.height;
+      await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
+      $('vPdf').appendChild(canvas);
+    }
+  }catch(e){
+    $('vPdf').innerHTML='<p class="vpdf-msg">Could not preview this document in-page. Tap "Open in new tab" above to view or download it.</p>';
+  }
+}
+function showNote(title,body){ $('vTitle').textContent=title; $('vFrame').classList.remove('hide'); $('vPdf').classList.add('hide'); $('vOpen').classList.add('hide'); $('vFrame').removeAttribute('src'); $('vFrame').srcdoc='<body style="font:15px/1.6 system-ui,sans-serif;padding:18px;white-space:pre-wrap;color:#222;background:#fff">'+esc(body)+'</body>'; $('vOpen').classList.add('hide'); openModal('viewer'); }
+function closeViewer(){ $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vFrame').classList.add('hide'); $('vPdf').classList.add('hide'); $('vPdf').innerHTML=''; closeModal('m-viewer'); }
 
 // ---- PASCO ----
 function weekNum(){ const d=new Date(); const start=new Date(d.getFullYear(),0,1); return Math.ceil((((d-start)/86400000)+start.getDay()+1)/7); }
