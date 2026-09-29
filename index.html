@@ -194,6 +194,10 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 .vpdf{width:100%;height:72vh;overflow:auto;background:#241c3d;border-radius:10px;padding:14px 0;text-align:center;}
 .vpdf canvas{max-width:96%;background:#fff;box-shadow:0 3px 14px rgba(0,0,0,.45);border-radius:3px;margin-bottom:12px;}
 .vpdf-msg{color:#d8d0f0;font-size:13px;padding:24px;}
+
+#m-viewer.full{padding:0;align-items:stretch;}
+#m-viewer.full .modal{max-width:none!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;display:flex;flex-direction:column;}
+#m-viewer.full #vFrame,#m-viewer.full #vPdf{flex:1;height:auto!important;}
 .toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:20px;font-size:13px;z-index:99;animation:up .25s;}
 @keyframes up{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
 .wa-fab{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:40;transition:transform .2s;}
@@ -209,7 +213,7 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 .res-foot .btn{padding:7px 12px;font-size:12px;}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 .hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,8,40,.35),rgba(20,8,40,.8));z-index:1;}
-.hero>*:not(.hero-img):not(.hero-fade){position:relative;z-index:2;}
+.hero>*:not(.hero-bg):not(.hero-fade){position:relative;z-index:2;}
 .back-link{background:none;border:none;color:var(--purple);font-weight:700;font-size:13px;cursor:pointer;padding:0;margin-bottom:10px;}
 .upl{border:1.5px dashed var(--border);border-radius:12px;padding:14px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer;}
 .res-thumb{width:44px;height:44px;object-fit:cover;border-radius:8px;}
@@ -239,7 +243,7 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
   <!-- HOME -->
   <section id="v-home">
     <div class="hero" id="hero">
-      <img class="hero-img hide" id="heroImg">
+      <img class="hero-img hero-bg hide" id="heroImg"><iframe class="hero-img hero-bg hide" id="heroVid" allow="autoplay" frameborder="0" title="Sponsored video"></iframe>
       <div class="hero-fade hide" id="heroFade"></div>
       <button class="arrow l" onclick="slideMove(-1)">‹</button>
       <button class="arrow r" onclick="slideMove(1)">›</button>
@@ -326,12 +330,12 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 </main>
 
 <a class="wa-fab" href="https://chat.whatsapp.com/GRNxNjogpTsHBDVslXNt64" target="_blank" title="Join our WhatsApp group" aria-label="Join our WhatsApp group"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.93 9.93 0 1 0 12.04 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.1.82.83-3.02-.2-.31A8.2 8.2 0 1 1 12.04 20.2Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.47c-.16 0-.43.06-.65.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.23-.16-.47-.28Z"/></svg></a>
-<button class="ai-fab hide" id="aiFab" onclick="toggleAI()" title="Ask the Study Assistant" aria-label="Study Assistant"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M11 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg><small>AI</small></button>
+<button class="ai-fab hide" id="aiFab" onclick="toggleAI()" title="Ask Research" aria-label="Research"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M11 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg><small>AI</small></button>
 <div class="ai-panel hide" id="aiPanel">
-  <div class="ai-head"><div><b>Study Assistant</b><small>Ask anything · powered by Google Search</small></div><button onclick="toggleAI()" aria-label="Close">✕</button></div>
+  <div class="ai-head"><div><b>Research</b><small>Ask anything · powered by Google Search</small></div><button onclick="toggleAI()" aria-label="Close">✕</button></div>
   <div class="ai-msgs" id="aiMsgs"></div>
   <div class="ai-chips"><button onclick="sendAI('Explain this topic to me simply')">Explain simply</button><button onclick="sendAI('Give me 5 practice questions with answers')">Practice questions</button><button onclick="sendAI('Summarise the key points I should remember')">Key points</button></div>
-  <div class="ai-in"><textarea id="aiText" rows="1" placeholder="Ask a question…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI();}"></textarea><button class="btn" onclick="sendAI()">Send</button></div>
+  <div class="ai-in"><textarea id="aiText" rows="1" placeholder="Ask a question to research…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI();}"></textarea><button class="btn" onclick="sendAI()">Send</button></div>
 </div>
 
 <!-- MODALS -->
@@ -391,9 +395,9 @@ Q: next question..."></textarea>
   <h2 style="margin-top:0">Run your business ad</h2>
   <div class="field"><label>Business name</label><input id="adBiz"></div>
   <div class="field"><label>Advertise with (choose one)</label>
-    <div class="seg" style="display:flex;width:100%"><button type="button" id="akVideo" class="on" style="flex:1" onclick="setAdKind('video')">🎬 Video link</button><button type="button" id="akFlyer" style="flex:1" onclick="setAdKind('flyer')">🖼 Flyer</button></div></div>
+    <div class="seg" style="display:flex;width:100%"><button type="button" id="akVideo" class="on" style="flex:1" onclick="setAdKind('video')">🎬 Video link</button><button type="button" id="akFlyer" style="flex:1" onclick="setAdKind('flyer')">🖼 Flyer / Product photo</button></div></div>
   <div class="field" id="adVideoBox"><label>YouTube or TikTok video link</label><input id="adLink" placeholder="https://youtube.com/watch?v=…"></div>
-  <div class="field hide" id="adFlyerBox"><label>Upload your flyer (JPG / PNG)</label><input type="file" id="adFlyer" accept="image/*" onchange="pickFlyer(this.files[0])"><img id="adFlyerPrev" class="hide" alt="" style="width:100%;max-height:220px;object-fit:contain;border-radius:10px;margin-top:6px;background:var(--card)"></div>
+  <div class="field hide" id="adFlyerBox"><label>Upload your flyer or product photo (JPG / PNG)</label><input type="file" id="adFlyer" accept="image/*" onchange="pickFlyer(this.files[0])"><img id="adFlyerPrev" class="hide" alt="" style="width:100%;max-height:220px;object-fit:contain;border-radius:10px;margin-top:6px;background:var(--card)"></div>
   <div class="field"><label>“Buy now” goes to — WhatsApp number or website</label><input id="adWa" placeholder="0201234567  or  https://yourshop.com"></div>
   <div class="field"><label>Pricing</label><div id="plans"></div></div>
   <div class="field" style="display:flex;gap:8px;align-items:center;margin-top:12px">
@@ -407,7 +411,7 @@ Q: next question..."></textarea>
 
 <div class="modal-bg hide" id="m-viewer"><div class="modal" style="max-width:920px;padding:12px">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><b id="vTitle" style="font-size:14px"></b>
-  <div style="display:flex;gap:6px"><a id="vOpen" class="btn ghost" target="_blank" rel="noopener" style="text-decoration:none;padding:7px 12px;font-size:12px">Open in new tab</a><button class="btn" style="padding:7px 12px;font-size:12px" onclick="closeViewer()">Close</button></div></div>
+  <div style="display:flex;gap:6px"><a id="vOpen" class="btn ghost" target="_blank" rel="noopener" style="text-decoration:none;padding:7px 12px;font-size:12px">Open in new tab</a><button class="iconbtn" id="vMaxBtn" onclick="toggleFullViewer()" title="Maximize" aria-label="Maximize"><svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button><button class="btn" style="padding:7px 12px;font-size:12px" onclick="closeViewer()">Close</button></div></div>
   <iframe id="vFrame" class="hide" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:72vh;border:0;border-radius:10px;background:#000"></iframe>
   <div id="vPdf" class="vpdf hide"><p class="vpdf-msg" id="vPdfMsg"></p></div>
 </div></div>
@@ -547,8 +551,7 @@ document.getElementById('nav').addEventListener('click',e=>{
 function go(v){
   currentView=v;
   ['home','timetable','library','pasco','online','account'].forEach(x=>$('v-'+x).classList.toggle('hide',x!==v));
-  const AI_ENABLED=false; // set to true (and configure GEMINI_API_KEY in Vercel) to bring the AI assistant back
-  const showAI=AI_ENABLED && ['library','pasco','online'].includes(v); $('aiFab').classList.toggle('hide',!showAI); if(!showAI){ aiOpen=false; $('aiPanel').classList.add('hide'); }
+  const showAI=['library','pasco','online'].includes(v); $('aiFab').classList.toggle('hide',!showAI); if(!showAI){ aiOpen=false; $('aiPanel').classList.add('hide'); }
   [...document.querySelectorAll('#nav button')].forEach(b=>b.classList.toggle('active',b.dataset.v===v));
   if(v==='timetable') renderTT();
   if(v==='account') renderAccount();
@@ -796,6 +799,8 @@ let slide=0, slideCount=3;
 function todayKey(){ return DAYS[new Date().getDay()]; }
 function buyUrl(a){ const v=String(a.wa||'').trim(); if(/^https?:\/\//i.test(v)) return v; if(/^www\./i.test(v)) return 'https://'+v; let d=v.replace(/\D/g,''); if(!d) return a.link||'#'; if(d.startsWith('0')) d='233'+d.slice(1); return 'https://wa.me/'+d; }
 function ytThumb(u){ const m=String(u||'').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m?'https://img.youtube.com/vi/'+m[1]+'/hqdefault.jpg':null; }
+function ytId(u){ const m=String(u||'').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m?m[1]:null; }
+function ytBgEmbed(id){ return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+id+'&modestbranding=1&rel=0&playsinline=1'; }
 let _adShown=null;
 function curAd(){ const l=ads.filter(a=>a.status==='live'); return l.length? l[Math.floor(Date.now()/8000)%l.length] : null; }
 function playAd(){ const a=_adShown; if(!a) return; const yt=ytEmbed(a.link); if(yt) showViewer(a.biz,yt); else window.open(a.link,'_blank','noopener'); }
@@ -804,10 +809,13 @@ function renderHero(){
   const dayImg = dayImages()[todayKey()];
   const ad = slide===2 ? curAd() : null; _adShown=ad;
   const flyer = !!(ad && ad.kind==='flyer' && ad.img);
-  const bg = slide===0 ? dayImg : (ad ? (flyer ? ad.img : ytThumb(ad.link)) : null);
-  $('heroImg').classList.toggle('hide', !bg); $('heroFade').classList.toggle('hide', !bg);
-  $('heroImg').classList.toggle('contain', flyer); $('hero').classList.toggle('flyer', flyer);
+  const vidId = ad && ad.kind==='video' ? ytId(ad.link) : null;
+  const bg = slide===0 ? dayImg : (ad ? (flyer ? ad.img : (vidId?null:ytThumb(ad.link))) : null);
+  $('heroImg').classList.toggle('hide', !bg); $('heroFade').classList.toggle('hide', !(bg||vidId));
+  $('heroImg').classList.toggle('contain', flyer); $('hero').classList.toggle('flyer', flyer||!!vidId);
   if(bg) $('heroImg').src = bg;
+  $('heroVid').classList.toggle('hide', !vidId);
+  if(vidId){ if($('heroVid').dataset.id!==vidId){ $('heroVid').src=ytBgEmbed(vidId); $('heroVid').dataset.id=vidId; } } else { $('heroVid').removeAttribute('src'); $('heroVid').dataset.id=''; }
   const slides=[
     `<div class="emoji">${dayImg?'':d.emoji}</div><p style="font-size:14px;margin:0 0 2px;opacity:.85">Welcome to</p><h1>${DAY_LABEL[todayKey()]}</h1><p>${d.sub}</p><button class="cta" onclick="go('timetable')">View today's plan</button>`,
     ttSlideHTML(),
@@ -825,8 +833,7 @@ function adSlideHTML(ad){
   if(!ad){
     return `<div class="emoji">📣</div><h1 style="font-size:28px">Advertise here</h1><p>Reach every student on this app today.</p><button class="cta" onclick="openModal('newAd')">Run your business ad now</button>`;
   }
-  const watch = ad.kind==='flyer' ? '' : `<button class="cta" onclick="playAd()">▶ Watch ad</button>`;
-  return `<p style="font-size:12px;margin:0;opacity:.9;letter-spacing:.08em">SPONSORED</p><h1 style="font-size:26px">${esc(ad.biz)}</h1><div style="display:flex;gap:8px;flex-wrap:wrap">${watch}<a class="cta" style="text-decoration:none" href="${esc(buyUrl(ad))}" target="_blank" rel="noopener">Buy now</a></div>`;
+  return `<p style="font-size:12px;margin:0;opacity:.9;letter-spacing:.08em">SPONSORED</p><h1 style="font-size:26px">${esc(ad.biz)}</h1><a class="cta" style="text-decoration:none" href="${esc(buyUrl(ad))}" target="_blank" rel="noopener">Buy now</a>`;
 }
 function slideMove(n){ slide=(slide+n+slideCount)%slideCount; renderHero(); }
 setInterval(()=>{ if($('v-home').classList.contains('hide'))return; slideMove(1); },7000);
@@ -952,7 +959,14 @@ async function showPdf(title,dataUrl){
   }
 }
 function showNote(title,body){ $('vTitle').textContent=title; $('vFrame').classList.remove('hide'); $('vPdf').classList.add('hide'); $('vOpen').classList.add('hide'); $('vFrame').removeAttribute('src'); $('vFrame').srcdoc='<body style="font:15px/1.6 system-ui,sans-serif;padding:18px;white-space:pre-wrap;color:#222;background:#fff">'+esc(body)+'</body>'; $('vOpen').classList.add('hide'); openModal('viewer'); }
-function closeViewer(){ $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vFrame').classList.add('hide'); $('vPdf').classList.add('hide'); $('vPdf').innerHTML=''; closeModal('m-viewer'); }
+function closeViewer(){ $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vFrame').classList.add('hide'); $('vPdf').classList.add('hide'); $('vPdf').innerHTML=''; $('m-viewer').classList.remove('full'); $('vMaxIcon').outerHTML=MAX_ICON; closeModal('m-viewer'); }
+const MAX_ICON='<svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+const RESTORE_ICON='<svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v3a2 2 0 0 1-2 2H4M21 8h-3a2 2 0 0 1-2-2V3M3 16h3a2 2 0 0 1 2 2v3M16 21v-3a2 2 0 0 1 2-2h3"/></svg>';
+function toggleFullViewer(){
+  const full=$('m-viewer').classList.toggle('full');
+  $('vMaxIcon').outerHTML = full ? RESTORE_ICON : MAX_ICON;
+  $('vMaxBtn').title = full ? 'Restore' : 'Maximize';
+}
 
 // ---- PASCO ----
 function weekNum(){ const d=new Date(); const start=new Date(d.getFullYear(),0,1); return Math.ceil((((d-start)/86400000)+start.getDay()+1)/7); }
@@ -1037,7 +1051,7 @@ function payAd(){
   const biz=$('adBiz').value.trim(), kind=adKind, link=kind==='video'?$('adLink').value.trim():'', wa=$('adWa').value.trim();
   if(!biz){ toast('Enter your business name'); return; }
   if(kind==='video' && !/^https?:\/\//i.test(link)){ toast('Paste a valid video link (starting with https://)'); return; }
-  if(kind==='flyer' && !adImg){ toast('Upload your flyer image'); return; }
+  if(kind==='flyer' && !adImg){ toast('Upload your flyer or product photo'); return; }
   if(!wa){ toast('Add a WhatsApp number or website for the Buy now button'); return; }
   if(!$('agree').checked){ toast('Please accept the ad terms first'); return; }
   const email = (user && user.name ? user.name.replace(/\s+/g,'').toLowerCase() : 'guest') + '@studypartner.app';
@@ -1231,7 +1245,7 @@ function addAI(role,text,sources,raw){
 }
 function toggleAI(){
   aiOpen=!aiOpen; $('aiPanel').classList.toggle('hide',!aiOpen);
-  if(aiOpen){ if(!$('aiMsgs').children.length) addAI('assistant',"Hi! 👋 I'm your Study Assistant. Ask me to explain a topic, quiz you, or look something up online — I can see what you're studying right now.",null,true); setTimeout(()=>$('aiText').focus(),60); }
+  if(aiOpen){ if(!$('aiMsgs').children.length) addAI('assistant',"Hi! 👋 I'm Research. Ask me to explain a topic, quiz you, or look something up online — I can see what you're studying right now.",null,true); setTimeout(()=>$('aiText').focus(),60); }
 }
 function aiContext(){
   const v=currentView;
