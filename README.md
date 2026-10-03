@@ -27,19 +27,29 @@ photos are saved only in *their own* browser — nobody sees anyone else's data,
 Once connected: every student's account, timetable, courses, ads and the day-photos you
 upload as admin are stored centrally and visible from any device, including yours.
 
-## 3. AI Study Assistant — currently OFF
+## 3. Research — no setup needed
 
-The AI chat bubble is switched off for now (it was causing deploy issues while getting a
-Gemini key set up). To turn it back on later:
+The chat bubble in Library / PASCO / Online Courses is called **Research**. For each
+question, it:
 
-1. Get a free key at https://aistudio.google.com/apikey (must start with `AIzaSy`)
-2. Add it in Vercel → your project → **Settings → Environment Variables** as
-   `GEMINI_API_KEY`
-3. Recreate `api/chat.js` (ask Claude for it, or restore it from an earlier version of
-   this project) and add it back to `vercel.json`'s `functions` block
-4. In `index.html`, find `const AI_ENABLED=false;` (search for `AI_ENABLED`) and change
-   it to `true`
-5. Redeploy
+1. Combines what the student typed with whatever course/lesson/PASCO question they
+   currently have open, for a sharper query.
+2. Tries DuckDuckGo's free, keyless Instant Answer API for a quick factual answer
+   (Wikipedia-style summaries, definitions) — shown directly in the chat with a source
+   link, if one is found.
+3. If there's no quick answer, it opens that same query as a real Google search in a
+   new tab instead, so the student is never left with nothing.
+
+There is **no API key, no environment variable, and no server call through your own
+backend involved** — it's pure front-end logic calling a public, free endpoint directly
+from the browser. It can't fail from a bad key, a rate limit, or a billing issue on your
+end, and nothing here can break a deploy.
+
+Honest limit: step 2 only works for topics DuckDuckGo recognises (general concepts,
+definitions, known entities) — it can't write custom explanations, generate practice
+questions, or hold a real conversation the way an AI model can. For that, you'd need a
+true AI provider (Gemini, OpenAI, Anthropic, etc.) with your own key and a small
+serverless function — ask Claude to wire one in any time.
 
 ## 4. Admin login
 
