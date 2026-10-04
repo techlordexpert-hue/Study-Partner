@@ -80,6 +80,19 @@ async function limited(req) {
   return n > 100;
 }
 function needAdmin(t) { const p = verify(t); if (!p || p.role !== 'admin') bad(401, 'Admin sign-in required.'); }
+const PLAN_MS = { '24 hours': 86400000, '48 hours': 172800000, '3 days': 259200000, '1 week': 604800000, '1 month': 2592000000 };
+function planMs(plan) { return PLAN_MS[plan] || 86400000; }
+async function sweepAds(list) {
+  const now = Date.now(), out = [];
+  for (const ad of list) {
+    if (ad.status === 'live' && ad.expiresAt && ad.expiresAt <= now) {
+      ad.status = 'ended'; ad.endedAt = now; ad.endedBy = 'expired';
+      await kv(['HSET', 'ads', ad.id, JSON.stringify(ad)]);
+    }
+    out.push(ad);
+  }
+  return out;
+}
 async function adminCreds() {
   const o = await jget('admin:creds');
   return o && o.name && o.salt && o.hash ? o : { name: ADMIN_USER, salt: null, hash: null };
@@ -125,7 +138,7 @@ module.exports = async (req, res) => {
     if (!READY) return send(res, 503, { error: 'Online storage is not connected yet.' });
 
     if (a === 'content') {
-      const ads = (await hall('ads')).filter((x) => x.status === 'live').map((x) => ({ id: x.id, biz: x.biz, kind: x.kind || 'video', link: x.link || '', img: x.img || '', wa: x.wa, status: 'live' }));
+      const ads = (await sweepAds(await hall('ads'))).filter((x) => x.status === 'live').map((x) => ({ id: x.id, biz: x.biz, kind: x.kind || 'video', link: x.link || '', img: x.img || '', wa: x.wa, status: 'live' }));
       return send(res, 200, { online: (await jget('content:online')) || [], dayImages: (await jget('content:dayImages')) || {}, ads });
     }
 
@@ -202,7 +215,7 @@ module.exports = async (req, res) => {
         const s = (v, n) => String(v || '').slice(0, n);
         const kind = ad.kind === 'flyer' ? 'flyer' : 'video';
         const img = kind === 'flyer' && typeof ad.img === 'string' && /^data:image\/(jpeg|png|webp);base64,/.test(ad.img) && ad.img.length <= 450000 ? ad.img : '';
-        const rec = { id: 'a' + Date.now() + crypto.randomBytes(3).toString('hex'), biz: s(ad.biz, 80), kind, link: kind === 'video' ? s(ad.link, 500) : '', img, wa: s(ad.wa, 200), plan: s(ad.plan, 40), price: Number(ad.price) || 0, ref: s(ad.ref, 80), status: 'pending', createdAt: Date.now() };
+        const rec = { id: 'a' + Date.now() + crypto.randomBytes(3).toString('hex'), biz: s(ad.biz, 80), kind, link: kind === 'video' ? s(ad.link, 500) : '', img, wa: s(ad.wa, 200), plan: s(ad.plan, 40), durationMs: planMs(ad.plan), price: Number(ad.price) || 0, ref: s(ad.ref, 80), status: 'pending', createdAt: Date.now() };
         if (!rec.biz || (kind === 'video' && !rec.link) || (kind === 'flyer' && !rec.img)) bad(400, 'Please add the business name and either a video link or a flyer image.');
         await kv(['HSET', 'ads', rec.id, JSON.stringify(rec)]);
         return send(res, 200, { ok: true });
@@ -231,12 +244,27 @@ module.exports = async (req, res) => {
         await kv(['SET', 'content:' + k, s]);
         return send(res, 200, { ok: true });
       }
-      case 'adList': { needAdmin(t); return send(res, 200, { ads: (await hall('ads')).sort((x, y) => y.createdAt - x.createdAt) }); }
+      case 'adList': { needAdmin(t); const ads = await sweepAds(await hall('ads')); return send(res, 200, { ads: ads.sort((x, y) => y.createdAt - x.createdAt) }); }
       case 'adSet': {
         needAdmin(t); const ad = await jget('ads', body.id);
         if (!ad || !['live', 'rejected', 'pending', 'ended'].includes(body.status)) bad(400, 'Invalid request.');
-        ad.status = body.status; await kv(['HSET', 'ads', ad.id, JSON.stringify(ad)]); return send(res, 200, { ok: true });
+        ad.status = body.status;
+        if (body.status === 'live') { ad.liveAt = Date.now(); ad.expiresAt = ad.liveAt + (ad.durationMs || planMs(ad.plan)); delete ad.endedAt; delete ad.endedBy; }
+        if (body.status === 'ended') { ad.endedAt = Date.now(); ad.endedBy = 'admin'; }
+        await kv(['HSET', 'ads', ad.id, JSON.stringify(ad)]); return send(res, 200, { ok: true });
       }
+      case 'adCreate': {
+        needAdmin(t);
+        const ad = body.ad || {}, s = (v, n) => String(v || '').slice(0, n);
+        const kind = ad.kind === 'flyer' ? 'flyer' : 'video';
+        const img = kind === 'flyer' && typeof ad.img === 'string' && /^data:image\/(jpeg|png|webp);base64,/.test(ad.img) && ad.img.length <= 450000 ? ad.img : '';
+        if (!s(ad.biz, 80) || (kind === 'video' && !s(ad.link, 500)) || (kind === 'flyer' && !img)) bad(400, 'Add a business name and either a video link or a flyer image.');
+        const now = Date.now(), durationMs = planMs(ad.plan);
+        const rec = { id: 'a' + now + crypto.randomBytes(3).toString('hex'), biz: s(ad.biz, 80), kind, link: kind === 'video' ? s(ad.link, 500) : '', img, wa: s(ad.wa, 200), plan: s(ad.plan, 40) || '24 hours', durationMs, price: 0, ref: 'admin', status: 'live', createdAt: now, liveAt: now, expiresAt: now + durationMs };
+        await kv(['HSET', 'ads', rec.id, JSON.stringify(rec)]);
+        return send(res, 200, { ok: true, id: rec.id });
+      }
+      case 'adDelete': { needAdmin(t); await kv(['HDEL', 'ads', body.id]); return send(res, 200, { ok: true }); }
       default: bad(400, 'Unknown request.');
     }
   } catch (e) {

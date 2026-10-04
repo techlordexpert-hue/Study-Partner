@@ -440,7 +440,19 @@ Q: next question..."></textarea>
     </div>
     <div id="adminOnline"></div>
   </div>
-  <div id="adm-ads" class="admp hide"><div id="adminAds"></div></div>
+  <div id="adm-ads" class="admp hide">
+    <div class="card"><b>＋ Create an ad</b>
+      <p style="font-size:11px;color:var(--muted);margin:2px 0 8px">Runs immediately — no payment, no approval needed. Good for your own promos.</p>
+      <input id="caaBiz" placeholder="Business name" style="margin-top:4px">
+      <div class="seg" style="display:flex;width:100%;margin-top:6px"><button type="button" id="caaVideoBtn" class="on" style="flex:1" onclick="setCaaKind('video')">🎬 Video link</button><button type="button" id="caaFlyerBtn" style="flex:1" onclick="setCaaKind('flyer')">🖼 Flyer / Product photo</button></div>
+      <input id="caaLink" placeholder="YouTube or TikTok video link" style="margin-top:6px">
+      <div id="caaFlyerBox" class="hide" style="margin-top:6px"><input type="file" id="caaFlyerFile" accept="image/*" onchange="caaPickFlyer(this.files[0])"><img id="caaFlyerPrev" class="hide" alt="" style="width:100%;max-height:160px;object-fit:contain;border-radius:8px;margin-top:6px;background:var(--bg)"></div>
+      <input id="caaWa" placeholder="Buy now destination — WhatsApp number or website" style="margin-top:6px">
+      <select id="caaPlan" style="margin-top:6px"><option>24 hours</option><option>48 hours</option><option>3 days</option><option>1 week</option><option>1 month</option></select>
+      <button class="btn" style="margin-top:8px" onclick="createAdminAd()">Publish ad now</button>
+    </div>
+    <div id="adminAds"></div>
+  </div>
   <div id="adm-imgs" class="admp hide"><p style="font-size:11px;color:var(--muted);margin:0 0 6px">Change any day's Home slide photo any time.</p><div id="adminImgs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px"></div></div>
   <div id="adm-acct" class="admp">
     <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b>Student accounts</b><span class="pill" id="accCount"></span></div>
@@ -739,22 +751,65 @@ function setDayImage(day,file){
   });
 }
 // ads
-let adsAdmin=[];
+let adsAdmin=[], caaKind='video', caaImg='';
+function timeLeft(ms){
+  if(ms<=0) return 'expiring…';
+  const h=Math.floor(ms/3600000), d=Math.floor(h/24);
+  if(d>=1) return d+'d '+(h%24)+'h left';
+  if(h>=1) return h+'h '+Math.floor((ms%3600000)/60000)+'m left';
+  return Math.max(1,Math.floor(ms/60000))+'m left';
+}
+function adCard(a,actions){
+  return `<div class="card" style="margin-top:8px">
+    <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>${esc(a.biz)}</b><span class="pill">${esc(a.plan||'—')}</span></div>
+    ${a.kind==='flyer'?`<img src="${a.img}" alt="" style="max-width:100%;max-height:150px;border-radius:8px;margin:6px 0;display:block">`:`<p style="font-size:12px;color:var(--muted);word-break:break-all;margin:6px 0">${esc(a.link)}</p>`}
+    <p style="font-size:12px;color:var(--muted);margin:0 0 6px">Buy now → ${esc(a.wa||'—')}${a.ref==='admin'?' · admin-created':a.price?' · ₵'+esc(a.price):''}</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">${actions}</div>
+  </div>`;
+}
 async function loadAdsAdmin(){
   if(API){ try{ adsAdmin=(await api('adList')).ads||[]; }catch(e){ adsAdmin=[]; } } else adsAdmin=ads;
-  $('adminAds').innerHTML = adsAdmin.length? adsAdmin.map(a=>`
-    <div class="card" style="margin-top:8px">
-      <b>${esc(a.biz)}</b> — ${esc(a.plan)} (₵${esc(a.price)}) <span class="pill">${esc(a.status)}</span>
-      ${a.kind==='flyer'?`<img src="${a.img}" alt="" style="max-width:100%;max-height:170px;border-radius:8px;margin:6px 0;display:block">`:`<p style="font-size:12px;color:var(--muted);word-break:break-all;margin:6px 0">${esc(a.link)}</p>`}<p style="font-size:12px;color:var(--muted);margin:0 0 6px">Buy now → ${esc(a.wa||'—')}</p>
-      ${a.status==='pending'?`<button class="btn" onclick="setAdStatus('${a.id}','live')">Approve &amp; run</button> <button class="btn ghost" onclick="setAdStatus('${a.id}','rejected')">Reject</button>`:a.status==='live'?`<button class="btn ghost" onclick="setAdStatus('${a.id}','ended')">Stop ad</button>`:''}
-    </div>`).join('') : '<p style="color:var(--muted);font-size:13px">No ads yet.</p>';
+  const now=Date.now();
+  const pending=adsAdmin.filter(a=>a.status==='pending');
+  const live=adsAdmin.filter(a=>a.status==='live');
+  const past=adsAdmin.filter(a=>a.status==='ended'||a.status==='rejected');
+  let html='';
+  html += `<div class="res-label">PENDING APPROVAL (${pending.length})</div>`;
+  html += pending.length? pending.map(a=>adCard(a,`<button class="btn" onclick="setAdStatus('${a.id}','live')">Approve &amp; run</button><button class="btn ghost" onclick="setAdStatus('${a.id}','rejected')">Reject</button>`)).join('') : '<p style="color:var(--muted);font-size:13px">Nothing waiting.</p>';
+  html += `<div class="res-label" style="margin-top:16px">LIVE NOW (${live.length})</div>`;
+  html += live.length? live.map(a=>adCard(a,`<span class="pill" style="background:var(--card);color:var(--muted);border:1px solid var(--border)">${esc(timeLeft((a.expiresAt||0)-now))}</span><button class="btn ghost" onclick="setAdStatus('${a.id}','ended')">End ad now</button><button class="btn ghost" onclick="deleteAd('${a.id}')">Delete</button>`)).join('') : '<p style="color:var(--muted);font-size:13px">No ad is running right now.</p>';
+  html += `<div class="res-label" style="margin-top:16px">HISTORY (${past.length})</div>`;
+  html += past.length? past.map(a=>adCard(a,`<span class="pill" style="background:var(--card);color:var(--muted);border:1px solid var(--border)">${esc(a.status)}${a.endedBy==='expired'?' · expired':a.endedBy==='admin'?' · ended by admin':''}</span><button class="btn ghost" onclick="deleteAd('${a.id}')">Delete</button>`)).join('') : '<p style="color:var(--muted);font-size:13px">Nothing here yet.</p>';
+  $('adminAds').innerHTML=html;
 }
 async function setAdStatus(id,status){
   try{
     if(API) await api('adSet',{id,status});
-    else { ads=ads.map(a=>a.id===id?{...a,status}:a); store('sp_ads',ads); }
+    else { const now=Date.now(); ads=ads.map(a=>a.id!==id?a:{...a,status,...(status==='live'?{liveAt:now,expiresAt:now+(a.durationMs||86400000)}:{}),...(status==='ended'?{endedAt:now,endedBy:'admin'}:{})}); store('sp_ads',ads); }
   }catch(e){ toast(e.message); return; }
-  await loadAdsAdmin(); if(API) await loadContent(); renderHero(); toast(status==='live'?'Ad approved & live':'Ad updated');
+  await loadAdsAdmin(); if(API) await loadContent(); renderHero(); toast(status==='live'?'Ad approved & live':status==='ended'?'Ad ended':'Ad updated');
+}
+async function deleteAd(id){
+  if(!confirm('Delete this ad permanently?')) return;
+  try{ if(API) await api('adDelete',{id}); else { ads=ads.filter(a=>a.id!==id); store('sp_ads',ads); } }catch(e){ toast(e.message); return; }
+  await loadAdsAdmin(); if(API) await loadContent(); renderHero(); toast('Ad deleted');
+}
+const PLAN_MS={'24 hours':86400000,'48 hours':172800000,'3 days':259200000,'1 week':604800000,'1 month':2592000000};
+function setCaaKind(k){ caaKind=k; $('caaVideoBtn').classList.toggle('on',k==='video'); $('caaFlyerBtn').classList.toggle('on',k==='flyer'); $('caaLink').classList.toggle('hide',k!=='video'); $('caaFlyerBox').classList.toggle('hide',k!=='flyer'); }
+function caaPickFlyer(f){ if(!f) return; shrink(f,url=>{ caaImg=url; $('caaFlyerPrev').src=url; $('caaFlyerPrev').classList.remove('hide'); }); }
+async function createAdminAd(){
+  const biz=$('caaBiz').value.trim(), link=$('caaLink').value.trim(), wa=$('caaWa').value.trim(), plan=$('caaPlan').value;
+  if(!biz){ toast('Enter a business name'); return; }
+  if(caaKind==='video' && !/^https?:\/\//i.test(link)){ toast('Paste a valid video link'); return; }
+  if(caaKind==='flyer' && !caaImg){ toast('Upload a flyer or product photo'); return; }
+  const durationMs=PLAN_MS[plan]||86400000;
+  const adRec={biz,kind:caaKind,link:caaKind==='video'?link:'',img:caaKind==='flyer'?caaImg:'',wa,plan,durationMs};
+  try{
+    if(API) await api('adCreate',{ad:adRec});
+    else { const now=Date.now(); ads.push({id:'a'+now,...adRec,price:0,ref:'admin',status:'live',createdAt:now,liveAt:now,expiresAt:now+durationMs}); store('sp_ads',ads); }
+  }catch(e){ toast(e.message); return; }
+  $('caaBiz').value=''; $('caaLink').value=''; $('caaWa').value=''; caaImg=''; $('caaFlyerPrev').classList.add('hide'); $('caaFlyerFile').value=''; setCaaKind('video');
+  await loadAdsAdmin(); if(API) await loadContent(); renderHero(); toast('Ad published & live');
 }
 // accounts
 let accList=[];
@@ -815,7 +870,7 @@ function ytThumb(u){ const m=String(u||'').match(/(?:youtu\.be\/|v=|embed\/|shor
 function ytId(u){ const m=String(u||'').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m?m[1]:null; }
 function ytBgEmbed(id){ return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+id+'&modestbranding=1&rel=0&playsinline=1'; }
 let _adShown=null;
-function curAd(){ const l=ads.filter(a=>a.status==='live'); return l.length? l[Math.floor(Date.now()/8000)%l.length] : null; }
+function curAd(){ const now=Date.now(); const l=ads.filter(a=>a.status==='live' && (!a.expiresAt || a.expiresAt>now)); return l.length? l[Math.floor(now/8000)%l.length] : null; }
 function playAd(){ const a=_adShown; if(!a) return; const yt=ytEmbed(a.link); if(yt) showViewer(a.biz,yt); else window.open(a.link,'_blank','noopener'); }
 function renderHero(){
   const d=DAY_THEME[todayKey()];

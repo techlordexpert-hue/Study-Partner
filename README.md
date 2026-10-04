@@ -51,6 +51,22 @@ questions, or hold a real conversation the way an AI model can. For that, you'd 
 true AI provider (Gemini, OpenAI, Anthropic, etc.) with your own key and a small
 serverless function — ask Claude to wire one in any time.
 
+## 5. Ads: timing, and running your own
+
+Every paid ad expires automatically based on the plan the business picked — 24 hours,
+48 hours, 3 days, 1 week, or 1 month — counted from the moment **you approve it**, not
+from when they paid. Once that time is up, it comes off the Home slideshow by itself;
+nothing needs to be done manually.
+
+In the admin dashboard's **Ads** tab you can also:
+- **Create an ad yourself** — runs immediately, no payment or approval step. Good for
+  your own promos or a business that paid you outside the app.
+- **End ad now** — stop a live ad early, before its time is up.
+- **Delete** — permanently remove an ad record (works on live or past ads).
+
+Ads are grouped into Pending approval / Live now (with time remaining shown) / History
+(ended or rejected), so you can always see what's running and what's finished.
+
 ## 4. Admin login
 
 There's no visible "Admin" link anywhere in the app — sign in on the normal sign-up form
