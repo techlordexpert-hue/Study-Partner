@@ -428,6 +428,7 @@ Q: next question..."></textarea>
     <button data-t="courses" onclick="admTab('courses')">Online courses</button>
     <button data-t="ads" onclick="admTab('ads')">Ads</button>
     <button data-t="imgs" onclick="admTab('imgs')">Home images</button>
+    <button data-t="login" onclick="admTab('login')">Admin login</button>
   </div>
   <div id="adm-courses" class="admp hide">
     <div class="card"><b>Publish a new free course</b>
@@ -449,6 +450,18 @@ Q: next question..."></textarea>
     <div class="card" style="margin-top:10px"><b>Create an account</b>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><input id="caName" placeholder="Name" style="flex:1;min-width:140px"><input id="caPass" placeholder="Password (min 4)" style="flex:1;min-width:140px"></div>
       <button class="btn" onclick="accCreate()">＋ Create account</button></div>
+  </div>
+  <div id="adm-login" class="admp hide">
+    <div class="card"><b>Change admin sign-in</b>
+      <p style="font-size:12px;color:var(--muted);margin:4px 0 10px">This is how you get into this dashboard — change it to something only you know. You'll need your current password to confirm.</p>
+      <label style="font-size:12px;color:var(--muted)">New admin name (leave blank to keep current)</label>
+      <input id="admNewName" autocomplete="off" placeholder="unchanged">
+      <label style="font-size:12px;color:var(--muted)">New password (leave blank to keep current)</label>
+      <input id="admNewPass" type="password" autocomplete="off" placeholder="unchanged">
+      <label style="font-size:12px;color:var(--muted)">Current admin password (required)</label>
+      <input id="admCurPass" type="password" autocomplete="off">
+      <button class="btn" style="margin-top:8px" onclick="saveAdminCreds()">Save admin login</button>
+    </div>
   </div>
   <button class="btn ghost" style="width:100%;margin-top:12px" onclick="signOut()">Sign out</button>
   <button class="btn ghost" style="width:100%;margin-top:6px" onclick="closeModal('m-admin')">Close</button>
@@ -1078,7 +1091,20 @@ let progress = store('sp_progress') || {};
 let onOpenId = null, onLessonId = null;
 function admTab(t){
   document.querySelectorAll('#admTabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-  ['courses','ads','imgs','acct'].forEach(x=>$('adm-'+x).classList.toggle('hide',x!==t));
+  ['courses','ads','imgs','acct','login'].forEach(x=>$('adm-'+x).classList.toggle('hide',x!==t));
+}
+async function saveAdminCreds(){
+  const newName=$('admNewName').value.trim(), newPass=$('admNewPass').value, curPass=$('admCurPass').value;
+  if(!curPass){ toast('Enter your current admin password to confirm'); return; }
+  if(!API){ toast('Admin login can only be changed once shared accounts are connected (see README).'); return; }
+  try{
+    const body={curPass}; if(newName) body.newName=newName; if(newPass) body.newPass=newPass;
+    const j=await api('adminCreds',body);
+    if(j.token) sessionToken=j.token;
+    persistSession();
+    $('admNewName').value=''; $('admNewPass').value=''; $('admCurPass').value='';
+    toast('Admin login updated ✔ — use the new details next time you sign in');
+  }catch(e){ toast(e.message); }
 }
 function saveOnline(){ if(API){ api('setContent',{key:'online',value:online}).catch(e=>toast(e.message)); return true; } return store('sp_online',online); }
 function createOnline(){

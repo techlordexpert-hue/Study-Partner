@@ -80,6 +80,16 @@ async function limited(req) {
   return n > 100;
 }
 function needAdmin(t) { const p = verify(t); if (!p || p.role !== 'admin') bad(401, 'Admin sign-in required.'); }
+async function adminCreds() {
+  const o = await jget('admin:creds');
+  return o && o.name && o.salt && o.hash ? o : { name: ADMIN_USER, salt: null, hash: null };
+}
+async function adminName() { return (await adminCreds()).name; }
+async function checkAdminLogin(name, pass) {
+  const c = await adminCreds();
+  if (c.salt) return safeEq(nameKey(name), nameKey(c.name)) && safeEq(hashPw(String(pass), c.salt), c.hash);
+  return safeEq(nameKey(name), nameKey(ADMIN_USER)) && safeEq(name, ADMIN_USER) && safeEq(pass, ADMIN_PASS);
+}
 async function needUser(t) {
   const p = verify(t);
   if (!p || p.role !== 'student') bad(401, 'Please log in again.');
@@ -95,7 +105,7 @@ async function createUser(name, pass) {
   if (name.length < 2 || name.length > 40) bad(400, 'Name must be 2–40 characters.');
   if (String(pass || '').length < 4 || String(pass).length > 100) bad(400, 'Password must be at least 4 characters.');
   const key = nameKey(name);
-  if (key === nameKey(ADMIN_USER) || (await kv(['HGET', 'users', key]))) bad(409, 'That name is already taken. Tap “Log in” if it’s yours, or add your surname to make it unique.');
+  if (key === nameKey(await adminName()) || (await kv(['HGET', 'users', key]))) bad(409, 'That name is already taken. Tap “Log in” if it’s yours, or add your surname to make it unique.');
   const salt = crypto.randomBytes(16).toString('hex');
   const u = { name, salt, hash: hashPw(String(pass), salt), createdAt: Date.now(), lastLogin: Date.now(), active: true, timetable: {} };
   await saveUser(key, u);
@@ -124,7 +134,7 @@ module.exports = async (req, res) => {
       case 'signup': case 'login': {
         if (await limited(req)) bad(429, 'Too many attempts. Please wait a few minutes and try again.');
         const name = cleanName(body.name), pass = String(body.pass || '');
-        if (nameKey(name) === nameKey(ADMIN_USER) && safeEq(name, ADMIN_USER) && safeEq(pass, ADMIN_PASS)) {
+        if (await checkAdminLogin(name, pass)) {
           return send(res, 200, { token: adminToken(), user: { name: 'Admin', isAdmin: true } });
         }
         if (a === 'signup') {
@@ -143,6 +153,22 @@ module.exports = async (req, res) => {
         if (p && p.role === 'admin') return send(res, 200, { user: { name: 'Admin', isAdmin: true } });
         const { u } = await needUser(t);
         return send(res, 200, { user: pubUser(u) });
+      }
+      case 'adminCreds': {
+        needAdmin(t);
+        const curName = (await adminCreds()).name;
+        const newName = body.newName !== undefined ? cleanName(body.newName) : curName;
+        const newPass = body.newPass !== undefined ? String(body.newPass) : '';
+        const curPass = String(body.curPass || '');
+        if (newName.length < 2 || newName.length > 40) bad(400, 'Admin name must be 2–40 characters.');
+        if (!(await checkAdminLogin(curName, curPass))) bad(401, 'Current admin password is wrong.');
+        if (newPass && newPass.length < 4) bad(400, 'New password must be at least 4 characters.');
+        if (nameKey(newName) !== nameKey(curName) && (await kv(['HGET', 'users', nameKey(newName)]))) bad(409, 'A student account already uses that name.');
+        const c = await adminCreds();
+        const salt = crypto.randomBytes(16).toString('hex');
+        const pass = newPass || curPass; // keep current password if a new one wasn't given, but re-hash under the (possibly new) salt/name
+        await kv(['SET', 'admin:creds', JSON.stringify({ name: newName, salt, hash: hashPw(pass, salt) })]);
+        return send(res, 200, { ok: true, name: newName, token: adminToken() });
       }
       case 'profile': {
         let { key, u } = await needUser(t);
@@ -164,7 +190,7 @@ module.exports = async (req, res) => {
         if (body.newName) {
           const nn = cleanName(body.newName), nk = nameKey(nn);
           if (nn.length < 2 || nn.length > 40) bad(400, 'Name must be 2–40 characters.');
-          if (nk !== key && (nk === nameKey(ADMIN_USER) || (await kv(['HGET', 'users', nk])))) bad(409, 'That name is already taken.');
+          if (nk !== key && (nk === nameKey(await adminName()) || (await kv(['HGET', 'users', nk])))) bad(409, 'That name is already taken.');
           u.name = nn; key = nk;
         }
         await saveUser(key, u);

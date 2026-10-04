@@ -54,8 +54,16 @@ serverless function — ask Claude to wire one in any time.
 ## 4. Admin login
 
 There's no visible "Admin" link anywhere in the app — sign in on the normal sign-up form
-using the special name/password you set (defaults: `Yo Lord!` / `#124#`).
-You can change these by setting `ADMIN_USER` and `ADMIN_PASS` as environment variables.
+using the special name/password (defaults: `Yo Lord!` / `#124#`).
+
+You can change the admin name/password two ways:
+- **From inside the app** (once shared accounts/database are connected — see step 2):
+  sign in as admin → **Admin login** tab in the dashboard → enter a new name and/or
+  password plus your current password to confirm → Save. This is the easiest way and
+  doesn't need Vercel at all.
+- **Via Vercel**, by setting `ADMIN_USER` and `ADMIN_PASS` as environment variables —
+  this only sets the *starting* login before you've changed it from inside the app once;
+  after your first in-app change, the in-app one takes over.
 
 ## Notes
 - The Paystack **public** key is embedded in the front-end for the ad checkout — that's
