@@ -27,46 +27,30 @@ photos are saved only in *their own* browser — nobody sees anyone else's data,
 Once connected: every student's account, timetable, courses, ads and the day-photos you
 upload as admin are stored centrally and visible from any device, including yours.
 
-## 3. Research — no setup needed
+## 3. Research — no setup needed, nothing leaves the app
 
 The chat bubble in Library / PASCO / Online Courses is called **Research**. For each
-question, it:
+question, it tries up to three free, keyless sources, in order, and shows the answer
+directly in the chat — nothing ever opens in a new tab automatically:
 
-1. Combines what the student typed with whatever course/lesson/PASCO question they
-   currently have open, for a sharper query.
-2. Tries DuckDuckGo's free, keyless Instant Answer API for a quick factual answer
-   (Wikipedia-style summaries, definitions) — shown directly in the chat with a source
-   link, if one is found.
-3. If there's no quick answer, it opens that same query as a real Google search in a
-   new tab instead, so the student is never left with nothing.
+1. **DuckDuckGo's Instant Answer API** — a quick factual summary (Wikipedia-style),
+   shown with a source link, if the topic is recognized.
+2. **DuckDuckGo's related topics** — a short list, if there's no single clean answer.
+3. **Wikipedia's search API** — real article titles and snippets shown as results right
+   in the chat, for broader topics the first two don't cover.
+
+If none of the three find anything, Research says so plainly rather than sending the
+student elsewhere.
 
 There is **no API key, no environment variable, and no server call through your own
-backend involved** — it's pure front-end logic calling a public, free endpoint directly
-from the browser. It can't fail from a bad key, a rate limit, or a billing issue on your
-end, and nothing here can break a deploy.
+backend involved** — it's pure front-end logic calling two free, public, CORS-enabled
+endpoints directly from the browser. It can't fail from a bad key, a rate limit, or a
+billing issue on your end, and nothing here can break a deploy.
 
-Honest limit: step 2 only works for topics DuckDuckGo recognises (general concepts,
-definitions, known entities) — it can't write custom explanations, generate practice
-questions, or hold a real conversation the way an AI model can. For that, you'd need a
-true AI provider (Gemini, OpenAI, Anthropic, etc.) with your own key and a small
-serverless function — ask Claude to wire one in any time.
-
-## 5. Ads: timing, and running your own
-
-Every paid ad expires automatically based on the plan the business picked — 24 hours,
-48 hours, 3 days, 1 week, or 1 month — counted from the moment **you approve it**, not
-from when they paid. Once that time is up, it comes off the Home slideshow by itself;
-nothing needs to be done manually.
-
-In the admin dashboard's **Ads** tab you can also:
-- **Create an ad yourself** — runs immediately, no payment or approval step. Good for
-  your own promos or a business that paid you outside the app.
-- **End ad now** — stop a live ad early, before its time is up.
-- **Delete** — permanently remove an ad record (works on live or past ads).
-
-Ads are grouped into Pending approval / Live now (with time remaining shown) / History
-(ended or rejected), so you can always see what's running and what's finished.
-
+Honest limit: it can answer real topics and definitions well, but it can't write a
+custom explanation or generate practice questions the way a true AI would — those need
+a real AI provider (Gemini, OpenAI, Anthropic, etc.) with your own key and a small
+serverless function. Ask Claude to wire one in any time.
 ## 4. Admin login
 
 There's no visible "Admin" link anywhere in the app — sign in on the normal sign-up form
