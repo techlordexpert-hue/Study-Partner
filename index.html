@@ -6,6 +6,7 @@
 <title>Study Partner</title>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 :root{
   --pink:#f43f5e; --purple:#6d28d9; --blue:#5b21b6;
@@ -177,7 +178,6 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;} .chip{flex:1;min-width:96px;text-align:center;border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:12px;padding:11px 8px;font-size:13px;font-weight:700;cursor:pointer;} .chip.on{border-color:transparent;background:var(--grad);color:#fff;}
 .photo-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:10px;}
 .ai-fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:60;animation:pulse 3s infinite;}
-.ai-fab small{position:absolute;top:-4px;right:-4px;background:#fff;color:#6d28d9;font-size:9px;font-weight:900;border-radius:8px;padding:2px 5px;box-shadow:0 1px 4px rgba(0,0,0,.25);}
 @keyframes pulse{0%,100%{box-shadow:0 6px 18px rgba(109,40,217,.45),0 0 0 0 rgba(192,38,211,.35)}50%{box-shadow:0 6px 18px rgba(109,40,217,.45),0 0 0 12px rgba(192,38,211,0)}}
 .ai-panel{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 130px));background:var(--bg);border:1px solid var(--border);border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.35);z-index:61;display:flex;flex-direction:column;overflow:hidden;animation:up2 .2s;}
 .ai-head{background:var(--grad);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;} .ai-head small{display:block;opacity:.9;font-size:11px;}
@@ -330,7 +330,7 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 </main>
 
 <a class="wa-fab" href="https://chat.whatsapp.com/GRNxNjogpTsHBDVslXNt64" target="_blank" title="Join our WhatsApp group" aria-label="Join our WhatsApp group"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.93 9.93 0 1 0 12.04 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.1.82.83-3.02-.2-.31A8.2 8.2 0 1 1 12.04 20.2Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.47c-.16 0-.43.06-.65.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.23-.16-.47-.28Z"/></svg></a>
-<button class="ai-fab hide" id="aiFab" onclick="toggleAI()" title="Ask Research" aria-label="Research"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M11 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg><small>AI</small></button>
+<button class="ai-fab hide" id="aiFab" onclick="toggleAI()" title="Ask Research" aria-label="Research"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M11 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg></button>
 <div class="ai-panel hide" id="aiPanel">
   <div class="ai-head"><div><b>Research</b><small>Answers shown right here — nothing opens elsewhere</small></div><button onclick="toggleAI()" aria-label="Close">✕</button></div>
   <div class="ai-msgs" id="aiMsgs"></div>
@@ -1009,12 +1009,49 @@ function openMaterial(cid,mi){
   openFile(m.data,m.fname||m.title,m.type);
 }
 function dataToBlobUrl(d){ const i=d.indexOf(','), mime=(d.slice(0,i).match(/:(.*?)[;,]/)||[])[1]||'application/octet-stream'; const bin=atob(d.slice(i+1)), arr=new Uint8Array(bin.length); for(let k=0;k<bin.length;k++) arr[k]=bin.charCodeAt(k); return URL.createObjectURL(new Blob([arr],{type:mime})); }
+function fileExt(name){ const m=String(name||'').match(/\.([a-z0-9]+)(?:\?|$)/i); return m?m[1].toLowerCase():''; }
 function openFile(data,title,type){
   if(!data){ toast('File is missing'); return; }
-  const isPdf = type==='pdf' || /^data:application\/pdf/.test(data) || /\.pdf($|\?)/i.test(data);
-  if(isPdf){ showPdf(title,data); return; }
+  const ext=fileExt(title);
+  if(ext==='pdf' || (!ext && type==='pdf')){ showPdf(title,data); return; }
+  if(ext==='pptx'){ showPptx(title,data); return; }
   const url = data.startsWith('data:') ? dataToBlobUrl(data) : data;
-  const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove(); toast('Word / PowerPoint files download and open in your own app');
+  const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove();
+  toast(ext==='ppt' ? "Older .ppt files can't preview here yet — downloading so you can open it in PowerPoint" : 'This file type downloads and opens in your own app');
+}
+async function showPptx(title,dataUrl){
+  $('vTitle').textContent=title||'';
+  $('vFrame').classList.add('hide'); $('vFrame').src='about:blank';
+  $('vPdf').classList.remove('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg">Reading slides…</p>';
+  $('vOpen').href=dataUrl; $('vOpen').classList.remove('hide');
+  openModal('viewer');
+  try{
+    if(!window.JSZip) throw new Error('jszip missing');
+    const i=dataUrl.indexOf(','), bin=atob(dataUrl.slice(i+1)), bytes=new Uint8Array(bin.length);
+    for(let k=0;k<bin.length;k++) bytes[k]=bin.charCodeAt(k);
+    const zip=await JSZip.loadAsync(bytes);
+    const slideKeys=Object.keys(zip.files)
+      .filter(k=>/^ppt\/slides\/slide\d+\.xml$/.test(k))
+      .sort((a,b)=>(+a.match(/\d+/)[0])-(+b.match(/\d+/)[0]));
+    if(!slideKeys.length) throw new Error('no slides found');
+    $('vPdf').innerHTML='';
+    for(let idx=0;idx<slideKeys.length;idx++){
+      const xml=await zip.files[slideKeys[idx]].async('string');
+      const paras=[...xml.matchAll(/<a:p>([\s\S]*?)<\/a:p>/g)]
+        .map(m=>[...m[1].matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)].map(t=>htmlUnescape(t[1])).join(''))
+        .filter(Boolean);
+      const card=document.createElement('div');
+      card.style.cssText='background:#fff;color:#241c3d;border-radius:10px;padding:16px 18px;margin:0 auto 12px;max-width:640px;width:100%;box-shadow:0 3px 14px rgba(0,0,0,.3);text-align:left';
+      card.innerHTML='<div style="font-size:11px;font-weight:800;color:#8a7fae;letter-spacing:.06em;margin-bottom:8px">SLIDE '+(idx+1)+' OF '+slideKeys.length+'</div>'+
+        (paras.length ? paras.map((p,i)=>i===0?`<div style="font-weight:700;font-size:16px;margin-bottom:6px">${esc(p)}</div>`:`<div style="font-size:14px;color:#4a4266;margin-top:4px">${esc(p)}</div>`).join('') : '<div style="font-size:13px;color:#8a7fae">(no text on this slide)</div>');
+      $('vPdf').appendChild(card);
+    }
+    const note=document.createElement('p'); note.className='vpdf-msg'; note.style.fontSize='11px';
+    note.textContent='Showing slide text only — images, charts and exact layout aren\'t shown here. Tap "Open in new tab" above to download the original file.';
+    $('vPdf').appendChild(note);
+  }catch(e){
+    $('vPdf').innerHTML='<p class="vpdf-msg">Could not read this file\'s slide text in-page. Tap "Open in new tab" above to download and open it in PowerPoint instead.</p>';
+  }
 }
 function showViewer(title,src){ $('vTitle').textContent=title||''; $('vFrame').srcdoc=''; $('vFrame').classList.remove('hide'); $('vFrame').src=src; $('vPdf').classList.add('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg"></p>'; $('vOpen').href=src; $('vOpen').classList.remove('hide'); openModal('viewer'); }
 async function showPdf(title,dataUrl){
@@ -1243,7 +1280,7 @@ function ytEmbed(u){ const m=u.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{
 function openLesson(cid,lid){
   const c=online.find(x=>x.id===cid), l=c.lessons.find(x=>x.id===lid);
   onLessonId=lid;
-  if(l.data){ openFile(l.data,l.fname||l.title,'pdf'); return; }
+  if(l.data){ openFile(l.data,l.fname||l.title,''); return; }
   const yt=ytEmbed(l.url);
   if(yt||/\.mp4($|\?)/i.test(l.url)) showViewer(l.title,yt||l.url);
   else window.open(l.url,'_blank','noopener');
@@ -1369,35 +1406,52 @@ function addResults(results){
   el.innerHTML = results.map(r=>`<div style="margin-bottom:${results.length>1?'10px':'0'}"><b>${esc(r.title)}</b><br><span style="opacity:.85">${esc(r.snippet)}…</span><br><a href="${esc(r.url)}" target="_blank" rel="noopener" style="font-size:12px;color:inherit;text-decoration:underline">🔗 Read more</a></div>`).join('<hr style="border:none;border-top:1px solid rgba(127,127,127,.25);margin:8px 0">');
   $('aiMsgs').appendChild(el); $('aiMsgs').scrollTop=$('aiMsgs').scrollHeight;
 }
-async function sendAI(t){
-  const inp=$('aiText'), text=String(t||inp.value).trim();
-  const topic=researchTopic(), q=[topic,text].filter(Boolean).join(' ').trim();
-  if(!q){ toast('Type what you want to look up'); return; }
-  if(!aiOpen) toggleAI();
-  inp.value=''; addAI('user', text||('Look up: '+topic), null, true);
-  const typing=addAI('assistant','Looking that up…',null,true);
+async function lookup(q){
   let data=null;
   try{
     const r=await fetch('https://api.duckduckgo.com/?q='+encodeURIComponent(q)+'&format=json&no_html=1&skip_disambig=1');
     if(r.ok) data=await r.json();
   }catch(e){ /* lookup service unreachable right now — fall through to the next source */ }
   const answer=data&&(data.AbstractText||data.Definition||data.Answer||'');
-  if(answer){
-    typing.remove();
-    const srcUrl=data.AbstractURL||data.DefinitionURL||'';
-    addAI('assistant', answer, srcUrl?[{title:data.Heading||'Source',url:srcUrl}]:null);
-    return;
-  }
+  if(answer) return {kind:'answer', answer, srcUrl:data.AbstractURL||data.DefinitionURL||'', heading:data.Heading};
   const rel=((data&&data.RelatedTopics)||[]).filter(x=>x&&x.Text&&x.FirstURL).slice(0,3);
-  if(rel.length){
-    typing.remove();
-    addAI('assistant', rel.map(x=>'- '+x.Text).join('\n'), rel.map(x=>({title:x.Text.slice(0,60),url:x.FirstURL})));
-    return;
-  }
+  if(rel.length) return {kind:'related', rel};
   const results=await wikiSearch(q);
+  if(results.length) return {kind:'results', results};
+  return {kind:'none'};
+}
+function renderLookup(res){
+  if(res.kind==='answer'){ addAI('assistant', res.answer, res.srcUrl?[{title:res.heading||'Source',url:res.srcUrl}]:null); return true; }
+  if(res.kind==='related'){ addAI('assistant', res.rel.map(x=>'- '+x.Text).join('\n'), res.rel.map(x=>({title:x.Text.slice(0,60),url:x.FirstURL}))); return true; }
+  if(res.kind==='results'){ addResults(res.results); return true; }
+  return false;
+}
+const LOCAL_INTENTS=[
+  {test:/^(hi|hello|hey|yo)\b/i, reply:"Hey! 👋 What topic do you want help with?"},
+  {test:/\b(thank|thanks|thx)\b/i, reply:"You're welcome! Anything else you want to look up?"},
+  {test:/\b(bye|goodbye|see ya)\b/i, reply:"Good luck with your studies! 👋"},
+  {test:/\bwhat (is|are) study ?partner\b|\bwhat can you do\b|\bhelp\b.*\b(app|site)\b/i, reply:"Study Partner has a Library (shelve course notes/slides), PASCO (solve past questions), Online Courses (free lessons + certificates), and Activity (your weekly timetable). I'm Research — ask me about any topic and I'll try to answer right here."},
+  {test:/\bhow (do|can) i.*(create|add|make).*(course)/i, reply:"In the Library, tap \"＋ New course\", give it a name and code, then open it and tap \"＋ Add slide / note\" to add your materials."},
+  {test:/\bhow (do|can) i.*(add|create|edit).*(activity|timetable|class)/i, reply:"Go to Activity, pick a day, then tap \"＋ Add activity\" to add a time, subject and venue."},
+  {test:/\bhow (do|can) i.*(get|earn).*(certificate)/i, reply:"Open a course under Online Courses and tick off each lesson as you finish it — once every lesson is done, a \"Get your certificate\" button appears."},
+  {test:/\bwhat is pasco\b|\bhow (do|does).*(pasco|past question)/i, reply:"PASCO is where you solve past exam questions. You (or your school) can upload them as text and they turn into an interactive quiz, or upload a PDF/Word file to read directly."},
+  {test:/\bwho (made|built|created) (this|study ?partner)\b/i, reply:"Study Partner was built for students, by students 🎓"},
+];
+function localIntent(q){ const m=LOCAL_INTENTS.find(x=>x.test.test(q)); return m?m.reply:null; }
+async function sendAI(t){
+  const inp=$('aiText'), text=String(t||inp.value).trim();
+  const topic=researchTopic();
+  const q=text||topic; // what the student actually typed comes first — course context is only a tiebreaker, never the main query
+  if(!q){ toast('Type what you want to look up'); return; }
+  if(!aiOpen) toggleAI();
+  inp.value=''; addAI('user', text||('Look up: '+topic), null, true);
+  const local=localIntent(text);
+  if(local){ addAI('assistant', local, null, true); return; }
+  const typing=addAI('assistant','Looking that up…',null,true);
+  let res=await lookup(q);
+  if(res.kind==='none' && topic && text) res=await lookup(topic+' '+text); // only blend context in as a second attempt
   typing.remove();
-  if(results.length){ addResults(results); return; }
-  addAI('assistant', "I couldn't find anything for that — try different or fewer words.", null, true);
+  if(!renderLookup(res)) addAI('assistant', "I couldn't find anything for that — try different or fewer words.", null, true);
 }
 
 let _rz; window.addEventListener("resize",()=>{ clearTimeout(_rz); _rz=setTimeout(()=>{ if(!$("v-library").classList.contains("hide")) renderShelf(); },200); });
