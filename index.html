@@ -177,19 +177,8 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 .drow{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px;} .drow:last-child{border-bottom:none;} .drow span:first-child{color:var(--muted);}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;} .chip{flex:1;min-width:96px;text-align:center;border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:12px;padding:11px 8px;font-size:13px;font-weight:700;cursor:pointer;} .chip.on{border-color:transparent;background:var(--grad);color:#fff;}
 .photo-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:10px;}
-.ai-fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:60;animation:pulse 3s infinite;}
+.fab-search{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;border:none;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:60;animation:pulse 3s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 6px 18px rgba(109,40,217,.45),0 0 0 0 rgba(192,38,211,.35)}50%{box-shadow:0 6px 18px rgba(109,40,217,.45),0 0 0 12px rgba(192,38,211,0)}}
-.ai-panel{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 130px));background:var(--bg);border:1px solid var(--border);border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.35);z-index:61;display:flex;flex-direction:column;overflow:hidden;animation:up2 .2s;}
-.ai-head{background:var(--grad);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;} .ai-head small{display:block;opacity:.9;font-size:11px;}
-.ai-head button{background:rgba(255,255,255,.22);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;}
-.ai-msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;}
-.aim{max-width:88%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.5;word-wrap:break-word;}
-.aim.u{align-self:flex-end;background:var(--grad);color:#fff;border-bottom-right-radius:4px;}
-.aim.a{align-self:flex-start;background:var(--card);border:1px solid var(--border);border-bottom-left-radius:4px;}
-.aim code{background:rgba(127,127,127,.2);padding:1px 5px;border-radius:5px;}
-.aim .src{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;} .aim .src a{font-size:11px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:3px 8px;color:var(--purple);text-decoration:none;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ai-chips{display:flex;gap:6px;padding:0 12px 8px;overflow-x:auto;} .ai-chips button{flex:none;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:6px 10px;font-size:12px;cursor:pointer;}
-.ai-in{display:flex;gap:6px;padding:10px;border-top:1px solid var(--border);align-items:flex-end;} .ai-in textarea{flex:1;margin:0;resize:none;max-height:90px;} .ai-in .btn{padding:10px 14px;}
 
 .vpdf{width:100%;height:72vh;overflow:auto;background:#241c3d;border-radius:10px;padding:14px 0;text-align:center;}
 .vpdf canvas{max-width:96%;background:#fff;box-shadow:0 3px 14px rgba(0,0,0,.45);border-radius:3px;margin-bottom:12px;}
@@ -198,6 +187,52 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 #m-viewer.full{padding:0;align-items:stretch;}
 #m-viewer.full .modal{max-width:none!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;display:flex;flex-direction:column;}
 #m-viewer.full #vFrame,#m-viewer.full #vPdf{flex:1;height:auto!important;}
+
+.pptx-host{margin:0 auto;width:fit-content;max-width:100%;}
+.mat-hint{font-size:12px;line-height:1.5;margin:-4px 0 10px;padding:8px 10px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--text);}
+.mat-sub{font-size:11px;color:var(--muted);margin:4px 0 0;line-height:1.4;}
+.ppt-help{background:#fff;color:#241c3d;border-radius:12px;padding:18px 20px;margin:12px auto;max-width:560px;text-align:left;font-size:14px;line-height:1.55;}
+.pn-pic{display:block;margin:0 auto 12px;width:min(96%,1400px);height:auto;background:#fff;border-radius:3px;box-shadow:0 3px 14px rgba(0,0,0,.35);}
+.conv{font-size:11px;color:var(--muted);margin-top:4px;min-height:14px;}
+
+.srch h1{font-size:clamp(30px,5.5vw,42px);font-weight:800;letter-spacing:-.025em;margin:8px 0 4px;line-height:1.1;}
+.srch .sub{color:var(--muted);margin:0 0 20px;font-size:15px;}
+.srch-bar{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:24px;padding:7px 7px 7px 22px;box-shadow:0 12px 34px rgba(109,40,217,.12);}
+.srch-bar input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font-size:17px;margin:0;padding:13px 0;border-radius:0;}
+.srch-bar:focus-within{border-color:var(--purple);box-shadow:0 12px 34px rgba(109,40,217,.22);}
+.srch-go{flex:none;border:0;border-radius:18px;background:var(--grad);color:#fff;font-weight:800;font-size:15px;padding:14px 26px;cursor:pointer;box-shadow:0 6px 16px rgba(109,40,217,.35);}
+.srch-chips{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 16px;}
+.srch-chips button{border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:999px;padding:10px 20px;font-size:14.5px;cursor:pointer;font-weight:500;}
+.srch-chips button.on{background:#1b1530;color:#fff;border-color:#1b1530;}
+:root[data-theme="dark"] .srch-chips button.on{background:#f1eefb;color:#150f24;border-color:#f1eefb;}
+.srch-card{background:var(--bg);border:1px solid var(--border);border-radius:22px;padding:20px 22px;box-shadow:0 8px 26px rgba(109,40,217,.08);margin-bottom:14px;}
+.srch-card h3{margin:0 0 12px;font-size:22px;letter-spacing:-.01em;}
+.srch-recent{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.rchip{border:1px solid var(--border);background:var(--bg);color:var(--muted);border-radius:999px;padding:8px 16px;font-size:14px;cursor:pointer;}
+.rchip:hover{border-color:var(--purple);color:var(--text);}
+.rclear{border:0;background:none;color:var(--purple);font-weight:700;font-size:13px;cursor:pointer;padding:8px;}
+.srch-note{color:var(--muted);font-size:13.5px;padding:14px 4px;} .srch-note.small{font-size:11.5px;padding:2px 4px 14px;}
+.srch-warn{color:var(--text);font-size:14px;} .srch-warn a{color:var(--purple);font-weight:700;}
+.yt-frame{position:relative;aspect-ratio:16/9;background:#000;border-radius:18px;overflow:hidden;box-shadow:0 14px 36px rgba(0,0,0,.35);}
+.yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.yt-bar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px 4px 4px;font-size:13.5px;}
+.yt-bt{flex:1;min-width:140px;font-weight:700;} .yt-bar a{color:var(--purple);font-weight:700;text-decoration:none;}
+.yt-bar button{border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:13px;}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:16px;}
+.yt-card{text-align:left;background:none;border:0;padding:0;cursor:pointer;color:var(--text);display:flex;flex-direction:column;gap:6px;font:inherit;}
+.yt-thumb{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--card);display:block;}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s;}
+.yt-card:hover .yt-thumb img{transform:scale(1.04);}
+.yt-thumb i{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.82);color:#fff;font-size:11.5px;padding:2px 7px;border-radius:7px;font-style:normal;font-weight:700;}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s;font-size:18px;}
+.yt-card:hover .yt-play,.yt-card:focus-visible .yt-play{opacity:1;}
+.yt-title{font-weight:700;font-size:14.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.yt-meta{font-size:12.5px;color:var(--muted);}
+.gcse-wrap{background:#fff;color:#202124;border-radius:22px;padding:10px 18px 16px;margin-bottom:14px;border:1px solid var(--border);box-shadow:0 8px 26px rgba(109,40,217,.08);}
+.qr-answer p{margin:6px 0 8px;line-height:1.55;} .qr-answer a{color:var(--purple);font-weight:700;}
+.qr-list{padding:6px 22px;} .qr-item{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);}
+.qr-item:last-child{border-bottom:0;} .qr-item b{color:var(--purple);font-size:16px;} .qr-item span{font-size:13.5px;color:var(--muted);line-height:1.5;} .qr-item i{font-size:11.5px;color:var(--muted);font-style:normal;}
+@media (max-width:560px){ .srch-go{padding:13px 18px;} .srch-bar{padding-left:16px;} .yt-grid{grid-template-columns:1fr 1fr;gap:12px;} }
 .toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:20px;font-size:13px;z-index:99;animation:up .25s;}
 @keyframes up{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
 .wa-fab{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:40;transition:transform .2s;}
@@ -231,6 +266,7 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
     <button data-v="timetable">Activity</button>
     <button data-v="library">Library</button>
     <button data-v="pasco">PASCO</button>
+    <button data-v="search">Search</button>
     <button data-v="account" class="mob-only">Account</button>
   </nav>
   <div class="hright">
@@ -300,6 +336,19 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
     <div id="onBody"></div>
   </section>
 
+  <!-- SEARCH -->
+  <section id="v-search" class="hide srch">
+    <h1>Search</h1>
+    <p class="sub">Look anything up without leaving Study Partner.</p>
+    <div class="srch-bar"><input id="srchInput" type="search" placeholder="Search Google" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" onkeydown="if(event.key==='Enter')runSearch()"><button class="srch-go" id="srchGo" onclick="runSearch()">Search</button></div>
+    <div class="srch-chips" id="srchChips"><button class="on" data-s="google" onclick="setSearchTab('google')">Google</button><button data-s="youtube" onclick="setSearchTab('youtube')">YouTube</button></div>
+    <div class="srch-card hide" id="srchRecentCard"><h3>Recent searches</h3><div id="srchRecent" class="srch-recent"></div></div>
+    <div id="srchResults">
+      <div id="paneGoogle"><div id="gcseWrap" class="gcse-wrap hide"><div id="gcseBox"></div></div><div id="quickResults" class="hide"></div></div>
+      <div id="paneYT" class="hide"><div id="ytPlayer" class="hide"></div><div id="ytResults"></div></div>
+    </div>
+  </section>
+
   <!-- ACCOUNT -->
   <section id="v-account" class="hide">
     <div class="acct-hero">
@@ -330,14 +379,7 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
 </main>
 
 <a class="wa-fab" href="https://chat.whatsapp.com/GRNxNjogpTsHBDVslXNt64" target="_blank" title="Join our WhatsApp group" aria-label="Join our WhatsApp group"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.93 9.93 0 1 0 12.04 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.1.82.83-3.02-.2-.31A8.2 8.2 0 1 1 12.04 20.2Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.47c-.16 0-.43.06-.65.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.23-.16-.47-.28Z"/></svg></a>
-<button class="ai-fab hide" id="aiFab" onclick="toggleAI()" title="Ask Research" aria-label="Research"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M11 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg></button>
-<div class="ai-panel hide" id="aiPanel">
-  <div class="ai-head"><div><b>Research</b><small>Answers shown right here — nothing opens elsewhere</small></div><button onclick="toggleAI()" aria-label="Close">✕</button></div>
-  <div class="ai-msgs" id="aiMsgs"></div>
-  <div class="ai-chips"><button onclick="sendAI('explained simply')">Explain simply</button><button onclick="sendAI('practice questions with answers')">Practice questions</button><button onclick="sendAI('summary key points')">Key points</button></div>
-  <div class="ai-in"><textarea id="aiText" rows="1" placeholder="What do you want to look up…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI();}"></textarea><button class="btn" onclick="sendAI()">Ask</button></div>
-</div>
-
+<button class="fab-search hide" id="searchFab" onclick="go('search')" title="Search" aria-label="Search"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></button>
 <!-- MODALS -->
 <div class="modal-bg hide" id="m-auth"><div class="modal">
   <div class="seg auth-tabs"><button id="tabSignup" class="on" onclick="setAuthMode('signup')">Sign up</button><button id="tabLogin" onclick="setAuthMode('login')">Log in</button></div>
@@ -366,8 +408,10 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
   <h2 style="margin-top:0">Add course slide / note</h2>
   <div class="field"><label>Title</label><input id="matTitle" placeholder="e.g. Introduction to Databases"></div>
   <div class="field"><label>Subtitle (optional)</label><input id="matSub" placeholder="What it covers"></div>
-  <div class="field"><label>Upload file (PDF, DOCX, PPTX — optional)</label><input type="file" id="matFile" accept=".pdf,.doc,.docx,.ppt,.pptx"></div>
-  <div class="field"><label>Or type a note instead</label><textarea id="matBody" rows="5" placeholder="Leave blank if uploading a file"></textarea></div>
+  <div class="field"><label>Upload a file (PDF, PowerPoint, Word — up to 40MB)</label><input type="file" id="matFile" accept=".pdf,.doc,.docx,.ppt,.pptx" onchange="matFileChanged(this)"></div>
+  <div id="matHint" class="hide mat-hint"></div>
+  <div class="field"><label>Or paste a link (Google Drive / Slides / Docs / YouTube)</label><input id="matUrl" placeholder="https://drive.google.com/file/d/…" autocomplete="off"><p class="mat-sub">For Google Drive, set sharing to “Anyone with the link”. A link works for any file type, including old .ppt files.</p></div>
+  <div class="field"><label>Or type a note instead</label><textarea id="matBody" rows="4" placeholder="Leave blank if you are uploading a file or link"></textarea></div>
   <button class="btn" style="width:100%" onclick="addMaterial()">Add to course</button>
   <button class="btn ghost" style="width:100%;margin-top:6px" onclick="closeModal('m-newMaterial')">Cancel</button>
 </div></div>
@@ -376,16 +420,19 @@ input.rchk:checked::after{content:'✓';color:#fff;font-size:13px;font-weight:80
   <h2 style="margin-top:0">Upload past questions</h2>
   <div class="field"><label>Subject</label><input id="pqSubj"></div>
   <div class="field"><label>Upload a PDF or Word file (opens directly on the site)</label><input type="file" id="pqFile" accept=".pdf,.doc,.docx"></div>
-  <p style="font-size:12px;color:var(--muted);margin:2px 0 10px">— or paste the questions below to auto-convert into an interactive quiz —</p>
-  <div class="field"><label>Paste questions</label>
-    <textarea id="pqText" rows="8" placeholder="Q: 2+2=?
+  <p style="font-size:12px;color:var(--muted);margin:2px 0 10px">— and/or paste questions below to also convert into an interactive quiz (both can be added at once) —</p>
+  <div class="field"><label>Paste questions <span style="font-weight:400;color:var(--muted)">(the "Q:" prefix is optional, but each question needs an Answer line)</span></label>
+    <textarea id="pqText" rows="8" placeholder="2+2=?
 A) 3
 B) 4
 C) 5
 D) 6
 Answer: B
 
-Q: next question..."></textarea>
+Next question...
+A) ...
+B) ...
+Answer: A"></textarea>
   </div>
   <button class="btn" style="width:100%" onclick="createPasco()">Convert to quiz</button>
   <button class="btn ghost" style="width:100%;margin-top:6px" onclick="closeModal('m-newPasco')">Cancel</button>
@@ -411,7 +458,7 @@ Q: next question..."></textarea>
 
 <div class="modal-bg hide" id="m-viewer"><div class="modal" style="max-width:920px;padding:12px">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><b id="vTitle" style="font-size:14px"></b>
-  <div style="display:flex;gap:6px"><a id="vOpen" class="btn ghost" target="_blank" rel="noopener" style="text-decoration:none;padding:7px 12px;font-size:12px">Open in new tab</a><button class="iconbtn" id="vMaxBtn" onclick="toggleFullViewer()" title="Maximize" aria-label="Maximize"><svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button><button class="btn" style="padding:7px 12px;font-size:12px" onclick="closeViewer()">Close</button></div></div>
+  <div style="display:flex;gap:6px"><button id="vAlt" class="btn ghost hide" style="padding:7px 12px;font-size:12px" title="If the slides look wrong, try the other viewer">Switch viewer</button><a id="vOpen" class="btn ghost" target="_blank" rel="noopener" style="text-decoration:none;padding:7px 12px;font-size:12px">Open in new tab</a><button class="iconbtn" id="vMaxBtn" onclick="toggleFullViewer()" title="Maximize" aria-label="Maximize"><svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button><button class="btn" style="padding:7px 12px;font-size:12px" onclick="closeViewer()">Close</button></div></div>
   <iframe id="vFrame" class="hide" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:72vh;border:0;border-radius:10px;background:#000"></iframe>
   <div id="vPdf" class="vpdf hide"><p class="vpdf-msg" id="vPdfMsg"></p></div>
 </div></div>
@@ -423,13 +470,25 @@ Q: next question..."></textarea>
 
 <div class="modal-bg hide" id="m-admin"><div class="modal" style="max-width:680px">
   <h2 style="margin-top:0">Admin Dashboard</h2>
+  <div id="defaultBanner" class="hide" style="background:#fde2e2;color:#7a1212;border:1px solid #f5b5b5;border-radius:12px;padding:12px;font-size:12.5px;line-height:1.5;margin-bottom:12px">🔒 <b>You are still using the default admin login.</b> Anyone who has seen the code or README can open this dashboard. Change it now: <a href="#" onclick="admTab('login');return false" style="color:#7a1212;font-weight:700">Admin login tab</a>.</div>
   <div id="storageBanner" class="hide" style="background:#fff3cd;color:#664d03;border:1px solid #ffe69c;border-radius:12px;padding:12px;font-size:12.5px;line-height:1.5;margin-bottom:12px"></div>
   <div class="seg" id="admTabs" style="display:flex;overflow-x:auto;max-width:100%">
     <button class="on" data-t="acct" onclick="admTab('acct')">Accounts</button>
     <button data-t="courses" onclick="admTab('courses')">Online courses</button>
     <button data-t="ads" onclick="admTab('ads')">Ads</button>
     <button data-t="imgs" onclick="admTab('imgs')">Home images</button>
+    <button data-t="search" onclick="admTab('search')">Search</button>
     <button data-t="login" onclick="admTab('login')">Admin login</button>
+  </div>
+  <div id="adm-search" class="admp hide">
+    <div class="card"><b>Google results on the Search page</b>
+      <p style="font-size:12.5px;color:var(--muted);line-height:1.55">Google only lets websites show its results through a free <i>Programmable Search Engine</i>. It takes about 3 minutes:</p>
+      <ol style="font-size:12.5px;line-height:1.7;margin:4px 0 8px 18px;padding:0"><li>Open <a href="https://programmablesearchengine.google.com" target="_blank" rel="noopener">programmablesearchengine.google.com</a> → <b>Add</b></li><li>Choose <b>Search the entire web</b>, name it anything, and create it</li><li>Copy the <b>Search engine ID</b> and paste it here</li></ol>
+      <input id="admCx" placeholder="Search engine ID, e.g. 0123abc456def:xyz" autocomplete="off">
+      <button class="btn" style="margin-top:6px" onclick="saveGoogleCx()">Save</button>
+      <p id="admCxState" style="font-size:12px;color:var(--muted);margin:8px 0 0"></p>
+    </div>
+    <div class="card" style="margin-top:10px"><b>YouTube search</b><p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin:4px 0 0">Works with no setup. For a larger daily allowance add a free <code>YOUTUBE_API_KEY</code> in Vercel (see the README).</p></div>
   </div>
   <div id="adm-courses" class="admp hide">
     <div class="card"><b>Publish a new free course</b>
@@ -481,6 +540,453 @@ Q: next question..."></textarea>
 </div></div>
 
 <script>
+/* Study Partner — built-in PowerPoint (.pptx) slide renderer.
+   Reads the file with JSZip and draws each slide as HTML: slide size, theme colours/fonts, backgrounds,
+   layouts + master inheritance, text (levels, bullets, numbering, autofit), pictures (with crop), tables,
+   groups, common shapes/lines. Charts, SmartArt and videos are shown as labelled placeholders. */
+window.PptxNative=(function(){
+'use strict';
+const NS_A='http://schemas.openxmlformats.org/drawingml/2006/main', EMU_PT=12700;
+const dp=new DOMParser(), xml=s=>dp.parseFromString(s,'application/xml');
+const kids=(el,n)=>el?Array.prototype.filter.call(el.children,c=>c.localName===n):[];
+const kid=(el,n)=>{ if(!el) return null; for(const c of el.children) if(c.localName===n) return c; return null; };
+const pth=(el,...ns)=>{ for(const n of ns){ el=kid(el,n); if(!el) return null; } return el; };
+const at=(el,n,d)=>{ const v=el&&el.getAttribute(n); return v==null?d:v; };
+const num=(el,n,d)=>{ const v=el&&el.getAttribute(n); return (v==null||v==='')?d:+v; };
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+async function readXml(zip,p){ const f=zip.file(p); return f?xml(await f.async('string')):null; }
+function relsPath(p){ const i=p.lastIndexOf('/'); return p.slice(0,i+1)+'_rels/'+p.slice(i+1)+'.rels'; }
+async function readRels(zip,p){ const d=await readXml(zip,relsPath(p)), m={}; if(d) for(const r of d.documentElement.children) m[r.getAttribute('Id')]={type:r.getAttribute('Type')||'',target:r.getAttribute('Target')||''}; return m; }
+function resolve(base,target){ if(target.startsWith('/')) return target.slice(1); const parts=base.split('/').slice(0,-1); for(const s of target.split('/')){ if(s==='..') parts.pop(); else if(s!=='.') parts.push(s); } return parts.join('/'); }
+
+/* ---------- colour ---------- */
+const NAMED={black:'000000',white:'FFFFFF',red:'FF0000',green:'008000',blue:'0000FF',yellow:'FFFF00',gray:'808080',grey:'808080',orange:'FFA500',purple:'800080'};
+function hex2rgb(h){ if(/^rgba?\(/.test(String(h))){ const m=String(h).match(/[\d.]+/g); return [m[0]|0,m[1]|0,m[2]|0]; } h=String(h||'000000').replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join(''); const n=parseInt(h.slice(0,6),16)||0; return [(n>>16)&255,(n>>8)&255,n&255]; }
+function rgb2hsl(r,g,b){ r/=255;g/=255;b/=255; const mx=Math.max(r,g,b), mn=Math.min(r,g,b); let h=0,s=0; const l=(mx+mn)/2; if(mx!==mn){ const d=mx-mn; s=l>.5?d/(2-mx-mn):d/(mx+mn); h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4; h/=6; } return [h,s,l]; }
+function hsl2rgb(h,s,l){ if(s===0){ const v=Math.round(l*255); return [v,v,v]; } const q=l<.5?l*(1+s):l+s-l*s, p=2*l-q; const f=t=>{ if(t<0)t+=1; if(t>1)t-=1; return t<1/6?p+(q-p)*6*t:t<1/2?q:t<2/3?p+(q-p)*(2/3-t)*6:p; }; return [Math.round(f(h+1/3)*255),Math.round(f(h)*255),Math.round(f(h-1/3)*255)]; }
+const s2l=c=>{ c/=255; return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4); };
+const l2s=v=>{ v=Math.max(0,Math.min(1,v)); return Math.round((v<=.0031308?v*12.92:1.055*Math.pow(v,1/2.4)-.055)*255); };
+function clr(el,ctx){ // el: srgbClr | schemeClr | sysClr | prstClr
+  if(!el) return null; const n=el.localName; let hex='000000';
+  if(n==='srgbClr') hex=at(el,'val','000000');
+  else if(n==='sysClr') hex=at(el,'lastClr','000000');
+  else if(n==='prstClr') hex=NAMED[at(el,'val','black')]||'000000';
+  else if(n==='schemeClr'){ const v=at(el,'val','tx1'); if(v==='phClr') hex=ctx.phClr||'000000'; else { const m=(ctx.clrMap&&ctx.clrMap[v])||v; hex=ctx.theme.clr[m]||ctx.theme.clr[v]||'000000'; } }
+  else return null;
+  let [r,g,b]=hex2rgb(hex), a=1;
+  for(const t of el.children){ const v=num(t,'val',100000)/100000;
+    switch(t.localName){
+      case 'lumMod':{ const [h,s,l]=rgb2hsl(r,g,b); [r,g,b]=hsl2rgb(h,s,Math.min(1,l*v)); break; }
+      case 'lumOff':{ const [h,s,l]=rgb2hsl(r,g,b); [r,g,b]=hsl2rgb(h,s,Math.max(0,Math.min(1,l+v))); break; }
+      case 'satMod':{ const [h,s,l]=rgb2hsl(r,g,b); [r,g,b]=hsl2rgb(h,Math.min(1,s*v),l); break; }
+      case 'tint': r=l2s(s2l(r)*v+(1-v)); g=l2s(s2l(g)*v+(1-v)); b=l2s(s2l(b)*v+(1-v)); break;
+      case 'shade': r=l2s(s2l(r)*v); g=l2s(s2l(g)*v); b=l2s(s2l(b)*v); break;
+      case 'alpha': a=v; break;
+    } }
+  return a>=1?'rgb('+r+','+g+','+b+')':'rgba('+r+','+g+','+b+','+a.toFixed(3)+')';
+}
+function clrOf(parent,ctx){ if(!parent) return null; for(const c of parent.children){ const v=clr(c,ctx); if(v) return v; } return null; }
+
+function parseTheme(d){
+  const out={clr:{},major:'',minor:''}; if(!d) return out;
+  const cs=d.getElementsByTagNameNS(NS_A,'clrScheme')[0];
+  if(cs) for(const c of cs.children){ const v=c.firstElementChild; out.clr[c.localName]=v?(v.localName==='sysClr'?at(v,'lastClr','000000'):at(v,'val','000000')):'000000'; }
+  const fs=d.getElementsByTagNameNS(NS_A,'fontScheme')[0];
+  if(fs){ out.major=at(pth(fs,'majorFont','latin'),'typeface',''); out.minor=at(pth(fs,'minorFont','latin'),'typeface',''); }
+  return out;
+}
+const FONT_FALLBACK="'Segoe UI','Helvetica Neue',Arial,'Liberation Sans',sans-serif";
+function fontCss(face,theme){ if(!face) return ''; if(face==='+mj-lt') face=theme.major; else if(face==='+mn-lt') face=theme.minor; if(!face||face.startsWith('+')) return ''; const map={Calibri:"Calibri,Carlito,'Segoe UI',Arial,sans-serif","Calibri Light":"'Calibri Light',Carlito,Calibri,Arial,sans-serif",'Times New Roman':"'Times New Roman',Tinos,'Liberation Serif',serif",Arial:"Arial,'Liberation Sans',Helvetica,sans-serif",'Courier New':"'Courier New',Cousine,monospace",Cambria:"Cambria,Caladea,Georgia,serif"}; return map[face]||("'"+face.replace(/'/g,'')+"',"+FONT_FALLBACK); }
+
+/* ---------- fills / lines ---------- */
+function gradCss(g,ctx){
+  const stops=kids(pth(g,'gsLst'),'gs').map(s=>{ const pos=num(s,'pos',0)/1000; return {pos,c:clrOf(s,ctx)||'#000'}; }); if(!stops.length) return null;
+  const list=stops.map(s=>s.c+' '+s.pos.toFixed(1)+'%').join(',');
+  const lin=kid(g,'lin'); if(lin){ const ang=(num(lin,'ang',0)/60000+90)%360; return 'linear-gradient('+ang+'deg,'+list+')'; }
+  return 'radial-gradient(circle,'+list+')';
+}
+async function fillOf(spPr,ctx,env,rels,base){ // -> {css, img}
+  if(!spPr) return null;
+  for(const c of spPr.children){
+    const n=c.localName;
+    if(n==='noFill') return {css:'transparent'};
+    if(n==='solidFill'){ const v=clrOf(c,ctx); return v?{css:v}:null; }
+    if(n==='gradFill'){ const v=gradCss(c,ctx); return v?{css:v,grad:true}:null; }
+    if(n==='pattFill'){ const v=clrOf(kid(c,'fgClr'),ctx); return v?{css:v}:null; }
+    if(n==='blipFill'){ const rid=at(kid(c,'blip'),'r:embed',null)||(kid(c,'blip')&&kid(c,'blip').getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','embed')); const url=rid?await env.image(rels,rid,base):null; return url?{img:url}:null; }
+  }
+  return null;
+}
+function lineOf(spPr,styleEl,ctx){
+  const ln=kid(spPr,'ln'); let w=null,color=null,dash='',none=false;
+  if(ln){ w=num(ln,'w',9525); const nf=kid(ln,'noFill'); if(nf) none=true; const sf=kid(ln,'solidFill'); if(sf) color=clrOf(sf,ctx); const pd=kid(ln,'prstDash'); if(pd) dash=at(pd,'val',''); }
+  if(!none&&!color&&styleEl){ const lr=kid(styleEl,'lnRef'); if(lr&&num(lr,'idx',0)>0){ color=clrOf(lr,ctx); if(w==null) w=num(ln,'w',12700); } }
+  if(none||!color) return null;
+  return {w:w||9525,color,dash,head:ln&&kid(ln,'headEnd')?at(kid(ln,'headEnd'),'type','none'):'none',tail:ln&&kid(ln,'tailEnd')?at(kid(ln,'tailEnd'),'type','none'):'none'};
+}
+
+/* ---------- geometry ---------- */
+function xfrmOf(spPr){ const x=kid(spPr,'xfrm'); if(!x) return null; const off=kid(x,'off'), ext=kid(x,'ext'); if(!off||!ext) return null; return {x:num(off,'x',0),y:num(off,'y',0),cx:num(ext,'cx',0),cy:num(ext,'cy',0),rot:num(x,'rot',0)/60000,fh:at(x,'flipH','0')==='1',fv:at(x,'flipV','0')==='1'}; }
+const POLY={
+  triangle:[[.5,0],[1,1],[0,1]], rtTriangle:[[0,0],[1,1],[0,1]], diamond:[[.5,0],[1,.5],[.5,1],[0,.5]],
+  rightArrow:[[0,.3],[.6,.3],[.6,0],[1,.5],[.6,1],[.6,.7],[0,.7]], leftArrow:[[1,.3],[.4,.3],[.4,0],[0,.5],[.4,1],[.4,.7],[1,.7]],
+  upArrow:[[.3,1],[.3,.4],[0,.4],[.5,0],[1,.4],[.7,.4],[.7,1]], downArrow:[[.3,0],[.3,.6],[0,.6],[.5,1],[1,.6],[.7,.6],[.7,0]],
+  homePlate:[[0,0],[.75,0],[1,.5],[.75,1],[0,1]], pentagon:[[0,0],[.75,0],[1,.5],[.75,1],[0,1]], chevron:[[0,0],[.7,0],[1,.5],[.7,1],[0,1],[.3,.5]],
+  parallelogram:[[.2,0],[1,0],[.8,1],[0,1]], trapezoid:[[.2,0],[.8,0],[1,1],[0,1]], hexagon:[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]],
+  octagon:[[.3,0],[.7,0],[1,.3],[1,.7],[.7,1],[.3,1],[0,.7],[0,.3]], star5:[[.5,0],[.62,.38],[1,.38],[.69,.62],[.81,1],[.5,.76],[.19,1],[.31,.62],[0,.38],[.38,.38]]
+};
+function custPath(g){ // a:custGeom -> {d,w,h}
+  const pl=kid(g,'pathLst'), p=pl&&kid(pl,'path'); if(!p) return null; const w=num(p,'w',0)||1, h=num(p,'h',0)||1; let d='';
+  const pt=e=>{ const q=kid(e,'pt'); return q?num(q,'x',0)+' '+num(q,'y',0):'0 0'; };
+  for(const c of p.children){ const n=c.localName;
+    if(n==='moveTo') d+='M'+pt(c)+' '; else if(n==='lnTo') d+='L'+pt(c)+' ';
+    else if(n==='cubicBezTo'){ d+='C'+kids(c,'pt').map(q=>num(q,'x',0)+' '+num(q,'y',0)).join(' ')+' '; }
+    else if(n==='quadBezTo'){ d+='Q'+kids(c,'pt').map(q=>num(q,'x',0)+' '+num(q,'y',0)).join(' ')+' '; }
+    else if(n==='close') d+='Z '; }
+  return d?{d,w,h}:null;
+}
+
+/* ---------- text ---------- */
+const WING={'§':'▪','Ø':'➢','q':'❑','v':'❖','ü':'✓','ý':'✗','n':'■','l':'●','o':'○','p':'□','â':'➢','Þ':'⇨','š':'✱'};
+function listStyleSources(...els){ return els.filter(Boolean); }
+function lvlProps(sources,lvl){ // merge a:lvlNpPr from most specific to least
+  const tag='lvl'+(lvl+1)+'pPr', o={}; 
+  for(const s of sources){ const p=kid(s,tag); if(!p) continue;
+    for(const k of ['marL','indent','algn']) if(o[k]==null&&p.hasAttribute(k)) o[k]=p.getAttribute(k);
+    for(const k of ['lnSpc','spcBef','spcAft']){ if(o[k]==null){ const e=kid(p,k); if(e){ const pc=kid(e,'spcPct'), pt=kid(e,'spcPts'); o[k]=pc?{pct:num(pc,'val',100000)/100000}:pt?{pts:num(pt,'val',0)/100}:null; } } }
+    if(!o.bu){ if(kid(p,'buNone')) o.bu={t:'none'}; else if(kid(p,'buChar')) o.bu={t:'char',c:at(kid(p,'buChar'),'char','•'),f:at(kid(p,'buFont'),'typeface','')}; else if(kid(p,'buAutoNum')) o.bu={t:'num',k:at(kid(p,'buAutoNum'),'type','arabicPeriod'),s:num(kid(p,'buAutoNum'),'startAt',1)}; }
+    if(!o.buClr&&kid(p,'buClr')) o.buClr=kid(p,'buClr'); if(o.buSz==null&&kid(p,'buSzPct')) o.buSz=num(kid(p,'buSzPct'),'val',100000)/100000;
+    const d=kid(p,'defRPr'); if(d){ o.defs=o.defs||[]; o.defs.push(d); } }
+  return o;
+}
+function runProps(rPr,defs,ctx,defClr,force){
+  const o={}; const chain=[rPr].concat(defs||[]); let first=true;
+  for(const r of chain){ if(first){ first=false; if(r){ const sf0=kid(r,'solidFill'); if(sf0) o.color=clrOf(sf0,ctx); } if(!o.color&&force) o.color=force; } if(!r) continue;
+    if(o.sz==null&&r.hasAttribute('sz')) o.sz=num(r,'sz',1800)/100;
+    for(const k of ['b','i']) if(o[k]==null&&r.hasAttribute(k)) o[k]=r.getAttribute(k)==='1';
+    if(o.u==null&&r.hasAttribute('u')) o.u=r.getAttribute('u')!=='none';
+    if(o.strike==null&&r.hasAttribute('strike')) o.strike=r.getAttribute('strike')!=='noStrike';
+    if(o.base==null&&r.hasAttribute('baseline')) o.base=num(r,'baseline',0);
+    if(!o.color){ const sf=kid(r,'solidFill'); if(sf) o.color=clrOf(sf,ctx); }
+    if(!o.font){ const lt=kid(r,'latin'); if(lt) o.font=at(lt,'typeface',''); }
+    if(!o.hl&&kid(r,'hlinkClick')) o.hl=true; }
+  if(!o.color) o.color=defClr||'#000'; return o;
+}
+function numLabel(kind,n){
+  const abc=(i,u)=>{ let s=''; i=Math.max(1,i); while(i>0){ i--; s=String.fromCharCode(97+i%26)+s; i=Math.floor(i/26); } return u?s.toUpperCase():s; };
+  const rom=(i,u)=>{ const m=[[1000,'m'],[900,'cm'],[500,'d'],[400,'cd'],[100,'c'],[90,'xc'],[50,'l'],[40,'xl'],[10,'x'],[9,'ix'],[5,'v'],[4,'iv'],[1,'i']]; let s=''; for(const [v,t] of m) while(i>=v){ s+=t; i-=v; } return u?s.toUpperCase():s; };
+  if(/alphaLc/.test(kind)) return abc(n,false)+(/ParenR/.test(kind)?')':'.'); if(/alphaUc/.test(kind)) return abc(n,true)+(/ParenR/.test(kind)?')':'.');
+  if(/romanLc/.test(kind)) return rom(n,false)+'.'; if(/romanUc/.test(kind)) return rom(n,true)+'.';
+  return n+(/ParenR/.test(kind)?')':/Paren/.test(kind)?')':'.');
+}
+function renderText(txBody,o){ // returns {el, autofit} ; o: {s,ctx,sources,defClr,slideNo,fontScale,lnRed,isTitle}
+  const body=kid(txBody,'bodyPr'), root=document.createElement('div'); root.className='pn-text';
+  const ins={l:num(body,'lIns',91440),t:num(body,'tIns',45720),r:num(body,'rIns',91440),b:num(body,'bIns',45720)};
+  const anchor=at(body,'anchor','t'), wrapNone=at(body,'wrap','square')==='none';
+  const na=kid(body,'normAutofit'); const fscale=na&&na.hasAttribute('fontScale')?num(na,'fontScale',100000)/100000:1, lred=na&&na.hasAttribute('lnSpcReduction')?num(na,'lnSpcReduction',0)/100000:0;
+  root.style.cssText='position:absolute;inset:0;display:flex;flex-direction:column;justify-content:'+(anchor==='ctr'?'center':anchor==='b'?'flex-end':'flex-start')+';padding:'+(ins.t*o.s)+'px '+(ins.r*o.s)+'px '+(ins.b*o.s)+'px '+(ins.l*o.s)+'px;box-sizing:border-box;overflow:visible;'+(wrapNone?'white-space:nowrap;':'');
+  const shapeLst=kid(txBody,'lstStyle'); const counters={};
+  let prevLvl=0;
+  for(const p of kids(txBody,'p')){
+    const pPr=kid(p,'pPr'), lvl=Math.min(8,num(pPr,'lvl',0));
+    const srcs=[pPr&&{kid:()=>null,__p:pPr}].filter(()=>false);
+    const sources=[shapeLst].concat(o.sources||[]);
+    const lp=lvlProps(sources,lvl);
+    const pv=k=>pPr&&pPr.hasAttribute(k)?pPr.getAttribute(k):lp[k];
+    const marL=+(pv('marL')||0), indent=+(pv('indent')||0), algn=pv('algn')||'l';
+    let bu=lp.bu; const pb=pPr&&(kid(pPr,'buNone')?{t:'none'}:kid(pPr,'buChar')?{t:'char',c:at(kid(pPr,'buChar'),'char','•'),f:at(kid(pPr,'buFont'),'typeface','')}:kid(pPr,'buAutoNum')?{t:'num',k:at(kid(pPr,'buAutoNum'),'type','arabicPeriod'),s:num(kid(pPr,'buAutoNum'),'startAt',1)}:null); if(pb) bu=pb;
+    const spc=k=>{ const e=pPr&&kid(pPr,k); if(e){ const pc=kid(e,'spcPct'), pt=kid(e,'spcPts'); return pc?{pct:num(pc,'val',100000)/100000}:pt?{pts:num(pt,'val',0)/100}:null; } return lp[k]; };
+    const first=kids(p,'r').concat(kids(p,'fld'))[0];
+    const baseR=runProps(kid(first||p,'rPr')||null,lp.defs,o.ctx,o.defClr,o.forceClr);
+    const endR=kid(p,'endParaRPr'); const baseSz=(baseR.sz||(endR&&num(endR,'sz',1800)/100)||18)*fscale;
+    const pd=document.createElement('div');
+    const lns=spc('lnSpc'); let lh=lns&&lns.pct?lns.pct:1; lh=Math.max(.5,lh-lred); const lhCss=lns&&lns.pts?(lns.pts*EMU_PT*o.s)+'px':(1.2*lh).toFixed(3);
+    const sb=spc('spcBef'), sa=spc('spcAft'); const mt=sb?(sb.pts?sb.pts*EMU_PT*o.s:sb.pct*baseSz*EMU_PT*o.s*1.2):0, mb=sa?(sa.pts?sa.pts*EMU_PT*o.s:sa.pct*baseSz*EMU_PT*o.s*1.2):0;
+    pd.style.cssText='display:flex;text-align:'+({l:'left',ctr:'center',r:'right',just:'justify',dist:'justify'}[algn]||'left')+';line-height:'+lhCss+';margin:'+mt+'px 0 '+mb+'px 0;';
+    const hasText=kids(p,'r').length||kids(p,'fld').length||kids(p,'br').length;
+    // bullet
+    let bulletEl=null;
+    if(bu&&bu.t!=='none'&&hasText){
+      let label='';
+      if(bu.t==='char'){ label=(bu.f&&/Wingdings|Symbol/i.test(bu.f)&&WING[bu.c])||bu.c||'•'; }
+      else { if(lvl<prevLvl) for(let l=lvl+1;l<9;l++) delete counters[l]; counters[lvl]=(counters[lvl]==null?(bu.s||1):counters[lvl]+1); label=numLabel(bu.k,counters[lvl]); }
+      bulletEl=document.createElement('span'); bulletEl.textContent=label;
+      const bc=lp.buClr?clrOf(lp.buClr,o.ctx):null; bulletEl.style.cssText='flex:none;'+(bc?'color:'+bc+';':'')+(lp.buSz?'font-size:'+(lp.buSz*100)+'%;':'');
+    } else if(!bu||bu.t==='none'){ for(let l=lvl;l<9;l++) delete counters[l]; }
+    prevLvl=lvl;
+    const textEl=document.createElement('div'); textEl.style.cssText='flex:1 1 auto;min-width:0;overflow-wrap:anywhere;';
+    if(bulletEl){ const hang=indent<0?-indent:0; const left=marL+(indent<0?indent:0); pd.style.marginLeft=(Math.max(0,left)*o.s)+'px'; bulletEl.style.width=((hang||Math.max(0,indent)||228600)*o.s)+'px'; if(indent>0) textEl.style.textIndent=0; pd.appendChild(bulletEl); }
+    else { pd.style.marginLeft=(marL*o.s)+'px'; if(indent) textEl.style.textIndent=(indent*o.s)+'px'; }
+    // runs
+    let any=false;
+    for(const r of p.children){
+      const n=r.localName;
+      if(n==='br'){ textEl.appendChild(document.createElement('br')); any=true; continue; }
+      if(n!=='r'&&n!=='fld') continue;
+      const rp=runProps(kid(r,'rPr'),lp.defs,o.ctx,o.defClr,o.forceClr);
+      let t=kid(r,'t')?kid(r,'t').textContent:''; if(n==='fld'&&/slidenum/i.test(at(r,'type',''))) t=String(o.slideNo||'');
+      const sp=document.createElement('span'); sp.textContent=t;
+      const sz=(rp.sz||18)*fscale; let st='font-size:calc(var(--k,1)*'+(sz*EMU_PT*o.s).toFixed(2)+'px);color:'+rp.color+';';
+      const fam=fontCss(rp.font||(o.isTitle?o.ctx.theme.major:o.ctx.theme.minor),o.ctx.theme); if(fam) st+='font-family:'+fam+';';
+      if(rp.b) st+='font-weight:700;'; if(rp.i) st+='font-style:italic;';
+      const dec=[rp.u||rp.hl?'underline':'',rp.strike?'line-through':''].filter(Boolean).join(' '); if(dec) st+='text-decoration:'+dec+';';
+      if(rp.base){ st+='vertical-align:'+(rp.base>0?'super':'sub')+';font-size:calc(var(--k,1)*'+(sz*.65*EMU_PT*o.s).toFixed(2)+'px);'; }
+      sp.style.cssText=st; textEl.appendChild(sp); any=true;
+    }
+    if(!any){ const sp=document.createElement('span'); sp.innerHTML='&nbsp;'; sp.style.cssText='font-size:calc(var(--k,1)*'+(baseSz*EMU_PT*o.s).toFixed(2)+'px);'; textEl.appendChild(sp); }
+    if(bulletEl){ bulletEl.style.fontSize=bulletEl.style.fontSize||'calc(var(--k,1)*'+(baseSz*EMU_PT*o.s).toFixed(2)+'px)'; bulletEl.style.color=bulletEl.style.color||baseR.color; const bf=fontCss(baseR.font||(o.isTitle?o.ctx.theme.major:o.ctx.theme.minor),o.ctx.theme); if(bf) bulletEl.style.fontFamily=bf; }
+    pd.appendChild(textEl); root.appendChild(pd);
+  }
+  return {el:root,autofit:!!na&&!na.hasAttribute('fontScale')};
+}
+function shrinkToFit(box,textRoot){
+  let k=1; textRoot.style.setProperty('--k','1');
+  for(let i=0;i<14&&textRoot.scrollHeight>box.clientHeight+2&&k>.45;i++){ k-=.05; textRoot.style.setProperty('--k',k.toFixed(2)); }
+}
+
+/* ---------- main ---------- */
+async function render(buf,host,opts){
+  opts=opts||{}; const zip=await JSZip.loadAsync(buf);
+  const pres=await readXml(zip,'ppt/presentation.xml'); if(!pres) throw new Error('not a pptx');
+  const sz=pth(pres.documentElement,'sldSz'), SW=num(sz,'cx',9144000), SH=num(sz,'cy',6858000);
+  const W=Math.max(280,Math.min(opts.width||960,1400)), s=W/SW, H=Math.round(SH*s);
+  const presRels=await readRels(zip,'ppt/presentation.xml');
+  const order=kids(pth(pres.documentElement,'sldIdLst'),'sldId').map(e=>{ const rid=e.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','id')||e.getAttribute('r:id'); const r=presRels[rid]; return r?resolve('ppt/presentation.xml',r.target):null; }).filter(Boolean);
+  if(!order.length) throw new Error('no slides');
+  const defText=pth(pres.documentElement,'defaultTextStyle');
+  const cache={}; const imgCache={};
+  async function img(rels,rid,base){ const r=rels&&rels[rid]; if(!r) return null; const p=resolve(base,r.target); if(imgCache[p]!==undefined) return imgCache[p]; const f=zip.file(p); if(!f){ imgCache[p]=null; return null; }
+    const ext=(p.split('.').pop()||'').toLowerCase(); const mime={png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',jpe:'image/jpeg',jfif:'image/jpeg',jif:'image/jpeg',pjpeg:'image/jpeg',gif:'image/gif',webp:'image/webp',bmp:'image/bmp',dib:'image/bmp',svg:'image/svg+xml',ico:'image/x-icon',avif:'image/avif'}[ext]; if(!mime){ imgCache[p]=null; return null; }
+    const b=await f.async('blob'); const u=URL.createObjectURL(new Blob([b],{type:mime})); imgCache[p]=u; (opts.urls||[]).push(u); return u; }
+  const env={image:img};
+  async function loadPart(path){ if(cache[path]) return cache[path]; const d=await readXml(zip,path); const rels=await readRels(zip,path); return cache[path]={path,doc:d,rels}; }
+  // per-slide
+  const out={count:0,slides:[]};
+  const frag=document.createDocumentFragment();
+  const jobs=[];
+  let idx=0;
+  for(const sp of order){
+    idx++; const n=idx;
+    const wrap=document.createElement('div'); wrap.className='pn-slide'; wrap.style.cssText='position:relative;width:'+W+'px;height:'+H+'px;margin:0 auto 14px;background:#fff;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.35);border-radius:3px;flex:none;';
+    frag.appendChild(wrap); out.slides.push(wrap);
+    wrap.__job=async()=>{ const slide=await loadPart(sp); if(at(slide.doc.documentElement,'show','1')==='0'){ wrap.style.opacity='.5'; }
+      let layoutRel=Object.values(slide.rels).find(r=>/slideLayout$/.test(r.type)); const layout=layoutRel?await loadPart(resolve(sp,layoutRel.target)):null;
+      let masterRel=layout&&Object.values(layout.rels).find(r=>/slideMaster$/.test(r.type)); const master=masterRel?await loadPart(resolve(layout.path,masterRel.target)):null;
+      let themeRel=master&&Object.values(master.rels).find(r=>/theme$/.test(r.type)); const themePart=themeRel?await loadPart(resolve(master.path,themeRel.target)):null;
+      const theme=parseTheme(themePart&&themePart.doc);
+      const cmEl=master&&pth(master.doc.documentElement,'clrMap'); const clrMap={}; if(cmEl) for(const a of cmEl.attributes) clrMap[a.name]=a.value; if(!cmEl){ Object.assign(clrMap,{bg1:'lt1',tx1:'dk1',bg2:'lt2',tx2:'dk2'}); }
+      const ctx={theme,clrMap};
+      const tx=master&&pth(master.doc.documentElement,'txStyles');
+      const phSp=(part)=>part?kids(pth(part.doc.documentElement,'cSld','spTree'),'sp').filter(e=>pth(e,'nvSpPr','nvPr','ph')):[];
+      const phInfo=e=>{ const ph=pth(e,'nvSpPr','nvPr','ph'); return ph?{type:at(ph,'type','body'),idx:at(ph,'idx',null)}:null; };
+      const normType=t=>({ctrTitle:'title',subTitle:'body',obj:'body'}[t]||t);
+      const findPh=(part,info)=>{ if(!part||!info) return null; const list=phSp(part); let f=info.idx!=null?list.find(e=>{ const i=phInfo(e); return i.idx===info.idx; }):null; if(!f) f=list.find(e=>{ const i=phInfo(e); return normType(i.type)===normType(info.type)&&(info.idx==null||i.idx==null||true); }); return f; };
+      // background
+      async function bg(part){ if(!part) return null; const b=pth(part.doc.documentElement,'cSld','bg'); if(!b) return null; const pr=kid(b,'bgPr'); if(pr) return await fillOf(pr,ctx,env,part.rels,part.path); const ref=kid(b,'bgRef'); if(ref){ const idx=num(ref,'idx',0), c=clrOf(ref,ctx); if(idx>=1001&&themePart){ const lst=pth(themePart.doc.documentElement,'themeElements','fmtScheme','bgFillStyleLst'), fe=lst&&lst.children[idx-1001]; if(fe){ const holder=xml('<h/>').documentElement; holder.appendChild(holder.ownerDocument.importNode(fe,true)); const f=await fillOf(holder,Object.assign({},ctx,{phClr:c}),env,themePart.rels,themePart.path); if(f&&(f.img||(f.css&&f.css!=='transparent'))) return f; } } return c?{css:c}:null; } return null; }
+      const bgf=(await bg(slide))||(await bg(layout))||(await bg(master));
+      wrap.style.background=bgf?(bgf.css||('url('+bgf.img+') center/cover')):'#fff'; if(bgf&&bgf.img) wrap.style.background='url('+bgf.img+') center/cover no-repeat';
+      // draw lists: master decorative shapes, layout decorative shapes, then slide
+      const layers=[]; const showMaster=at(layout&&layout.doc.documentElement,'showMasterSp','1')!=='0'&&at(slide.doc.documentElement,'showMasterSp','1')!=='0';
+      if(master&&showMaster) layers.push({part:master,ph:false});
+      if(layout) layers.push({part:layout,ph:false});
+      layers.push({part:slide,ph:true});
+      for(const L of layers){ const tree=pth(L.part.doc.documentElement,'cSld','spTree'); if(!tree) continue;
+        await drawTree(tree,{part:L.part,isSlide:L.ph,slide,layout,master,ctx,tx,defText,findPh,phInfo,wrap,n,s,SW,SH,env},id=>id); }
+    };
+  }
+  async function drawTree(tree,C,tf){
+    for(const el of tree.children){
+      const nm=el.localName;
+      if(nm==='sp'||nm==='cxnSp'){ const ph=phInfo2(el); if(ph&&!C.isSlide) continue; await drawSp(el,C,tf); }
+      else if(nm==='pic'){ await drawPic(el,C,tf); }
+      else if(nm==='graphicFrame'){ if(C.isSlide||true) await drawFrame(el,C,tf); }
+      else if(nm==='AlternateContent'){ const fb=kid(el,'Fallback'), src=(fb&&fb.children.length)?fb:kid(el,'Choice'); if(src) await drawTree(src,C,tf); }
+      else if(nm==='grpSp'){ const gx=pth(el,'grpSpPr','xfrm'); let tf2=tf; if(gx){ const off=kid(gx,'off'),ext=kid(gx,'ext'),co=kid(gx,'chOff'),ce=kid(gx,'chExt'); const gox=num(off,'x',0),goy=num(off,'y',0),gcx=num(ext,'cx',1),gcy=num(ext,'cy',1),cox=num(co,'x',0),coy=num(co,'y',0),ccx=num(ce,'cx',1)||1,ccy=num(ce,'cy',1)||1; tf2=r=>tf({x:gox+(r.x-cox)*gcx/ccx,y:goy+(r.y-coy)*gcy/ccy,cx:r.cx*gcx/ccx,cy:r.cy*gcy/ccy,rot:r.rot,fh:r.fh,fv:r.fv}); } await drawTree(el,C,tf2); }
+    }
+  }
+  const phInfo2=e=>{ const ph=pth(e,'nvSpPr','nvPr','ph')||pth(e,'nvPicPr','nvPr','ph')||pth(e,'nvGraphicFramePr','nvPr','ph'); return ph?{type:at(ph,'type','body'),idx:at(ph,'idx',null)}:null; };
+  function place(div,r,C){ div.style.position='absolute'; div.style.left=(r.x*C.s)+'px'; div.style.top=(r.y*C.s)+'px'; div.style.width=(r.cx*C.s)+'px'; div.style.height=(r.cy*C.s)+'px'; const tfm=[]; if(r.rot) tfm.push('rotate('+r.rot+'deg)'); if(r.fh) tfm.push('scaleX(-1)'); if(r.fv) tfm.push('scaleY(-1)'); if(tfm.length) div.style.transform=tfm.join(' '); }
+  function inherited(el,C){ // xfrm + text sources for placeholders
+    const info=phInfo2(el); let xf=xfrmOf(kid(el,'spPr')), lay=null, mas=null;
+    if(info){ lay=C.findPh(C.layout,info); mas=C.findPh(C.master,lay?phInfo2(lay):info); if(!xf&&lay) xf=xfrmOf(kid(lay,'spPr')); if(!xf&&mas) xf=xfrmOf(kid(mas,'spPr')); }
+    return {info,xf,lay,mas};
+  }
+  async function drawSp(el,C,tf){
+    const spPr=kid(el,'spPr'), style=kid(el,'style'); const inh=inherited(el,C); let xf=inh.xf; if(!xf) return;
+    const r=tf({x:xf.x,y:xf.y,cx:xf.cx,cy:xf.cy,rot:xf.rot,fh:xf.fh,fv:xf.fv});
+    const box=document.createElement('div'); place(box,r,C); box.style.boxSizing='border-box';
+    // fill & line
+    let f=await fillOf(spPr,C.ctx,C.env,C.part.rels,C.part.path);
+    if(!f&&style){ const fr=kid(style,'fillRef'); if(fr&&num(fr,'idx',0)>0){ const c=clrOf(fr,C.ctx); if(c) f={css:c}; } }
+    if(!f&&inh.info&&inh.lay){ f=await fillOf(kid(inh.lay,'spPr'),C.ctx,C.env,C.part.rels,C.part.path); }
+    const ln=lineOf(spPr,style,C.ctx); const prst=at(pth(spPr,'prstGeom'),'prst','rect'); const cg=kid(spPr,'custGeom');
+    const isLine=/^(line|straightConnector1|bentConnector|curvedConnector)/.test(prst)||el.localName==='cxnSp';
+    const svgShape=POLY[prst]||cg;
+    if(isLine){
+      const lw=Math.max(1,(ln?ln.w:9525)*C.s), svg=document.createElementNS('http://www.w3.org/2000/svg','svg'); const pw=r.cx*C.s, ph=r.cy*C.s; svg.setAttribute('width',Math.max(1,pw)); svg.setAttribute('height',Math.max(1,ph)); svg.style.cssText='position:absolute;left:0;top:0;overflow:visible;';
+      const l=document.createElementNS('http://www.w3.org/2000/svg','line'); l.setAttribute('x1','0'); l.setAttribute('y1','0'); l.setAttribute('x2',pw); l.setAttribute('y2',ph); l.setAttribute('stroke',ln?ln.color:'#000'); l.setAttribute('stroke-width',lw);
+      if(ln&&ln.dash&&/dash|sysDot|dot/i.test(ln.dash)) l.setAttribute('stroke-dasharray',(lw*4)+','+(lw*3)); svg.appendChild(l); box.appendChild(svg);
+    } else if(svgShape){
+      const svg=document.createElementNS('http://www.w3.org/2000/svg','svg'); svg.setAttribute('width','100%'); svg.setAttribute('height','100%'); svg.style.cssText='position:absolute;inset:0;overflow:visible;';
+      let pe;
+      if(cg){ const cp=custPath(cg); if(cp){ svg.setAttribute('viewBox','0 0 '+cp.w+' '+cp.h); svg.setAttribute('preserveAspectRatio','none'); pe=document.createElementNS('http://www.w3.org/2000/svg','path'); pe.setAttribute('d',cp.d); } }
+      else { svg.setAttribute('viewBox','0 0 1 1'); svg.setAttribute('preserveAspectRatio','none'); pe=document.createElementNS('http://www.w3.org/2000/svg','polygon'); pe.setAttribute('points',POLY[prst].map(p=>p.join(',')).join(' ')); }
+      if(pe){ pe.setAttribute('fill',f&&f.css&&!f.grad?f.css:(f&&f.grad?'#ccc':'none')); if(ln){ pe.setAttribute('stroke',ln.color); pe.setAttribute('stroke-width',Math.max(1,ln.w*C.s)); pe.setAttribute('vector-effect','non-scaling-stroke'); } svg.appendChild(pe); box.appendChild(svg); if(f&&f.grad){ pe.setAttribute('fill','none'); box.style.background=f.css; } }
+    } else {
+      if(f){ if(f.img) box.style.background='url('+f.img+') center/cover no-repeat'; else box.style.background=f.css; }
+      if(ln) box.style.border=Math.max(1,ln.w*C.s)+'px '+(/dash|dot/i.test(ln.dash)?'dashed':'solid')+' '+ln.color;
+      if(prst==='ellipse') box.style.borderRadius='50%';
+      else if(prst==='roundRect'){ const adj=num(pth(spPr,'prstGeom','avLst','gd'),'fmla',null); let a=16667; const g=pth(spPr,'prstGeom','avLst','gd'); if(g){ const m=/val\s+(\d+)/.exec(at(g,'fmla','')); if(m) a=+m[1]; } box.style.borderRadius=(Math.min(r.cx,r.cy)*C.s*a/100000)+'px'; }
+    }
+    // text
+    const tb=kid(el,'txBody');
+    if(tb&&(kids(tb,'p').some(p=>kid(p,'r')||kid(p,'fld')||kid(p,'br')))){
+      const info=inh.info, isTitle=info&&/title/i.test(info.type);
+      const bodyKey=info?(isTitle?'titleStyle':'bodyStyle'):'otherStyle';
+      const sources=[inh.lay&&kid(inh.lay,'txBody')&&kid(kid(inh.lay,'txBody'),'lstStyle'), inh.mas&&kid(inh.mas,'txBody')&&kid(kid(inh.mas,'txBody'),'lstStyle'), C.tx&&kid(C.tx,bodyKey), C.defText].filter(Boolean);
+      const fontClr=style&&kid(style,'fontRef')?clrOf(kid(style,'fontRef'),C.ctx):null;
+      const bpr=kid(tb,'bodyPr'); const useBp=(bpr&&bpr.attributes.length||kid(bpr,'normAutofit'))?tb:(inh.lay&&kid(inh.lay,'txBody'))||(inh.mas&&kid(inh.mas,'txBody'))||tb;
+      const t=renderText(tb,{s:C.s,ctx:C.ctx,sources,defClr:'#000',forceClr:fontClr,slideNo:C.n,isTitle});
+      // if the slide's own bodyPr is empty, take anchor/insets/autofit from layout/master placeholder
+      if(!bpr||(!bpr.attributes.length&&!bpr.children.length)){ const bp2=(inh.lay&&pth(inh.lay,'txBody','bodyPr'))||(inh.mas&&pth(inh.mas,'txBody','bodyPr')); if(bp2){ const anchor=at(bp2,'anchor','t'); t.el.style.justifyContent=anchor==='ctr'?'center':anchor==='b'?'flex-end':'flex-start'; if(kid(bp2,'normAutofit')) t.autofit=true; } }
+      box.appendChild(t.el); box.__fit=t.autofit?t.el:null;
+    }
+    const er=style&&kid(style,'effectRef'); if(er&&num(er,'idx',0)>=2&&f&&f.css&&f.css!=='transparent'&&!isLine) box.style.filter='drop-shadow(1px 2px 2px rgba(0,0,0,.35))';
+    C.wrap.appendChild(box); if(box.__fit) (C.wrap.__fits=C.wrap.__fits||[]).push(box);
+  }
+  async function drawPic(el,C,tf){
+    const spPr=kid(el,'spPr'), xf=xfrmOf(spPr)||inherited(el,C).xf; if(!xf) return; const r=tf({x:xf.x,y:xf.y,cx:xf.cx,cy:xf.cy,rot:xf.rot,fh:xf.fh,fv:xf.fv});
+    const blip=pth(el,'blipFill','blip'); const rid=blip&&(blip.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','embed')||blip.getAttribute('r:embed'));
+    const url=rid?await C.env.image(C.part.rels,rid,C.part.path):null;
+    const box=document.createElement('div'); place(box,r,C); box.style.overflow='hidden';
+    if(url){ const sr=pth(el,'blipFill','srcRect'); const l=num(sr,'l',0)/100000,t=num(sr,'t',0)/100000,rr=num(sr,'r',0)/100000,b=num(sr,'b',0)/100000; const w=1-l-rr||1, h=1-t-b||1;
+      const im=document.createElement('img'); im.src=url; im.draggable=false; im.style.cssText='position:absolute;max-width:none;width:'+(100/w)+'%;height:'+(100/h)+'%;left:'+(-l/w*100)+'%;top:'+(-t/h*100)+'%;';
+      box.appendChild(im); const ln=lineOf(spPr,null,C.ctx); if(ln) box.style.outline=Math.max(1,ln.w*C.s)+'px solid '+ln.color; }
+    else { const rr=rid&&C.part.rels[rid], ex=rr?(rr.target.split('.').pop()||'').toUpperCase():''; box.style.cssText+=';background:#e9e6f2;color:#6a6382;display:flex;align-items:center;justify-content:center;font:12px sans-serif;text-align:center;padding:6px;box-sizing:border-box;'; box.textContent='🖼 '+(ex?ex+' ':'')+'picture — this picture type can\'t be drawn here. Export the slides as PDF to see it.'; }
+    C.wrap.appendChild(box);
+  }
+  const NS_R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+  const relId=(e,n)=>e&&(e.getAttributeNS(NS_R,n)||e.getAttribute('r:'+n));
+  async function drawDiagram(gd,r,C){ // SmartArt: PowerPoint saves a ready-made drawing next to the data model
+    const rel=kid(gd,'relIds'), dm=rel&&C.part.rels[relId(rel,'dm')]; if(!dm) return false;
+    const data=await readXml(zip,resolve(C.part.path,dm.target)); if(!data) return false;
+    const ext=data.getElementsByTagNameNS('*','dataModelExt')[0], dr=ext&&C.part.rels[ext.getAttribute('relId')]; if(!dr) return false;
+    const drawing=await readXml(zip,resolve(C.part.path,dr.target)), tree=drawing&&drawing.getElementsByTagNameNS('*','spTree')[0]; if(!tree) return false;
+    const tf2=q=>({x:r.x+q.x,y:r.y+q.y,cx:q.cx,cy:q.cy,rot:q.rot,fh:q.fh,fv:q.fv}); let n=0;
+    for(const sp of kids(tree,'sp')){ await drawSp(sp,C,tf2); n++; }
+    return n>0;
+  }
+  const NICE=v=>{ if(v<=0) return 1; const e=Math.pow(10,Math.floor(Math.log10(v))), f=v/e; return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*e; };
+  const fmtNum=v=>{ const a=Math.abs(v); return String(a>=1e6?+(v/1e6).toFixed(1)+'M':a>=1e4?+(v/1e3).toFixed(1)+'k':+v.toFixed(2)); };
+  const ptsOf=(el)=>{ const cache=el&&(pth(el,'strRef','strCache')||pth(el,'numRef','numCache')||kid(el,'strLit')||kid(el,'numLit')); const out=[]; if(cache) for(const pt of kids(cache,'pt')) out[num(pt,'idx',out.length)]=kid(pt,'v')?kid(pt,'v').textContent:''; return out; };
+  async function drawChart(gd,r,C,box){
+    const cel=kid(gd,'chart'), rr=cel&&C.part.rels[relId(cel,'id')]; if(!rr) return false;
+    const doc=await readXml(zip,resolve(C.part.path,rr.target)); if(!doc) return false;
+    const cs=doc.documentElement, plot=pth(cs,'chart','plotArea'); if(!plot) return false;
+    const types=['barChart','bar3DChart','lineChart','line3DChart','areaChart','area3DChart','pieChart','pie3DChart','doughnutChart'];
+    const ct=types.map(t=>kid(plot,t)).find(Boolean); if(!ct) return false; const kind=ct.localName.replace('3DChart','Chart');
+    const w=Math.max(50,r.cx*C.s), h=Math.max(50,r.cy*C.s), fs=(()=>{ const d=cs.getElementsByTagNameNS(NS_A,'defRPr')[0]; return (d&&d.hasAttribute('sz')?num(d,'sz',1200)/100:12); })()*EMU_PT*C.s;
+    const sers=kids(ct,'ser').map((se,i)=>{ const tx=ptsOf(kid(se,'tx'))[0]||('Series '+(i+1)); const cats=ptsOf(kid(se,'cat')), vals=ptsOf(kid(se,'val')).map(v=>parseFloat(v)||0); const sf=pth(se,'spPr','solidFill'); const acc='accent'+((i%6)+1); const col=(sf&&clrOf(sf,C.ctx))||('#'+(C.ctx.theme.clr[acc]||'4472C4'));
+      const dpt={}; for(const d of kids(se,'dPt')){ const f=pth(d,'spPr','solidFill'); if(f) dpt[num(d,'idx',0)]=clrOf(f,C.ctx); } return {name:tx,cats,vals,col,dpt}; });
+    if(!sers.length) return false;
+    const cats=sers[0].cats.length?sers[0].cats:sers[0].vals.map((_,i)=>String(i+1));
+    const accentAt=i=>'#'+(C.ctx.theme.clr['accent'+((i%6)+1)]||'4472C4');
+    const chEl=cs.getElementsByTagNameNS('*','chart')[0], tEl=kid(chEl,'title'); let title=tEl?Array.from(tEl.getElementsByTagNameNS(NS_A,'t')).map(t=>t.textContent).join(''):''; if(!tEl&&at(kid(chEl,'autoTitleDeleted'),'val','0')!=='1'&&sers.length===1&&kind!=='pieChart'+'x') title=sers[0].name;
+    const legEl=pth(cs,'chart','legend'), legPos=legEl?at(kid(legEl,'legendPos'),'val','r'):null;
+    const esc2=esc; const svgNS='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" font-family="Calibri,Carlito,Arial,sans-serif">';
+    let out=svgNS, top=title?fs*2.2:fs*.6, bot=fs*.6, left=fs*.6, right=fs*.6;
+    if(title) out+='<text x="'+w/2+'" y="'+fs*1.5+'" text-anchor="middle" font-size="'+fs*1.2+'" font-weight="bold" fill="#333">'+esc2(title)+'</text>';
+    const legendItems=kind==='pieChart'||kind==='doughnutChart'?cats.map((c,i)=>({name:c,col:sers[0].dpt[i]||accentAt(i)})):sers.map(s=>({name:s.name,col:s.col}));
+    if(legPos){ const wide=/^[lr]$/.test(legPos); if(wide){ const lw=Math.min(w*.28,Math.max(...legendItems.map(l=>l.name.length))*fs*.62+fs*2); if(legPos==='r') right+=lw; else left+=lw; legendItems.forEach((l,i)=>{ const x=legPos==='r'?w-lw:fs*.4, y=top+fs*1.2*(i+1)+i*fs*.5; out+='<rect x="'+x+'" y="'+(y-fs*.7)+'" width="'+fs*.8+'" height="'+fs*.8+'" fill="'+l.col+'"/><text x="'+(x+fs*1.1)+'" y="'+y+'" font-size="'+fs+'" fill="#333">'+esc2(l.name)+'</text>'; }); }
+      else { const total=legendItems.reduce((a,l)=>a+l.name.length*fs*.6+fs*2.2,0); let x=(w-total)/2; const y=legPos==='t'?top+fs:h-fs*.5; if(legPos==='t') top+=fs*1.8; else bot+=fs*1.8; legendItems.forEach(l=>{ out+='<rect x="'+x+'" y="'+(y-fs*.7)+'" width="'+fs*.8+'" height="'+fs*.8+'" fill="'+l.col+'"/><text x="'+(x+fs*1.1)+'" y="'+y+'" font-size="'+fs+'" fill="#333">'+esc2(l.name)+'</text>'; x+=l.name.length*fs*.6+fs*2.2; }); } }
+    const px=left+fs*2.4, pw=Math.max(20,w-right-px), py=top, ph=Math.max(20,h-bot-py-fs*1.6);
+    if(kind==='pieChart'||kind==='doughnutChart'){
+      const vals=sers[0].vals.map(v=>Math.max(0,v)), tot=vals.reduce((a,b)=>a+b,0)||1; const cx=left+(w-left-right)/2, cy=top+(h-top-bot)/2, R=Math.max(10,Math.min(w-left-right,h-top-bot)/2-fs*.4); let a0=-Math.PI/2;
+      vals.forEach((v,i)=>{ const a1=a0+v/tot*2*Math.PI, large=a1-a0>Math.PI?1:0, col=sers[0].dpt[i]||accentAt(i);
+        const x0=cx+R*Math.cos(a0), y0=cy+R*Math.sin(a0), x1=cx+R*Math.cos(a1), y1=cy+R*Math.sin(a1);
+        out+=v/tot>=.9999?'<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="'+col+'"/>':'<path d="M'+cx+' '+cy+' L'+x0+' '+y0+' A'+R+' '+R+' 0 '+large+' 1 '+x1+' '+y1+' Z" fill="'+col+'" stroke="#fff" stroke-width="'+Math.max(1,fs*.1)+'"/>';
+        if(v/tot>.06){ const am=(a0+a1)/2; out+='<text x="'+(cx+R*.62*Math.cos(am))+'" y="'+(cy+R*.62*Math.sin(am)+fs*.35)+'" text-anchor="middle" font-size="'+fs+'" fill="#fff" font-weight="bold">'+Math.round(v/tot*100)+'%</text>'; } a0=a1; });
+      if(kind==='doughnutChart') out+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R*.5+'" fill="#fff"/>';
+    } else {
+      const horiz=kind==='barChart'&&at(kid(ct,'barDir'),'val','col')==='bar', grouping=at(kid(ct,'grouping'),'val','clustered'), stacked=/stacked/i.test(grouping), pct=/percent/i.test(grouping), isBar=kind==='barChart', isArea=kind==='areaChart';
+      const n=cats.length, m=sers.length; let mn=0, mx=0;
+      if(stacked||isArea&&stacked){ for(let i=0;i<n;i++){ let pos=0,neg=0; sers.forEach(s=>{ const v=s.vals[i]||0; if(v>=0) pos+=v; else neg+=v; }); mx=Math.max(mx,pct?100:pos); mn=Math.min(mn,pct?0:neg); } }
+      else sers.forEach(s=>s.vals.forEach(v=>{ mx=Math.max(mx,v); mn=Math.min(mn,v); }));
+      if(!isBar&&!isArea){ const all=sers.flatMap(s=>s.vals), lo0=Math.min(...all), hi0=Math.max(...all); if(all.length&&lo0>0&&(hi0-lo0)/hi0<1/6){ const st=NICE((hi0-lo0)/4||1); mn=Math.floor(lo0/st)*st; } }
+      const step=NICE((mx-mn)/5||1), lo=Math.floor(mn/step)*step, hi=Math.max(lo+step,Math.ceil(mx/step)*step); const ticks=[]; for(let v=lo;v<=hi+step*.001;v+=step) ticks.push(v);
+      const X0=horiz?px+fs*1.6:px, Y0=py, XW=horiz?pw-fs*1.6:pw, YH=ph;
+      const vx=v=>X0+(v-lo)/(hi-lo)*XW, vy=v=>Y0+YH-(v-lo)/(hi-lo)*YH;
+      ticks.forEach(t=>{ if(horiz){ const x=vx(t); out+='<line x1="'+x+'" y1="'+Y0+'" x2="'+x+'" y2="'+(Y0+YH)+'" stroke="#d9d9d9"/><text x="'+x+'" y="'+(Y0+YH+fs*1.25)+'" text-anchor="middle" font-size="'+fs*.9+'" fill="#555">'+fmtNum(pct?t:t)+(pct?'%':'')+'</text>'; } else { const y=vy(t); out+='<line x1="'+X0+'" y1="'+y+'" x2="'+(X0+XW)+'" y2="'+y+'" stroke="#d9d9d9"/><text x="'+(X0-fs*.4)+'" y="'+(y+fs*.3)+'" text-anchor="end" font-size="'+fs*.9+'" fill="#555">'+fmtNum(t)+(pct?'%':'')+'</text>'; } });
+      const slot=(horiz?YH:XW)/n; const catPos=i=>(horiz?Y0+YH-slot*(i+.5):X0+slot*(i+.5));
+      cats.forEach((c,i)=>{ const label=String(c).length>16?String(c).slice(0,15)+'…':String(c); if(horiz) out+='<text x="'+(X0-fs*.4)+'" y="'+(catPos(i)+fs*.3)+'" text-anchor="end" font-size="'+fs*.9+'" fill="#333">'+esc2(label)+'</text>'; else out+='<text x="'+catPos(i)+'" y="'+(Y0+YH+fs*1.35)+'" text-anchor="middle" font-size="'+fs*.9+'" fill="#333">'+esc2(label)+'</text>'; });
+      if(isBar){
+        const gap=.5, bw=stacked?slot/(1+gap):slot/(1+gap)/m;
+        for(let i=0;i<n;i++){ let pos=0,neg=0; const tot=stacked&&pct?sers.reduce((a,s)=>a+Math.abs(s.vals[i]||0),0)||1:1;
+          sers.forEach((s,k)=>{ let v=s.vals[i]||0; if(pct) v=v/tot*100; let a,b; if(stacked){ if(v>=0){ a=pos; b=pos+v; pos=b; } else { a=neg; b=neg+v; neg=b; } } else { a=0; b=v; }
+            const off=stacked?-bw/2:(-slot/(1+gap)/2+bw*k); const c=s.dpt[i]||s.col;
+            if(horiz) out+='<rect x="'+Math.min(vx(a),vx(b))+'" y="'+(catPos(i)-off-bw)+'" width="'+Math.abs(vx(b)-vx(a))+'" height="'+bw+'" fill="'+c+'"/>'; else out+='<rect x="'+(catPos(i)+off)+'" y="'+Math.min(vy(a),vy(b))+'" width="'+bw+'" height="'+Math.abs(vy(b)-vy(a))+'" fill="'+c+'"/>'; }); }
+      } else {
+        sers.forEach(s=>{ const pts=s.vals.map((v,i)=>[catPos(i),vy(v)]); if(!pts.length) return; if(isArea) out+='<polygon points="'+[[pts[0][0],vy(lo)]].concat(pts,[[pts[pts.length-1][0],vy(lo)]]).map(p=>p.join(',')).join(' ')+'" fill="'+s.col+'" fill-opacity=".55"/>';
+          out+='<polyline points="'+pts.map(p=>p.join(',')).join(' ')+'" fill="none" stroke="'+s.col+'" stroke-width="'+Math.max(1.5,fs*.22)+'"/>'; if(!isArea) pts.forEach(p=>out+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+Math.max(2,fs*.3)+'" fill="'+s.col+'"/>'); });
+      }
+      out+='<line x1="'+X0+'" y1="'+(Y0+YH)+'" x2="'+(X0+XW)+'" y2="'+(Y0+YH)+'" stroke="#888"/><line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+(Y0+YH)+'" stroke="#888"/>';
+    }
+    box.innerHTML=out+'</svg>'; box.style.background='#fff0'; return true;
+  }
+  async function drawFrame(el,C,tf){
+    const x=kid(el,'xfrm'); const off=kid(x,'off'), ext=kid(x,'ext'); if(!off||!ext) return;
+    const r=tf({x:num(off,'x',0),y:num(off,'y',0),cx:num(ext,'cx',0),cy:num(ext,'cy',0),rot:0,fh:false,fv:false});
+    const gd=pth(el,'graphic','graphicData'); const tbl=gd&&kid(gd,'tbl');
+    const box=document.createElement('div'); place(box,r,C);
+    if(tbl){ box.appendChild(drawTable(tbl,r,C)); }
+    else if(/chart/i.test(at(gd,'uri',''))&&await drawChart(gd,r,C,box).catch(e=>{ console.warn('chart failed',e); return false; })){ /* drawn */ }
+    else if(/diagram/i.test(at(gd,'uri',''))&&await drawDiagram(gd,r,C).catch(e=>{ console.warn('diagram failed',e); return false; })){ box.remove?0:0; box.style.display='none'; }
+    else { const uri=at(gd,'uri',''); const label=/chart/i.test(uri)?'📊 Chart (open the original file to see it)':/diagram/i.test(uri)?'🔷 Diagram (open the original file to see it)':'▣ Embedded object'; box.style.cssText+=';background:#f1eff7;border:1px dashed #b9b2d4;color:#6a6382;display:flex;align-items:center;justify-content:center;font:13px sans-serif;text-align:center;padding:8px;box-sizing:border-box;'; box.textContent=label; }
+    C.wrap.appendChild(box);
+  }
+  function drawTable(tbl,r,C){
+    const t=document.createElement('table'); t.style.cssText='border-collapse:collapse;table-layout:fixed;width:100%;';
+    const cols=kids(pth(tbl,'tblGrid'),'gridCol').map(g=>num(g,'w',0)); const total=cols.reduce((a,b)=>a+b,0)||1;
+    const cg=document.createElement('colgroup'); cols.forEach(w=>{ const c=document.createElement('col'); c.style.width=(w/total*100)+'%'; cg.appendChild(c); }); t.appendChild(cg);
+    const pr=kid(tbl,'tblPr'); const firstRow=at(pr,'firstRow','0')==='1', band=at(pr,'bandRow','0')==='1';
+    const accent=C.ctx.theme.clr.accent1||'4472C4'; const mix=(hex,tn)=>{ const [rr,g,b]=hex2rgb(hex); return 'rgb('+l2s(s2l(rr)*tn+(1-tn))+','+l2s(s2l(g)*tn+(1-tn))+','+l2s(s2l(b)*tn+(1-tn))+')'; };
+    const rows=kids(tbl,'tr'); const spanSkip={};
+    rows.forEach((tr,ri)=>{ const trEl=document.createElement('tr'); trEl.style.height=(num(tr,'h',0)*C.s)+'px'; let ci=0;
+      for(const tc of kids(tr,'tc')){
+        while(spanSkip[ri+','+ci]) ci++;
+        const td=document.createElement('td'); const cs=num(tc,'gridSpan',1), rs=num(tc,'rowSpan',1);
+        if(at(tc,'hMerge','0')==='1'||at(tc,'vMerge','0')==='1'){ ci++; continue; }
+        if(cs>1) td.colSpan=cs; if(rs>1){ td.rowSpan=rs; for(let a=0;a<rs;a++) for(let b2=0;b2<cs;b2++) if(a||b2) spanSkip[(ri+a)+','+(ci+b2)]=true; }
+        const pr2=kid(tc,'tcPr'); let bg=null,color='#000',bold=false;
+        const sf=pr2&&kid(pr2,'solidFill'); if(sf) bg=clrOf(sf,C.ctx);
+        else if(pr2&&kid(pr2,'noFill')) bg='transparent';
+        else if(firstRow&&ri===0){ bg='#'+accent; color='#fff'; bold=true; } else if(band){ bg=mix(accent,(ri%2===1)?0.4:0.2); }
+        td.style.cssText='box-sizing:border-box;vertical-align:'+({ctr:'middle',b:'bottom'}[at(pr2,'anchor','t')]||'top')+';padding:'+(num(pr2,'marT',45720)*C.s)+'px '+(num(pr2,'marR',91440)*C.s)+'px '+(num(pr2,'marB',45720)*C.s)+'px '+(num(pr2,'marL',91440)*C.s)+'px;'+(bg?'background:'+bg+';':'')+'border:'+Math.max(1,12700*C.s)+'px solid '+(sf||bg?'#fff':'#c8c4d8')+';overflow:hidden;';
+        for(const side of ['L','R','T','B']){ const l=pr2&&kid(pr2,'ln'+side); if(l){ const lc=clrOf(kid(l,'solidFill'),C.ctx), nf=kid(l,'noFill'); if(nf) td.style['border'+({L:'Left',R:'Right',T:'Top',B:'Bottom'}[side])]='0'; else if(lc) td.style['border'+({L:'Left',R:'Right',T:'Top',B:'Bottom'}[side])]=Math.max(1,num(l,'w',12700)*C.s)+'px solid '+lc; } }
+        const tb=kid(tc,'txBody'); if(tb){ const holder=document.createElement('div'); holder.style.cssText='position:relative;'; const sources=[C.defText].filter(Boolean); const tt=renderText(tb,{s:C.s,ctx:C.ctx,sources,defClr:'#000',forceClr:(color!=='#000'?color:null),slideNo:C.n,isTitle:false}); tt.el.style.position='static'; tt.el.style.padding='0'; if(bold) tt.el.style.fontWeight='700'; holder.appendChild(tt.el); td.appendChild(holder); }
+        trEl.appendChild(td); ci+=cs;
+      }
+      t.appendChild(trEl); });
+    return t;
+  }
+  // build the list; render lazily
+  host.innerHTML=''; host.style.display='flex'; host.style.flexDirection='column'; host.appendChild(frag);
+  const runJob=async w=>{ if(w.__done) return; w.__done=true; try{ await w.__job(); (w.__fits||[]).forEach(b=>shrinkToFit(b,b.__fit)); }catch(e){ w.innerHTML='<div style="padding:16px;font:13px sans-serif;color:#a33">Could not draw this slide.</div>'; console.warn('slide failed',e); } };
+  const eager=opts.eager||out.slides.length<=3;
+  out.draw=async i=>{ await runJob(out.slides[i]); return out.slides[i]; };      // draw one slide on demand
+  out.free=i=>{ out.slides[i].innerHTML=''; };                                    // release a drawn slide's DOM
+  if(opts.manual){ /* caller draws slides one at a time (used for background conversion) */ }
+  else if(eager||typeof IntersectionObserver==='undefined'){ for(const w of out.slides) await runJob(w); }
+  else { const rootEl=opts.root||null; const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ io.unobserve(e.target); runJob(e.target); } }); },{root:rootEl,rootMargin:'600px 0px'}); out.slides.forEach(w=>io.observe(w)); out.observer=io; await runJob(out.slides[0]); }
+  out.count=out.slides.length; out.width=W; out.height=H; out.runAll=async()=>{ for(const w of out.slides) await runJob(w); };
+  return out;
+}
+return {render};
+})();
+
+</script>
+<script>
 const $=id=>document.getElementById(id);
 const DAYS=['sun','mon','tue','wed','thu','fri','sat'];
 const DAY_LABEL={sun:'Sunday',mon:'Monday',tue:'Tuesday',wed:'Wednesday',thu:'Thursday',fri:'Friday',sat:'Saturday'};
@@ -507,7 +1013,7 @@ const rnd=()=>Math.random().toString(36).slice(2,10);
 const localAdmin=(n,p)=>cyrb53('sp-admin|'+n+'|'+p).toString(36)==='88s0pnru0r';
 
 // --- shared-backend detection (Vercel /api). Falls back to this-device-only mode. ---
-let adminMode=false, API=false, sessionToken=null, remoteImgs={}, _su=null;
+let adminDefault=false, adminMode=false, API=false, sessionToken=null, remoteImgs={}, _su=null;
 const apiReady = (async()=>{ try{ const c=new AbortController(); const t=setTimeout(()=>c.abort(),3500); const r=await fetch('/api?a=health',{signal:c.signal,cache:'no-store'}); clearTimeout(t); const j=await r.json(); API=!!(j&&j.ok&&j.ready); }catch(e){ API=false; } })();
 async function api(a,body){
   const r=await fetch('/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({a,t:sessionToken,...(body||{})})});
@@ -517,7 +1023,7 @@ async function api(a,body){
 }
 async function loadContent(){
   if(!API) return;
-  try{ const r=await fetch('/api?a=content',{cache:'no-store'}); const j=await r.json(); online=j.online||[]; remoteImgs=j.dayImages||{}; ads=j.ads||[]; }catch(e){}
+  try{ const r=await fetch('/api?a=content'+(adminMode?'&_='+Date.now():''),{cache:'no-store'}); const j=await r.json(); online=j.online||[]; remoteImgs=j.dayImages||{}; ads=j.ads||[]; siteGoogleCx=j.googleCx||''; }catch(e){}
 }
 
 // --- accounts registry (this-device mode) ---
@@ -531,7 +1037,7 @@ function persistSession(){
 }
 function startSession(j){
   if(j.token!==undefined) sessionToken=j.token||null;
-  if(j.user && j.user.isAdmin){ adminMode=true; user=null; }
+  if(j.user && j.user.isAdmin){ adminMode=true; user=null; adminDefault=!!j.usingDefault; }
   else { adminMode=false; user = API ? {...j.user, timetable:j.user.timetable||{}} : j.user; }
   persistSession();
   try{localStorage.setItem('sp_hasAcct','1');}catch(e){}
@@ -576,11 +1082,13 @@ document.getElementById('nav').addEventListener('click',e=>{
 });
 function go(v){
   currentView=v;
-  ['home','timetable','library','pasco','online','account'].forEach(x=>$('v-'+x).classList.toggle('hide',x!==v));
-  const showAI=['library','pasco','online'].includes(v); $('aiFab').classList.toggle('hide',!showAI); if(!showAI){ aiOpen=false; $('aiPanel').classList.add('hide'); }
+  ['home','timetable','library','pasco','online','account','search'].forEach(x=>$('v-'+x).classList.toggle('hide',x!==v));
+  if(v!=='search') stopYT();
+  $('searchFab').classList.toggle('hide',!['library','pasco','online'].includes(v));
   [...document.querySelectorAll('#nav button')].forEach(b=>b.classList.toggle('active',b.dataset.v===v));
   if(v==='timetable') renderTT();
   if(v==='account') renderAccount();
+  if(v==='search') renderSearch();
   if(v==='library') renderShelf();
   if(v==='pasco') renderPasco();
   if(v==='online'){ onOpenId=null; renderOnline(); if(API) loadContent().then(()=>{ if(!$('v-online').classList.contains('hide')&&!onOpenId) renderOnline(); }); }
@@ -727,6 +1235,7 @@ async function doAuth(){
 }
 function openAdmin(){
   renderAdmin(); admTab('acct'); loadAccounts(); loadAdsAdmin(); $('m-admin').classList.remove('hide');
+  $('defaultBanner').classList.toggle('hide',!(API&&adminDefault));
   const b=$('storageBanner');
   if(API){ b.classList.add('hide'); }
   else {
@@ -740,22 +1249,28 @@ function renderAdmin(){
   $('adminImgs').innerHTML = DAYS.map(d=>`
     <div style="text-align:center">
       <img src="${imgs[d]||''}" style="width:100%;height:56px;border-radius:8px;background:var(--card);object-fit:cover;${imgs[d]?'':'display:none'}">
-      <div style="font-size:10px;color:var(--muted);margin-top:2px">${DAY_LABEL[d].slice(0,3)}</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px">${DAY_LABEL[d].slice(0,3)}${(API?remoteImgs[d]:(store('sp_day_images')||{})[d])?` · <a href="#" onclick="clearDayImage('${d}');return false" style="color:var(--purple)">remove</a>`:''}</div>
       <input type="file" accept="image/*" style="font-size:9px;padding:0" onchange="setDayImage('${d}',this.files[0])">
     </div>`).join('');
 }
-function shrink(file,cb){
+function shrink(file,cb,maxW){
   const fr=new FileReader();
-  fr.onload=()=>{ const img=new Image(); img.onload=()=>{ const s=Math.min(1,800/img.width), c=document.createElement('canvas'); c.width=Math.round(img.width*s); c.height=Math.round(img.height*s); c.getContext('2d').drawImage(img,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',.72)); }; img.onerror=()=>toast('That file is not a valid image'); img.src=fr.result; };
+  fr.onload=()=>{ const img=new Image(); img.onload=()=>{ const s=Math.min(1,(maxW||800)/img.width), c=document.createElement('canvas'); c.width=Math.round(img.width*s); c.height=Math.round(img.height*s); c.getContext('2d').drawImage(img,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',.72)); }; img.onerror=()=>toast('That file is not a valid image'); img.src=fr.result; };
   fr.readAsDataURL(file);
 }
 function setDayImage(day,file){
   if(!file) return;
   shrink(file,url=>{
-    const cur = API ? {...remoteImgs} : (store('sp_day_images')||{}); cur[day]=url;
-    if(API){ api('setContent',{key:'dayImages',value:cur}).then(()=>{ remoteImgs=cur; renderAdmin(); renderHero(); toast('Photo updated for everyone'); }).catch(e=>toast(e.message)); }
-    else if(store('sp_day_images',cur)){ renderAdmin(); renderHero(); toast('Photo updated for '+DAY_LABEL[day]); }
-  });
+    if(API){
+      toast('Uploading photo…');
+      api('dayImageSet',{day,dataUrl:url}).then(j=>{ remoteImgs=j.dayImages||{}; renderAdmin(); renderHero(); toast('Photo updated for everyone ✔'); }).catch(e=>toast(e.message));
+    } else { const cur=store('sp_day_images')||{}; cur[day]=url; if(store('sp_day_images',cur)){ renderAdmin(); renderHero(); toast('Photo updated for '+DAY_LABEL[day]); } }
+  },1100);
+}
+function clearDayImage(day){
+  if(!confirm('Remove the '+DAY_LABEL[day]+' photo? The built-in picture (if any) will show instead.')) return;
+  if(API) api('dayImageDel',{day}).then(j=>{ remoteImgs=j.dayImages||{}; renderAdmin(); renderHero(); toast('Photo removed'); }).catch(e=>toast(e.message));
+  else { const cur=store('sp_day_images')||{}; delete cur[day]; store('sp_day_images',cur); renderAdmin(); renderHero(); }
 }
 // ads
 let adsAdmin=[], caaKind='video', caaImg='';
@@ -968,7 +1483,7 @@ function createCourse(){
   store('sp_courses',courses); closeModal('m-newCourse'); ['ncCode','ncName','ncDesc'].forEach(i=>$(i).value=''); renderShelf(); toast('Course shelved as a new book 📚');
 }
 let openCourseId=null;
-function iconFor(t){ return t==='pdf'?'📄':t==='docx'?'📝':t==='ppt'?'🖥️':'🗒️'; }
+function iconFor(t){ return t==='pdf'?'📄':t==='docx'?'📝':t==='ppt'?'🖥️':t==='link'?'🔗':'🗒️'; }
 function openCourse(id){
   openCourseId=id; const c=courses.find(x=>x.id===id); if(!c) return;
   $('courseOpen').innerHTML = `<div class="card">
@@ -982,6 +1497,7 @@ function openCourse(id){
         <div class="res-icon">${iconFor(m.type)}</div>
         <b style="font-size:14px">${esc(m.title)}</b>
         <p style="font-size:12px;color:var(--muted);margin:4px 0 0">${esc(m.sub||(m.type==='note'?'Text note':m.type.toUpperCase()))}</p>
+        ${m.type==='ppt'?`<div class="conv" data-conv="${c.id}:${mi}">${esc(convText[c.id+':'+mi]||(m.pagesKey?'✓ Slides ready':''))}</div>`:''}
         <div class="res-foot"><span>${m.type==='note'?'Note':m.type.toUpperCase()}</span><button class="btn" onclick="openMaterial('${c.id}',${mi})">${m.type==='note'?'Read':'Open'}</button></div>
       </div>`).join('') || '<div style="grid-column:1/-1;text-align:center;padding:18px"><p style="color:var(--muted);font-size:13px;margin:0 0 10px">This book is empty — add its first slide or note.</p><button class="btn" onclick="openModal(\'newMaterial\')">＋ Add slide / note</button></div>'}</div>
   </div>
@@ -990,82 +1506,83 @@ function openCourse(id){
   $('courseOpen').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function closeCourse(){ openCourseId=null; $('courseOpen').innerHTML=''; renderShelf(); }
-function deleteCourse(id){ courses=courses.filter(c=>c.id!==id); store('sp_courses',courses); openCourseId=null; $('courseOpen').innerHTML=''; renderShelf(); toast('Course deleted'); }
-function addMaterial(){
-  const c=courses.find(x=>x.id===openCourseId); if(!c)return;
-  const title=$('matTitle').value.trim()||'Untitled', sub=$('matSub').value.trim();
-  const file=$('matFile').files[0];
-  const save=(type,data)=>{ c.materials.push({title,sub,type,fname:file?file.name:'',data:data||null,body:type==='note'?$('matBody').value:''}); store('sp_courses',courses); closeModal('m-newMaterial'); openCourse(c.id); toast('Added to course'); };
-  if(file){
-    if(file.size>4*1024*1024){ toast('File too large for this demo (max ~4MB)'); return; }
-    const ext=file.name.split('.').pop().toLowerCase();
-    const type = ext==='pdf'?'pdf':ext.startsWith('doc')?'docx':ext.startsWith('ppt')?'ppt':'file';
-    const r=new FileReader(); r.onload=()=>save(type,r.result); r.readAsDataURL(file);
-  } else { save('note'); }
-}
-function openMaterial(cid,mi){
-  const c=courses.find(x=>x.id===cid); const m=c.materials[mi];
-  if(m.type==='note'){ showNote(m.title,m.body); return; }
-  openFile(m.data,m.fname||m.title,m.type);
-}
 function dataToBlobUrl(d){ const i=d.indexOf(','), mime=(d.slice(0,i).match(/:(.*?)[;,]/)||[])[1]||'application/octet-stream'; const bin=atob(d.slice(i+1)), arr=new Uint8Array(bin.length); for(let k=0;k<bin.length;k++) arr[k]=bin.charCodeAt(k); return URL.createObjectURL(new Blob([arr],{type:mime})); }
 function fileExt(name){ const m=String(name||'').match(/\.([a-z0-9]+)(?:\?|$)/i); return m?m[1].toLowerCase():''; }
-function openFile(data,title,type){
-  if(!data){ toast('File is missing'); return; }
-  const ext=fileExt(title);
-  if(ext==='pdf' || (!ext && type==='pdf')){ showPdf(title,data); return; }
-  if(ext==='pptx'){ showPptx(title,data); return; }
-  const url = data.startsWith('data:') ? dataToBlobUrl(data) : data;
-  const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove();
-  toast(ext==='ppt' ? "Older .ppt files can't preview here yet — downloading so you can open it in PowerPoint" : 'This file type downloads and opens in your own app');
-}
-async function showPptx(title,dataUrl){
-  $('vTitle').textContent=title||'';
-  $('vFrame').classList.add('hide'); $('vFrame').src='about:blank';
-  $('vPdf').classList.remove('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg">Reading slides…</p>';
-  $('vOpen').href=dataUrl; $('vOpen').classList.remove('hide');
-  openModal('viewer');
-  try{
-    if(!window.JSZip) throw new Error('jszip missing');
-    const i=dataUrl.indexOf(','), bin=atob(dataUrl.slice(i+1)), bytes=new Uint8Array(bin.length);
-    for(let k=0;k<bin.length;k++) bytes[k]=bin.charCodeAt(k);
-    const zip=await JSZip.loadAsync(bytes);
-    const slideKeys=Object.keys(zip.files)
-      .filter(k=>/^ppt\/slides\/slide\d+\.xml$/.test(k))
-      .sort((a,b)=>(+a.match(/\d+/)[0])-(+b.match(/\d+/)[0]));
-    if(!slideKeys.length) throw new Error('no slides found');
-    $('vPdf').innerHTML='';
-    for(let idx=0;idx<slideKeys.length;idx++){
-      const xml=await zip.files[slideKeys[idx]].async('string');
-      const paras=[...xml.matchAll(/<a:p>([\s\S]*?)<\/a:p>/g)]
-        .map(m=>[...m[1].matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)].map(t=>htmlUnescape(t[1])).join(''))
-        .filter(Boolean);
-      const card=document.createElement('div');
-      card.style.cssText='background:#fff;color:#241c3d;border-radius:10px;padding:16px 18px;margin:0 auto 12px;max-width:640px;width:100%;box-shadow:0 3px 14px rgba(0,0,0,.3);text-align:left';
-      card.innerHTML='<div style="font-size:11px;font-weight:800;color:#8a7fae;letter-spacing:.06em;margin-bottom:8px">SLIDE '+(idx+1)+' OF '+slideKeys.length+'</div>'+
-        (paras.length ? paras.map((p,i)=>i===0?`<div style="font-weight:700;font-size:16px;margin-bottom:6px">${esc(p)}</div>`:`<div style="font-size:14px;color:#4a4266;margin-top:4px">${esc(p)}</div>`).join('') : '<div style="font-size:13px;color:#8a7fae">(no text on this slide)</div>');
-      $('vPdf').appendChild(card);
-    }
-    const note=document.createElement('p'); note.className='vpdf-msg'; note.style.fontSize='11px';
-    note.textContent='Showing slide text only — images, charts and exact layout aren\'t shown here. Tap "Open in new tab" above to download the original file.';
-    $('vPdf').appendChild(note);
-  }catch(e){
-    $('vPdf').innerHTML='<p class="vpdf-msg">Could not read this file\'s slide text in-page. Tap "Open in new tab" above to download and open it in PowerPoint instead.</p>';
+
+// ================= FILES: large-file storage (IndexedDB) =================
+const MAX_FILE_MB=40;
+const FS={
+  _db:null,
+  ok(){ return typeof indexedDB!=='undefined'; },
+  open(){ if(!this._db) this._db=new Promise((res,rej)=>{ const r=indexedDB.open('sp_files',1); r.onupgradeneeded=()=>r.result.createObjectStore('f'); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); r.onblocked=()=>rej(new Error('blocked')); }); return this._db; },
+  async put(k,blob){ const d=await this.open(); await new Promise((res,rej)=>{ const t=d.transaction('f','readwrite'); t.objectStore('f').put(blob,k); t.oncomplete=()=>res(); t.onerror=()=>rej(t.error); t.onabort=()=>rej(t.error||new Error('aborted')); }); },
+  async get(k){ const d=await this.open(); return new Promise((res,rej)=>{ const q=d.transaction('f').objectStore('f').get(k); q.onsuccess=()=>res(q.result||null); q.onerror=()=>rej(q.error); }); },
+  async del(k){ try{ const d=await this.open(); await new Promise(res=>{ const t=d.transaction('f','readwrite'); t.objectStore('f').delete(k); t.oncomplete=res; t.onerror=res; t.onabort=res; }); }catch(e){} }
+};
+function newFileKey(){ return 'f'+Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
+async function saveFile(file){
+  if(FS.ok()){
+    try{ const k=newFileKey(); await FS.put(k,file); try{ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist(); }catch(e){} return {fileKey:k}; }
+    catch(e){ console.warn('IndexedDB save failed, trying fallback',e); }
   }
+  if(file.size>3*1024*1024) throw new Error("This browser can't store files this big here. Try a file under 3MB, or add it by link.");
+  const data=await new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=()=>rej(r.error); r.readAsDataURL(file); });
+  return {data};
 }
-function showViewer(title,src){ $('vTitle').textContent=title||''; $('vFrame').srcdoc=''; $('vFrame').classList.remove('hide'); $('vFrame').src=src; $('vPdf').classList.add('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg"></p>'; $('vOpen').href=src; $('vOpen').classList.remove('hide'); openModal('viewer'); }
-async function showPdf(title,dataUrl){
+async function loadFile(rec){ return rec.fileKey ? await FS.get(rec.fileKey) : (rec.data||null); }
+
+// ================= DOCUMENT VIEWER (PDF / PowerPoint / Word / links) =================
+async function toBuffer(src){
+  if(src instanceof Blob) return await src.arrayBuffer();
+  const i=src.indexOf(','), bin=atob(src.slice(i+1)), arr=new Uint8Array(bin.length);
+  for(let k=0;k<bin.length;k++) arr[k]=bin.charCodeAt(k);
+  return arr.buffer;
+}
+let curObjUrl=null, viewerRe=null, pptCleanup=null, pptUrls=[], pptNative=null;
+function blobUrlFor(src){ if(src instanceof Blob) return URL.createObjectURL(src); if(typeof src==='string'&&src.startsWith('data:')) return dataToBlobUrl(src); return src; }
+function setViewerObjUrl(src){ if(curObjUrl){ try{URL.revokeObjectURL(curObjUrl);}catch(e){} curObjUrl=null; } const u=blobUrlFor(src); if(u&&u.startsWith('blob:')) curObjUrl=u; return u; }
+function prepViewer(title,msg,src,linkLabel,isPdf){
   $('vTitle').textContent=title||'';
-  $('vFrame').classList.add('hide'); $('vFrame').src='about:blank';
-  $('vPdf').classList.remove('hide'); $('vPdf').innerHTML='<p class="vpdf-msg" id="vPdfMsg">Loading document…</p>';
-  $('vOpen').href=dataUrl; $('vOpen').classList.remove('hide');
+  $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vFrame').classList.add('hide');
+  $('vPdf').classList.remove('hide'); $('vPdf').innerHTML='<p class="vpdf-msg">'+esc(msg)+'</p>'; $('vAlt').classList.add('hide'); releasePpt();
+  const a=$('vOpen'); a.href=setViewerObjUrl(src); a.textContent=linkLabel; a.classList.remove('hide');
+  if(isPdf){ a.removeAttribute('download'); a.target='_blank'; } else { a.setAttribute('download',title||'file'); a.removeAttribute('target'); }
   openModal('viewer');
+}
+function withTimeout(p,ms,label){ return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error((label||'operation')+' timed out')),ms))]); }
+function releasePpt(){ try{ if(pptNative&&pptNative.observer) pptNative.observer.disconnect(); }catch(e){} pptNative=null; pptUrls.forEach(u=>{ try{URL.revokeObjectURL(u);}catch(e){} }); pptUrls=[]; }
+function viewerHelp(html){ $('vPdf').innerHTML='<div class="ppt-help">'+html+'</div>'; }
+
+function showViewer(title,src,openHref){
+  viewerRe=null; $('vAlt').classList.add('hide'); releasePpt();
+  $('vTitle').textContent=title||''; $('vFrame').srcdoc=''; $('vFrame').classList.remove('hide'); $('vFrame').src=src;
+  $('vPdf').classList.add('hide'); $('vPdf').innerHTML='';
+  const a=$('vOpen'); a.href=openHref||src; a.textContent='Open in new tab'; a.target='_blank'; a.removeAttribute('download'); a.classList.remove('hide');
+  openModal('viewer');
+}
+function closeViewer(){
+  viewerRe=null; $('vAlt').classList.add('hide'); releasePpt(); if(pptCleanup){ try{pptCleanup();}catch(e){} pptCleanup=null; }
+  $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vFrame').classList.add('hide');
+  $('vPdf').classList.add('hide'); $('vPdf').innerHTML='';
+  $('m-viewer').classList.remove('full'); $('vMaxIcon').outerHTML=MAX_ICON;
+  if(curObjUrl){ try{URL.revokeObjectURL(curObjUrl);}catch(e){} curObjUrl=null; }
+  closeModal('m-viewer');
+}
+function toggleFullViewer(){
+  const full=$('m-viewer').classList.toggle('full');
+  $('vMaxIcon').outerHTML = full ? RESTORE_ICON : MAX_ICON;
+  $('vMaxBtn').title = full ? 'Restore' : 'Maximize';
+  if(viewerRe) setTimeout(viewerRe,150); // re-fit slides/pages to the new size
+}
+
+
+async function showPdf(title,src){
+  viewerRe=()=>showPdf(title,src);
+  prepViewer(title,'Loading document…',src,'Open in new tab',true);
   try{
     if(!window.pdfjsLib) throw new Error('pdfjs missing');
     pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    const i=dataUrl.indexOf(','), bin=atob(dataUrl.slice(i+1)), bytes=new Uint8Array(bin.length);
-    for(let k=0;k<bin.length;k++) bytes[k]=bin.charCodeAt(k);
-    const doc=await pdfjsLib.getDocument({data:bytes}).promise;
+    const doc=await pdfjsLib.getDocument({data:new Uint8Array(await toBuffer(src))}).promise;
     $('vPdf').innerHTML='';
     const availW=Math.max(280,($('vPdf').clientWidth||860)-24);
     for(let n=1;n<=doc.numPages;n++){
@@ -1075,53 +1592,324 @@ async function showPdf(title,dataUrl){
       $('vPdf').appendChild(canvas);
     }
   }catch(e){
-    $('vPdf').innerHTML='<p class="vpdf-msg">Could not preview this document in-page. Tap "Open in new tab" above to view or download it.</p>';
+    viewerHelp('<b>Could not preview this PDF in-page.</b><br>Tap “Open in new tab” above to view or download it.');
   }
 }
+
+// ---- PowerPoint (.pptx): visual first, then text fallback ----
+async function loadPptxLib(){
+  if(window.__pptxInit) return window.__pptxInit;
+  const urls=['https://esm.sh/pptx-preview@1.0.7','https://cdn.jsdelivr.net/npm/pptx-preview@1.0.7/+esm'];
+  let err=null;
+  for(const u of urls){
+    try{ const m=await withTimeout(import(u),20000,'loading slide viewer'); const init=m.init||(m.default&&m.default.init); if(typeof init==='function'){ window.__pptxInit=init; return init; } }
+    catch(e){ err=e; }
+  }
+  throw err||new Error('slide viewer unavailable');
+}
+async function slideRatio(buf){
+  try{ if(window.JSZip){ const z=await JSZip.loadAsync(buf.slice(0)); const f=z.files['ppt/presentation.xml']; if(f){ const x=await f.async('string'); const m=x.match(/<p:sldSz[^>]*\bcx="(\d+)"[^>]*\bcy="(\d+)"/); if(m&&+m[1]>0) return (+m[2])/(+m[1]); } } }catch(e){}
+  return 9/16;
+}
+async function renderPptxVisual(buf){
+  const init=await loadPptxLib();
+  const ratio=await slideRatio(buf);
+  const wrap=$('vPdf'); wrap.innerHTML='';
+  const host=document.createElement('div'); host.className='pptx-host'; wrap.appendChild(host);
+  const w=Math.max(300,Math.min(1100,(wrap.clientWidth||900)-24)), hh=Math.round(w*ratio);
+  const pv=init(host,{width:w,height:hh,mode:'list'});
+  await withTimeout(pv.preview(buf.slice(0)),45000,'rendering slides');
+  if(!host.firstElementChild||host.offsetHeight<40) throw new Error('nothing rendered');
+}
+async function renderPptxText(buf){
+  try{
+    if(!window.JSZip) throw new Error('jszip missing');
+    const zip=await JSZip.loadAsync(buf);
+    const slideKeys=Object.keys(zip.files).filter(k=>/^ppt\/slides\/slide\d+\.xml$/.test(k)).sort((a,b)=>(+a.match(/\d+/)[0])-(+b.match(/\d+/)[0]));
+    if(!slideKeys.length) throw new Error('no slides found');
+    $('vPdf').innerHTML='';
+    const note0=document.createElement('p'); note0.className='vpdf-msg'; note0.style.cssText='font-size:12px;padding:6px 12px';
+    note0.textContent='Showing the text of each slide (the picture view could not load right now).'; $('vPdf').appendChild(note0);
+    for(let idx=0;idx<slideKeys.length;idx++){
+      const xml=await zip.files[slideKeys[idx]].async('string');
+      const paras=[...xml.matchAll(/<a:p>([\s\S]*?)<\/a:p>/g)].map(m=>[...m[1].matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)].map(t=>htmlUnescape(t[1])).join('')).filter(Boolean);
+      const card=document.createElement('div');
+      card.style.cssText='background:#fff;color:#241c3d;border-radius:10px;padding:16px 18px;margin:0 auto 12px;max-width:640px;width:100%;box-shadow:0 3px 14px rgba(0,0,0,.3);text-align:left';
+      card.innerHTML='<div style="font-size:11px;font-weight:800;color:#8a7fae;letter-spacing:.06em;margin-bottom:8px">SLIDE '+(idx+1)+' OF '+slideKeys.length+'</div>'+
+        (paras.length ? paras.map((p,i)=>i===0?`<div style="font-weight:700;font-size:16px;margin-bottom:6px">${esc(p)}</div>`:`<div style="font-size:14px;color:#4a4266;margin-top:4px">${esc(p)}</div>`).join('') : '<div style="font-size:13px;color:#8a7fae">(no text on this slide)</div>');
+      $('vPdf').appendChild(card);
+    }
+  }catch(e){
+    viewerHelp('<b>Could not open this PowerPoint in-page.</b><br>Tap “Download original” above to open it in PowerPoint.');
+  }
+}
+
+// ================= PPTX → PICTURES (converted in the background, then shown like PDF pages) =================
+const PAGE_W=1400, convText={};
+let webpOK=null;
+function pickMime(){ if(webpOK===null){ try{ webpOK=document.createElement('canvas').toDataURL('image/webp').startsWith('data:image/webp'); }catch(e){ webpOK=false; } } return webpOK?'image/webp':'image/jpeg'; }
+function blobToDataUrl(b){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=()=>rej(r.error); r.readAsDataURL(b); }); }
+async function inlineBlobUrls(root){ // pictures inside an SVG-drawn slide must be data: URLs
+  const cache=new Map(); const get=async u=>{ if(!cache.has(u)) cache.set(u,fetch(u).then(r=>r.blob()).then(blobToDataUrl)); return cache.get(u); };
+  for(const el of [root].concat(Array.from(root.querySelectorAll('*')))){
+    if(el.tagName==='IMG'){ const u=el.getAttribute('src'); if(u&&u.startsWith('blob:')) el.setAttribute('src',await get(u)); }
+    const st=el.getAttribute&&el.getAttribute('style');
+    if(st&&st.includes('blob:')){ let ns=st; for(const u of new Set(st.match(/blob:[^)"';]+/g)||[])) ns=ns.split(u).join(await get(u)); el.setAttribute('style',ns); }
+  }
+}
+async function rasterSlide(slideEl,w,h,mime){
+  const clone=slideEl.cloneNode(true);
+  clone.style.margin='0'; clone.style.boxShadow='none'; clone.style.borderRadius='0';
+  await inlineBlobUrls(clone);
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'"><foreignObject x="0" y="0" width="'+w+'" height="'+h+'">'+new XMLSerializer().serializeToString(clone)+'</foreignObject></svg>';
+  const img=new Image(); img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+  await withTimeout(img.decode(),25000,'picture decode');
+  const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  const ctx=cv.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h); ctx.drawImage(img,0,0,w,h);
+  // safety net: some browsers silently draw a blank picture, or block reading it — never store those
+  const pw=240, ph=Math.max(8,Math.round(240*h/w)), pc=document.createElement('canvas'); pc.width=pw; pc.height=ph;
+  const px=pc.getContext('2d'); px.drawImage(cv,0,0,pw,ph); const d=px.getImageData(0,0,pw,ph).data; let lo=255,hi=0;
+  for(let i=0;i<d.length;i+=4){ const l=(d[i]+d[i+1]+d[i+2])/3; if(l<lo) lo=l; if(l>hi) hi=l; }
+  if(slideEl.querySelector('.pn-text,img,svg,table')&&hi-lo<=1) throw new Error('browser drew a blank picture');
+  const blob=await new Promise((res,rej)=>cv.toBlob(b=>b?res(b):rej(new Error('picture encode failed')),mime,0.88));
+  cv.width=cv.height=0; return blob;
+}
+function setConvStatus(cid,mi,text){ convText[cid+':'+mi]=text; const el=document.querySelector('[data-conv="'+cid+':'+mi+'"]'); if(el) el.textContent=text; }
+const convQ=[]; let convRunning=false;
+function queueConvert(cid,mi){ if(convQ.some(x=>x[0]===cid&&x[1]===mi)) return; convQ.push([cid,mi]); if(!convRunning) runConvQ(); }
+async function runConvQ(){
+  convRunning=true;
+  while(convQ.length){ const [cid,mi]=convQ.shift(); try{ await convertMaterial(cid,mi); } catch(e){ console.warn('slide pictures failed:',e); const c=courses.find(x=>x.id===cid), m=c&&c.materials[mi]; if(m){ m.convFailed=true; store('sp_courses',courses); } setConvStatus(cid,mi,''); } await sleep(40); }
+  convRunning=false;
+}
+async function convertMaterial(cid,mi){
+  const c=courses.find(x=>x.id===cid), m=c&&c.materials[mi]; if(!m||m.pagesKey||m.convFailed) return;
+  if(!window.PptxNative||!window.JSZip||!FS.ok()) return;
+  const src=await loadFile(m); if(!src) return;
+  const buf=await toBuffer(src);
+  const host=document.createElement('div'); host.style.cssText='position:fixed;left:-30000px;top:0;width:'+PAGE_W+'px;pointer-events:none;'; document.body.appendChild(host);
+  const urls=[];
+  try{
+    const out=await PptxNative.render(buf,host,{width:PAGE_W,manual:true,urls}), n=out.count, mime=pickMime(), blobs=[];
+    for(let i=0;i<n;i++){
+      setConvStatus(cid,mi,'Preparing slides… '+(i+1)+'/'+n);
+      const el=await out.draw(i); blobs.push(await rasterSlide(el,out.width,out.height,mime)); out.free(i); await sleep(0);
+    }
+    const key=newFileKey()+'p'; await FS.put(key,{n,w:out.width,h:out.height,blobs});
+    m.pagesKey=key; m.pageCount=n; delete m.convFailed; if(!store('sp_courses',courses)){ FS.del(key); delete m.pagesKey; throw new Error('could not save'); }
+    setConvStatus(cid,mi,'✓ Slides ready');
+  } finally { host.remove(); urls.forEach(u=>{ try{URL.revokeObjectURL(u);}catch(e){} }); }
+}
+async function showSlidePictures(rec){
+  releasePpt(); const wrap=$('vPdf'); wrap.innerHTML='';
+  rec.blobs.forEach((b,i)=>{ const u=URL.createObjectURL(b); pptUrls.push(u); const im=document.createElement('img'); im.className='pn-pic'; im.alt='Slide '+(i+1); im.width=rec.w; im.height=rec.h; im.loading='lazy'; im.decoding='async'; im.src=u; wrap.appendChild(im); });
+}
+async function showPptx(title,src,engine,rec){
+  const engines=rec?['pics','native','lib']:['native','lib'];
+  let cur=engines.indexOf(engine); if(cur<0) cur=0;
+  prepViewer(title,'Opening slides…',src,'Download original',false);
+  let buf; try{ buf=await toBuffer(src); }catch(e){ viewerHelp('<b>Could not read this file.</b>'); return; }
+  const alt=$('vAlt'); alt.classList.remove('hide');
+  for(let k=0;k<engines.length;k++){
+    const eng=engines[(cur+k)%engines.length];
+    try{
+      if(eng==='pics') await showSlidePictures(rec); else if(eng==='native') await renderPptxNative(buf); else await renderPptxVisual(buf);
+      viewerRe=eng==='pics'?null:()=>showPptx(title,src,eng,rec);
+      alt.onclick=()=>showPptx(title,src,engines[(engines.indexOf(eng)+1)%engines.length],rec);
+      return;
+    }catch(e){ console.warn('slide viewer "'+eng+'" failed:',e); }
+  }
+  alt.classList.add('hide'); viewerRe=()=>showPptx(title,src,null,rec);
+  await renderPptxText(buf);
+}
+function openFile(data,title,type,opts){
+  if(!data){ toast('File is missing'); return; }
+  const ext=fileExt(title);
+  if(ext==='pdf'||(!ext&&type==='pdf')){ showPdf(title,data); return; }
+  if(ext==='pptx'){ showPptx(title,data,null,opts&&opts.rec); return; }
+  if(ext==='ppt'){ showPpt(title,data); return; }
+  if(ext==='docx'){ showDocx(title,data); return; }
+  const url=blobUrlFor(data);
+  const a=document.createElement('a'); a.href=url; a.download=title||'file'; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>{ try{ if(String(url).startsWith('blob:')) URL.revokeObjectURL(url); }catch(e){} },60000);
+  toast(ext==='doc' ? "Older .doc files can't be previewed here — downloading it. Tip: in Word use File → Save As → .docx and upload that for in-app viewing." : 'This file type downloads and opens in your own app');
+}
+async function openMaterial(cid,mi){
+  const c=courses.find(x=>x.id===cid); const m=c&&c.materials[mi]; if(!m) return;
+  if(m.type==='note'){ showNote(m.title,m.body); return; }
+  if(m.type==='link'){ openLink(m); return; }
+  try{
+    const src=await loadFile(m);
+    if(!src){ toast("This file isn't saved on this device (it was added from another browser). Please upload it again."); return; }
+    let rec=null;
+    if(m.pagesKey){ try{ rec=await FS.get(m.pagesKey); }catch(e){} if(!rec){ delete m.pagesKey; store('sp_courses',courses); setConvStatus(cid,mi,''); } }
+    openFile(src,m.fname||m.title,m.type,{rec});
+    if(!rec&&fileExt(m.fname||m.title)==='pptx'&&!m.convFailed){ setConvStatus(cid,mi,'Preparing slides in the background…'); queueConvert(cid,mi); } // older uploads get converted on first open
+  }catch(e){ toast('Could not open the file: '+(e.message||'unknown error')); }
+}
+function deleteCourse(id){
+  const c=courses.find(x=>x.id===id);
+  if(c) (c.materials||[]).forEach(m=>{ if(m.fileKey) FS.del(m.fileKey); if(m.pagesKey) FS.del(m.pagesKey); });
+  courses=courses.filter(c=>c.id!==id); store('sp_courses',courses); openCourseId=null; $('courseOpen').innerHTML=''; renderShelf(); toast('Course deleted');
+}
+
+async function renderPptxNative(buf){
+  if(!window.PptxNative||!window.JSZip) throw new Error('built-in renderer unavailable');
+  releasePpt();
+  const wrap=$('vPdf'); wrap.innerHTML='';
+  const host=document.createElement('div'); wrap.appendChild(host);
+  const w=Math.max(300,Math.min(1100,(wrap.clientWidth||900)-24));
+  const r=await withTimeout(PptxNative.render(buf,host,{width:w,root:wrap,urls:pptUrls}),60000,'drawing slides');
+  pptNative=r; if(!r.count) throw new Error('no slides');
+}
+
+// ---- Old PowerPoint (.ppt, 1997–2003) ----
+async function loadPptLib(){
+  if(window.__pptLib) return window.__pptLib;
+  const urls=['https://cdn.jsdelivr.net/npm/@file-viewer/ppt@0.3.4/index.mjs'];
+  let err=null;
+  for(const u of urls){
+    try{ const m=await withTimeout(import(u),30000,'loading old-PowerPoint viewer'); if(m&&typeof m.createPptViewer==='function'){ window.__pptLib=m; return m; } }
+    catch(e){ err=e; }
+  }
+  throw err||new Error('ppt viewer unavailable');
+}
+function pptHelp(){
+  viewerHelp('<b>This is an older .ppt file, and it could not be shown in-page.</b><br><br>The quickest fix (about 10 seconds):<br>1. Open it in PowerPoint<br>2. <b>File → Save As → PowerPoint Presentation (.pptx)</b><br>3. Upload the new .pptx — it opens right here with full pictures.<br><br>Or upload the file to Google Drive, set sharing to “Anyone with the link”, and add it here with <b>“Or paste a link”</b>.<br><br>You can also tap <b>Download original</b> above.');
+}
+async function showPpt(title,src){
+  viewerRe=null;
+  prepViewer(title,'Opening slides… (the first time can take a little while)',src,'Download original',false);
+  try{
+    const buf=await toBuffer(src);
+    const mod=await loadPptLib();
+    const viewer=await withTimeout(mod.createPptViewer({worker:false,cache:{enabled:false}}),45000,'starting viewer');
+    const wrap=$('vPdf'); wrap.innerHTML='';
+    const host=document.createElement('div'); host.style.cssText='margin:0 auto;max-width:100%'; wrap.appendChild(host);
+    const mounted=await withTimeout(viewer.mount(host,buf,{scale:1,pixelRatio:window.devicePixelRatio||1,virtualize:true}),60000,'rendering slides');
+    pptCleanup=async()=>{ try{await mounted.close();}catch(e){} try{await viewer.close();}catch(e){} };
+    if(host.offsetHeight<40) throw new Error('nothing rendered');
+  }catch(e){ console.warn('old .ppt view failed:',e); pptHelp(); }
+}
+
+// ---- Word (.docx): text view ----
+async function showDocx(title,src){
+  viewerRe=()=>showDocx(title,src);
+  prepViewer(title,'Reading document…',src,'Download original',false);
+  try{
+    if(!window.JSZip) throw new Error('jszip missing');
+    const zip=await JSZip.loadAsync(await toBuffer(src));
+    const f=zip.files['word/document.xml']; if(!f) throw new Error('not a docx');
+    const xml=await f.async('string');
+    const paras=[...xml.matchAll(/<w:p[ >][\s\S]*?<\/w:p>/g)].map(m=>[...m[0].matchAll(/<w:t[^>]*>([\s\S]*?)<\/w:t>/g)].map(t=>htmlUnescape(t[1])).join(''));
+    $('vPdf').innerHTML='';
+    const card=document.createElement('div');
+    card.style.cssText='background:#fff;color:#241c3d;border-radius:10px;padding:22px 26px;margin:0 auto;max-width:700px;width:100%;box-shadow:0 3px 14px rgba(0,0,0,.3);text-align:left;line-height:1.7';
+    const body=paras.filter(p=>p.trim()).map(p=>`<p style="margin:0 0 10px;font-size:14.5px">${esc(p)}</p>`).join('');
+    card.innerHTML=body||'<p style="color:#8a7fae;font-size:13px">(this document appears to have no readable text)</p>';
+    $('vPdf').appendChild(card);
+    const note=document.createElement('p'); note.className='vpdf-msg'; note.style.fontSize='11px';
+    note.textContent="Showing text only — pictures and exact formatting aren't shown. Tap “Download original” above for the full file.";
+    $('vPdf').appendChild(note);
+  }catch(e){ viewerHelp('<b>Could not read this document in-page.</b><br>Tap “Download original” above to open it in Word.'); }
+}
+
+// ---- Links (Google Drive / Slides / Docs / YouTube / anything) ----
+function toEmbed(u){
+  u=String(u||'').trim(); let m;
+  if((m=u.match(/drive\.google\.com\/file\/d\/([\w-]+)/))) return {embed:true,url:'https://drive.google.com/file/d/'+m[1]+'/preview'};
+  if((m=u.match(/drive\.google\.com\/(?:open|uc)\?(?:[^#]*&)?id=([\w-]+)/))) return {embed:true,url:'https://drive.google.com/file/d/'+m[1]+'/preview'};
+  if((m=u.match(/docs\.google\.com\/(presentation|document|spreadsheets)\/d\/([\w-]+)/))) return {embed:true,url:'https://docs.google.com/'+m[1]+'/d/'+m[2]+'/preview'};
+  const y=ytEmbed(u); if(y) return {embed:true,url:y};
+  return {embed:false,url:u};
+}
+function openLink(m){ const e=toEmbed(m.url); if(e.embed) showViewer(m.title,e.url,m.url); else window.open(m.url,'_blank','noopener'); }
+
+function matFileChanged(inp){
+  const f=inp.files[0], hint=$('matHint'); if(!f){ hint.classList.add('hide'); return; }
+  const ext=fileExt(f.name); let msg='';
+  if(f.size>MAX_FILE_MB*1048576) msg='⚠️ This file is '+Math.round(f.size/1048576)+'MB and the limit is '+MAX_FILE_MB+'MB. Compress its pictures, or add it by link instead.';
+  else if(ext==='ppt') msg='ℹ️ Old .ppt format: it opens with a basic viewer (shows a small “Flyfish Viewer” mark and may look a little different). For the best result, open it in PowerPoint → File → Save As → .pptx and upload that.';
+  else if(ext==='doc') msg="ℹ️ Old .doc files can't be previewed in-app. In Word use File → Save As → .docx first, or add it by link.";
+  hint.textContent=msg; hint.classList.toggle('hide',!msg);
+}
+function resetMatForm(){ ['matTitle','matSub','matUrl','matBody'].forEach(i=>$(i).value=''); $('matFile').value=''; $('matHint').classList.add('hide'); }
+let matBusy=false;
+async function addMaterial(){
+  if(matBusy) return;
+  const c=courses.find(x=>x.id===openCourseId); if(!c) return;
+  const title=$('matTitle').value.trim()||'Untitled', sub=$('matSub').value.trim();
+  const file=$('matFile').files[0], url=$('matUrl').value.trim(), body=$('matBody').value;
+  const push=extra=>{
+    c.materials.push(Object.assign({title,sub,fname:file?file.name:'',data:null,body:''},extra));
+    if(!store('sp_courses',courses)){ c.materials.pop(); return false; }
+    closeModal('m-newMaterial'); resetMatForm(); openCourse(c.id); toast('Added to course'); return true;
+  };
+  if(file){
+    if(file.size>MAX_FILE_MB*1048576){ toast('File too large (max '+MAX_FILE_MB+'MB) — compress its pictures or add it by link'); return; }
+    const ext=fileExt(file.name);
+    const type=ext==='pdf'?'pdf':ext.startsWith('doc')?'docx':ext.startsWith('ppt')?'ppt':'file';
+    matBusy=true; toast('Saving file…');
+    try{ const rec=await saveFile(file); const added=push({type,fsize:file.size,...rec}); if(!added&&rec.fileKey) FS.del(rec.fileKey); else if(added&&type==='ppt'&&fileExt(file.name)==='pptx'){ const idx=c.materials.length-1; setConvStatus(c.id,idx,'Preparing slides in the background…'); openCourse(c.id); queueConvert(c.id,idx); } }
+    catch(e){ toast(e.message||'Could not save the file'); }
+    matBusy=false;
+  } else if(url){
+    if(!/^https?:\/\//i.test(url)){ toast('Paste a full link starting with https://'); return; }
+    push({type:'link',url});
+  } else if(body.trim()){ push({type:'note',body}); }
+  else toast('Add a file, paste a link, or type a note');
+}
+async function openPasco(id){
+  const p=pascoSets.find(x=>x.id===id); if(!p) return;
+  try{
+    const src=await loadFile(p);
+    if(!src){ toast("This file isn't saved on this device — please upload it again."); return; }
+    openFile(src,p.fname||p.subject,'');
+  }catch(e){ toast('Could not open the file: '+(e.message||'unknown error')); }
+}
 function showNote(title,body){ $('vTitle').textContent=title; $('vFrame').classList.remove('hide'); $('vPdf').classList.add('hide'); $('vOpen').classList.add('hide'); $('vFrame').removeAttribute('src'); $('vFrame').srcdoc='<body style="font:15px/1.6 system-ui,sans-serif;padding:18px;white-space:pre-wrap;color:#222;background:#fff">'+esc(body)+'</body>'; $('vOpen').classList.add('hide'); openModal('viewer'); }
-function closeViewer(){ $('vFrame').srcdoc=''; $('vFrame').src='about:blank'; $('vFrame').classList.add('hide'); $('vPdf').classList.add('hide'); $('vPdf').innerHTML=''; $('m-viewer').classList.remove('full'); $('vMaxIcon').outerHTML=MAX_ICON; closeModal('m-viewer'); }
 const MAX_ICON='<svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
 const RESTORE_ICON='<svg id="vMaxIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v3a2 2 0 0 1-2 2H4M21 8h-3a2 2 0 0 1-2-2V3M3 16h3a2 2 0 0 1 2 2v3M16 21v-3a2 2 0 0 1 2-2h3"/></svg>';
-function toggleFullViewer(){
-  const full=$('m-viewer').classList.toggle('full');
-  $('vMaxIcon').outerHTML = full ? RESTORE_ICON : MAX_ICON;
-  $('vMaxBtn').title = full ? 'Restore' : 'Maximize';
-}
 
 // ---- PASCO ----
 function weekNum(){ const d=new Date(); const start=new Date(d.getFullYear(),0,1); return Math.ceil((((d-start)/86400000)+start.getDay()+1)/7); }
 function renderPasco(){
   $('weekPill').textContent = 'Week '+weekNum();
-  $('pascoList').innerHTML = pascoSets.map(p=>`<div class="card" style="margin-top:8px;display:flex;justify-content:space-between;align-items:center"><b>${p.subject}</b> ${p.type==='file'?`<button class="btn ghost" onclick="openFile(pascoSets.find(x=>x.id==='${p.id}').data,'${esc(p.subject).replace(/'/g,'')}','${(p.data||'').indexOf('application/pdf')>0?'pdf':'file'}')">Open file</button>`:`<button class="btn ghost" onclick="startQuiz('${p.id}')">Solve (${p.qs.length} qs)</button>`}</div>`).join('') || '<p style="color:var(--muted);font-size:13px">No past questions uploaded yet.</p>';
+  $('pascoList').innerHTML = pascoSets.map(p=>`<div class="card" style="margin-top:8px;display:flex;justify-content:space-between;align-items:center"><b>${p.subject}</b> ${p.type==='file'?`<button class="btn ghost" onclick="openPasco('${p.id}')">Open file</button>`:`<button class="btn ghost" onclick="startQuiz('${p.id}')">Solve (${p.qs.length} qs)</button>`}</div>`).join('') || '<p style="color:var(--muted);font-size:13px">No past questions uploaded yet.</p>';
 }
 function createPasco(){
   const subj=$('pqSubj').value.trim();
   if(!subj){ toast('Add a subject'); return; }
   const file=$('pqFile').files[0];
+  const qs=parsePasco($('pqText').value);
+  if(!file && !qs.length){ toast($('pqText').value.trim() ? 'No valid questions found — make sure each one has an Answer line (see the example)' : 'Paste questions or upload a file'); return; }
+  const finish=()=>{
+    store('sp_pasco',pascoSets); closeModal('m-newPasco'); $('pqSubj').value=''; $('pqText').value=''; $('pqFile').value=''; renderPasco();
+    toast(file&&qs.length ? 'Added both the file and the quiz' : qs.length ? 'Converted to interactive quiz' : 'File added — opens directly on the site');
+  };
+  if(qs.length) pascoSets.push({id:'p'+Date.now()+'q',subject:subj,type:'quiz',qs});
   if(file){
-    if(file.size>4*1024*1024){ toast('File too large for this demo (max ~4MB)'); return; }
-    const r=new FileReader();
-    r.onload=()=>{ pascoSets.push({id:'p'+Date.now(),subject:subj,type:'file',data:r.result}); store('sp_pasco',pascoSets); closeModal('m-newPasco'); renderPasco(); toast('File added — opens directly on the site'); };
-    r.readAsDataURL(file);
+    if(file.size>MAX_FILE_MB*1048576){ toast('File too large (max '+MAX_FILE_MB+'MB)'+(qs.length?' — the quiz was still saved':'')); if(qs.length) finish(); return; }
+    saveFile(file).then(rec=>{ pascoSets.push({id:'p'+Date.now()+'f',subject:subj,type:'file',fname:file.name,...rec}); finish(); })
+      .catch(e=>{ toast(e.message||'Could not save the file'); if(qs.length) finish(); });
     return;
   }
-  const qs=parsePasco($('pqText').value);
-  if(!qs.length){ toast('Paste valid questions or upload a file'); return; }
-  pascoSets.push({id:'p'+Date.now(),subject:subj,type:'quiz',qs});
-  store('sp_pasco',pascoSets); closeModal('m-newPasco'); renderPasco(); toast('Converted to interactive quiz');
+  finish();
 }
 function parsePasco(text){
   const blocks=text.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean);
   const out=[];
+  const isOpt=l=>/^[A-D][\).:]/i.test(l);
+  const isAns=l=>/^(answer|ans|correct)[:.]/i.test(l);
   blocks.forEach(b=>{
     const lines=b.split('\n').map(l=>l.trim()).filter(Boolean);
-    const qLine=lines.find(l=>/^Q[:.]/i.test(l));
-    const opts=lines.filter(l=>/^[A-D][\).:]/i.test(l)).map(l=>l.replace(/^[A-D][\).:]\s*/i,''));
-    const ansLine=lines.find(l=>/^Answer[:.]/i.test(l));
-    if(qLine && opts.length && ansLine){
-      const ansLetter=ansLine.replace(/^Answer[:.]\s*/i,'').trim().toUpperCase();
+    const qLine=lines.find(l=>!isOpt(l)&&!isAns(l));
+    const opts=lines.filter(isOpt).map(l=>l.replace(/^[A-D][\).:]\s*/i,''));
+    const ansLine=lines.find(isAns);
+    if(qLine && opts.length>=2 && ansLine){
+      const ansLetter=ansLine.replace(/^(answer|ans|correct)[:.]\s*/i,'').trim().toUpperCase();
       const idx='ABCD'.indexOf(ansLetter[0]);
-      out.push({q:qLine.replace(/^Q[:.]\s*/i,''),opts,answer:idx});
+      if(idx>=0 && idx<opts.length) out.push({q:qLine.replace(/^Q[:.]\s*/i,''),opts,answer:idx});
     }
   });
   return out;
@@ -1198,7 +1986,8 @@ let progress = store('sp_progress') || {};
 let onOpenId = null, onLessonId = null;
 function admTab(t){
   document.querySelectorAll('#admTabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-  ['courses','ads','imgs','acct','login'].forEach(x=>$('adm-'+x).classList.toggle('hide',x!==t));
+  ['courses','ads','imgs','acct','login','search'].forEach(x=>$('adm-'+x).classList.toggle('hide',x!==t));
+  if(t==='search'){ $('admCx').value=siteGoogleCx||''; $('admCxState').textContent=siteGoogleCx?'✓ Google results are ON for every student.':'Not set yet — students currently see quick results (Wikipedia & DuckDuckGo) on the Google tab.'; }
 }
 async function saveAdminCreds(){
   const newName=$('admNewName').value.trim(), newPass=$('admNewPass').value, curPass=$('admCurPass').value;
@@ -1208,7 +1997,7 @@ async function saveAdminCreds(){
     const body={curPass}; if(newName) body.newName=newName; if(newPass) body.newPass=newPass;
     const j=await api('adminCreds',body);
     if(j.token) sessionToken=j.token;
-    persistSession();
+    persistSession(); adminDefault=false; $('defaultBanner').classList.add('hide');
     $('admNewName').value=''; $('admNewPass').value=''; $('admCurPass').value='';
     toast('Admin login updated ✔ — use the new details next time you sign in');
   }catch(e){ toast(e.message); }
@@ -1368,30 +2157,11 @@ function toggleSound(){
 }
 renderToday();
 
-// ---- AI STUDY ASSISTANT ----
-let aiOpen=false;
-function fmtAI(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/^(?:-|\*) (.*)$/gm,'• $1').replace(/\n/g,'<br>'); }
-function addAI(role,text,sources,raw){
-  const el=document.createElement('div'); el.className='aim '+(role==='user'?'u':'a');
-  el.innerHTML = raw ? esc(text) : fmtAI(text);
-  if(sources&&sources.length) el.innerHTML += '<div class="src">'+sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title)}">🔗 ${esc(s.title)}</a>`).join('')+'</div>';
-  $('aiMsgs').appendChild(el); $('aiMsgs').scrollTop=$('aiMsgs').scrollHeight; return el;
-}
-function toggleAI(){
-  aiOpen=!aiOpen; $('aiPanel').classList.toggle('hide',!aiOpen);
-  if(aiOpen){ if(!$('aiMsgs').children.length) addAI('assistant',"Hi! 👋 I'm Research. Ask about a topic and I'll answer right here — using what you're currently studying to sharpen the question. Nothing opens outside Study Partner.",null,true); setTimeout(()=>$('aiText').focus(),60); }
-}
-function researchTopic(){
-  const v=currentView;
-  if(v==='library'){ const c=courses.find(x=>x.id===openCourseId); return c ? [c.code,c.name].filter(Boolean).join(' ') : ''; }
-  if(v==='pasco'){ if(typeof quizState!=='undefined' && quizState){ const q=quizState.set.qs[quizState.i]; return quizState.set.subject+(q?' — '+q.q:''); } return ''; }
-  if(v==='online'){ const c=online.find(x=>x.id===onOpenId); if(!c) return ''; const l=c.lessons.find(x=>x.id===onLessonId); return l ? c.title+' — '+l.title : c.title; }
-  return '';
-}
+
 function htmlUnescape(s){ return String(s||'').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>'); }
-async function wikiSearch(q){
+async function wikiSearch(q,n){
   try{
-    const r=await fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=3&srsearch='+encodeURIComponent(q));
+    const r=await fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit='+(n||3)+'&srsearch='+encodeURIComponent(q));
     if(!r.ok) return [];
     const j=await r.json();
     return ((j.query&&j.query.search)||[]).map(x=>({
@@ -1401,11 +2171,92 @@ async function wikiSearch(q){
     }));
   }catch(e){ return []; }
 }
-function addResults(results){
-  const el=document.createElement('div'); el.className='aim a';
-  el.innerHTML = results.map(r=>`<div style="margin-bottom:${results.length>1?'10px':'0'}"><b>${esc(r.title)}</b><br><span style="opacity:.85">${esc(r.snippet)}…</span><br><a href="${esc(r.url)}" target="_blank" rel="noopener" style="font-size:12px;color:inherit;text-decoration:underline">🔗 Read more</a></div>`).join('<hr style="border:none;border-top:1px solid rgba(127,127,127,.25);margin:8px 0">');
-  $('aiMsgs').appendChild(el); $('aiMsgs').scrollTop=$('aiMsgs').scrollHeight;
+
+
+// ================= SEARCH PAGE: Google + YouTube, results shown inside Study Partner =================
+let siteGoogleCx='', srch={tab:'google'}, ytState={items:[],q:''};
+function recents(){ try{ return JSON.parse(localStorage.getItem('sp_recent_search')||'[]'); }catch(e){ return []; } }
+function saveRecent(q,tab){ let r=recents().filter(x=>!(x.q.toLowerCase()===q.toLowerCase()&&x.tab===tab)); r.unshift({q,tab}); r=r.slice(0,8); try{ localStorage.setItem('sp_recent_search',JSON.stringify(r)); }catch(e){} renderRecent(); }
+function renderRecent(){ const r=recents(); $('srchRecentCard').classList.toggle('hide',!r.length); $('srchRecent').innerHTML=r.map((x,i)=>`<button class="rchip" onclick="useRecent(${i})">${x.tab==='youtube'?'▶ ':''}${esc(x.q)}</button>`).join('')+(r.length?'<button class="rclear" onclick="clearRecent()">Clear</button>':''); }
+function useRecent(i){ const x=recents()[i]; if(!x) return; setSearchTab(x.tab); $('srchInput').value=x.q; runSearch(); }
+function clearRecent(){ try{ localStorage.removeItem('sp_recent_search'); }catch(e){} renderRecent(); }
+function setSearchTab(t){
+  srch.tab=t; document.querySelectorAll('#srchChips button').forEach(b=>b.classList.toggle('on',b.dataset.s===t));
+  $('srchInput').placeholder=t==='youtube'?'Search YouTube':'Search Google';
+  $('paneGoogle').classList.toggle('hide',t!=='google'); $('paneYT').classList.toggle('hide',t!=='youtube'); if(t!=='youtube') stopYT();
 }
+function renderSearch(){ renderRecent(); setSearchTab(srch.tab); }
+async function runSearch(){
+  const q=$('srchInput').value.trim(); if(q.length<2){ toast('Type what you want to look up'); return; }
+  saveRecent(q,srch.tab);
+  if(srch.tab==='youtube') await youtubeSearch(q); else await googleSearch(q);
+}
+// ---- YouTube: results grid + an embedded player right under the search bar ----
+function ytIdFrom(q){ const m=q.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/); return m?m[1]:null; }
+async function youtubeSearch(q){
+  const direct=ytIdFrom(q); if(direct){ playYT({id:direct,title:'YouTube video',channel:''}); return; }
+  const pane=$('ytResults'); pane.innerHTML='<div class="srch-note">Searching YouTube…</div>';
+  try{
+    const r=await fetch('/api?a=yt&q='+encodeURIComponent(q)), j=await r.json().catch(()=>({}));
+    if(!r.ok){ const e=new Error(j.error||'failed'); e.code=j.code||''; throw e; }
+    ytState={items:j.items||[],q}; drawYT();
+  }catch(e){
+    pane.innerHTML='<div class="srch-card srch-warn">'+(e.code==='rate_limited'?esc(e.message):"YouTube search isn't available right now — please try again in a minute.")+' <a href="https://www.youtube.com/results?search_query='+encodeURIComponent(q)+'" target="_blank" rel="noopener">Open YouTube search</a></div>';
+  }
+}
+function drawYT(){
+  const {items,q}=ytState;
+  $('ytResults').innerHTML=items.length?'<div class="yt-grid">'+items.map((v,i)=>`<button class="yt-card" onclick="playYTi(${i})"><span class="yt-thumb"><img loading="lazy" src="${esc(v.thumb)}" alt="">${v.duration?`<i>${esc(v.duration)}</i>`:''}<b class="yt-play">▶</b></span><span class="yt-title">${esc(v.title)}</span><span class="yt-meta">${esc([v.channel,v.views,v.published].filter(Boolean).join(' · '))}</span></button>`).join('')+'</div>':'<div class="srch-note">No videos found for “'+esc(q)+'”. Try different words.</div>';
+}
+function playYTi(i){ playYT(ytState.items[i]); }
+function playYT(v){
+  if(!v) return; const box=$('ytPlayer');
+  box.innerHTML=`<div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="yt-bar"><span class="yt-bt">${esc(v.title)}${v.channel?' · '+esc(v.channel):''}</span><a href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">Open on YouTube</a><button onclick="stopYT()">✕ Close</button></div>`;
+  box.classList.remove('hide'); try{ box.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(e){}
+}
+function stopYT(){ const b=$('ytPlayer'); if(b){ b.innerHTML=''; b.classList.add('hide'); } }
+// ---- Google: Google's own embedded results box (needs the free Search engine ID), else quick results ----
+let gcse={cx:'',loading:null};
+function loadGcse(cx){
+  if(gcse.loading&&gcse.cx===cx) return gcse.loading; gcse.cx=cx;
+  gcse.loading=new Promise((res,rej)=>{
+    let done=false; const to=setTimeout(()=>{ if(!done){ done=true; rej(new Error('Google search timed out')); } },12000);
+    window.__gcse={parsetags:'explicit',callback:()=>{ if(done) return; try{ google.search.cse.element.render({div:'gcseBox',tag:'searchresults-only',gname:'spweb',attributes:{linkTarget:'_blank',enableHistory:false}}); done=true; clearTimeout(to); res(); }catch(e){ done=true; clearTimeout(to); rej(e); } }};
+    const s=document.createElement('script'); s.async=true; s.src='https://cse.google.com/cse.js?cx='+encodeURIComponent(cx);
+    s.onerror=()=>{ if(!done){ done=true; clearTimeout(to); rej(new Error('Google search could not load')); } }; document.head.appendChild(s);
+  });
+  gcse.loading.catch(()=>{ gcse.loading=null; });
+  return gcse.loading;
+}
+async function googleSearch(q){
+  const quick=$('quickResults'), box=$('gcseWrap');
+  if(siteGoogleCx){
+    quick.classList.add('hide'); box.classList.remove('hide');
+    try{ await loadGcse(siteGoogleCx); google.search.cse.element.getElement('spweb').execute(q); return; }
+    catch(e){ console.warn('Google results unavailable:',e); box.classList.add('hide'); }
+  }
+  quick.classList.remove('hide');
+  await quickResults(q, siteGoogleCx?"Google results couldn't load right now, so here are quick results instead.":'');
+}
+async function quickResults(q,note){
+  const el=$('quickResults'); el.innerHTML='<div class="srch-note">Looking that up…</div>';
+  const clean=cleanQuery(q); const [web,wiki]=await Promise.all([lookup(clean),wikiSearch(clean,6)]);
+  let html=note?'<div class="srch-note">'+esc(note)+'</div>':'';
+  if(web.kind==='answer') html+='<div class="srch-card qr-answer"><b>'+esc(web.heading||clean)+'</b><p>'+esc(web.answer)+'</p>'+(web.srcUrl?'<a href="'+esc(web.srcUrl)+'" target="_blank" rel="noopener">Read more</a>':'')+'</div>';
+  if(wiki.length) html+='<div class="srch-card qr-list">'+wiki.map(r=>'<a class="qr-item" href="'+esc(r.url)+'" target="_blank" rel="noopener"><b>'+esc(r.title)+'</b><span>'+esc(r.snippet)+'…</span><i>en.wikipedia.org</i></a>').join('')+'</div>';
+  if(!html.replace(/<div class="srch-note">[^<]*<\/div>/,'').trim()) html+='<div class="srch-note">No results for “'+esc(q)+'”. Try different words.</div>';
+  html+='<div class="srch-note small">Quick results from Wikipedia and DuckDuckGo.</div>';
+  el.innerHTML=html;
+}
+async function saveGoogleCx(){
+  if(!API){ toast('Connect the database first (README, section 2), then you can save this.'); return; }
+  try{ const j=await api('settingsSet',{googleCx:$('admCx').value.trim()}); siteGoogleCx=j.googleCx||''; admTab('search'); toast(siteGoogleCx?'Google results are now ON for every student ✔':'Google results switched off'); }
+  catch(e){ toast(e.message); }
+}
+
+
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
 async function lookup(q){
   let data=null;
   try{
@@ -1420,38 +2271,9 @@ async function lookup(q){
   if(results.length) return {kind:'results', results};
   return {kind:'none'};
 }
-function renderLookup(res){
-  if(res.kind==='answer'){ addAI('assistant', res.answer, res.srcUrl?[{title:res.heading||'Source',url:res.srcUrl}]:null); return true; }
-  if(res.kind==='related'){ addAI('assistant', res.rel.map(x=>'- '+x.Text).join('\n'), res.rel.map(x=>({title:x.Text.slice(0,60),url:x.FirstURL}))); return true; }
-  if(res.kind==='results'){ addResults(res.results); return true; }
-  return false;
-}
-const LOCAL_INTENTS=[
-  {test:/^(hi|hello|hey|yo)\b/i, reply:"Hey! 👋 What topic do you want help with?"},
-  {test:/\b(thank|thanks|thx)\b/i, reply:"You're welcome! Anything else you want to look up?"},
-  {test:/\b(bye|goodbye|see ya)\b/i, reply:"Good luck with your studies! 👋"},
-  {test:/\bwhat (is|are) study ?partner\b|\bwhat can you do\b|\bhelp\b.*\b(app|site)\b/i, reply:"Study Partner has a Library (shelve course notes/slides), PASCO (solve past questions), Online Courses (free lessons + certificates), and Activity (your weekly timetable). I'm Research — ask me about any topic and I'll try to answer right here."},
-  {test:/\bhow (do|can) i.*(create|add|make).*(course)/i, reply:"In the Library, tap \"＋ New course\", give it a name and code, then open it and tap \"＋ Add slide / note\" to add your materials."},
-  {test:/\bhow (do|can) i.*(add|create|edit).*(activity|timetable|class)/i, reply:"Go to Activity, pick a day, then tap \"＋ Add activity\" to add a time, subject and venue."},
-  {test:/\bhow (do|can) i.*(get|earn).*(certificate)/i, reply:"Open a course under Online Courses and tick off each lesson as you finish it — once every lesson is done, a \"Get your certificate\" button appears."},
-  {test:/\bwhat is pasco\b|\bhow (do|does).*(pasco|past question)/i, reply:"PASCO is where you solve past exam questions. You (or your school) can upload them as text and they turn into an interactive quiz, or upload a PDF/Word file to read directly."},
-  {test:/\bwho (made|built|created) (this|study ?partner)\b/i, reply:"Study Partner was built for students, by students 🎓"},
-];
-function localIntent(q){ const m=LOCAL_INTENTS.find(x=>x.test.test(q)); return m?m.reply:null; }
-async function sendAI(t){
-  const inp=$('aiText'), text=String(t||inp.value).trim();
-  const topic=researchTopic();
-  const q=text||topic; // what the student actually typed comes first — course context is only a tiebreaker, never the main query
-  if(!q){ toast('Type what you want to look up'); return; }
-  if(!aiOpen) toggleAI();
-  inp.value=''; addAI('user', text||('Look up: '+topic), null, true);
-  const local=localIntent(text);
-  if(local){ addAI('assistant', local, null, true); return; }
-  const typing=addAI('assistant','Looking that up…',null,true);
-  let res=await lookup(q);
-  if(res.kind==='none' && topic && text) res=await lookup(topic+' '+text); // only blend context in as a second attempt
-  typing.remove();
-  if(!renderLookup(res)) addAI('assistant', "I couldn't find anything for that — try different or fewer words.", null, true);
+function cleanQuery(q){
+  const stripped=q.replace(/\?+\s*$/,'').replace(/^(what\s+(is|are|was|were)|who\s+(is|are|was|were)|define|explain|describe|tell me about|differentiate\s*(between)?|distinguish\s*(between)?|compare)\s+/i,'').trim();
+  return stripped||q;
 }
 
 let _rz; window.addEventListener("resize",()=>{ clearTimeout(_rz); _rz=setTimeout(()=>{ if(!$("v-library").classList.contains("hide")) renderShelf(); },200); });
@@ -1469,7 +2291,7 @@ setInterval(()=>{ if(!$('v-home').classList.contains('hide')) renderHero(); }, 6
     try{ const j=await api('me'); user={...j.user,timetable:j.user.timetable||{}}; persistSession(); applyTheme(); updateHeader(); }
     catch(e){ if(e.status===401||e.status===403){ toast(e.message); user=null; sessionToken=null; persistSession(); applyTheme(); updateHeader(); } }
   } else if(adminMode && sessionToken){
-    try{ await api('me'); }catch(e){ adminMode=false; sessionToken=null; persistSession(); }
+    try{ const mj=await api('me'); adminDefault=!!mj.usingDefault; }catch(e){ adminMode=false; sessionToken=null; persistSession(); }
   } else if(adminMode || (user && !sessionToken)){ adminMode=false; user=null; persistSession(); applyTheme(); updateHeader(); }
   renderHero();
 })();

@@ -13,62 +13,91 @@ drag-and-drop, and drop this whole folder in.
 **GitHub:** push this folder to a repo and import it at https://vercel.com/new.
 Framework preset "Other" — no build command, output directory is `/`.
 
-## 2. Turn on shared accounts (recommended)
+## 2. Shared accounts, ads and home pictures (Upstash Redis)
 
-Without this step the app still works, but each visitor's accounts, courses, ads and
-photos are saved only in *their own* browser — nobody sees anyone else's data, and you
-(admin) won't see students who signed up on other devices.
+Without a database every phone keeps its own private copy of everything. With it connected, accounts,
+profile pictures, activities, ads and home-page photos follow every student on every device.
 
-1. In your Vercel project → **Storage** → **Create Database** → **Upstash → Redis** (there's a free tier).
-2. Connect it to this project — Vercel automatically adds `KV_REST_API_URL` and
-   `KV_REST_API_TOKEN` (or `UPSTASH_REDIS_REST_URL` / `..._TOKEN`) as environment variables.
-3. Redeploy. The app auto-detects the database — nothing else to configure.
+1. Vercel → your project → **Storage** → **Create Database** → **Upstash for Redis** (free plan).
+2. Connect it to the project, then **Deployments → ⋯ → Redeploy**.
+3. Check: open `https://YOUR-SITE.vercel.app/api?a=health` → it must say `"ready":true`.
 
-Once connected: every student's account, timetable, courses, ads and the day-photos you
-upload as admin are stored centrally and visible from any device, including yours.
+What this gives you:
+- **Login from any device** brings back the student's name, school/level, profile picture, display
+  preference (white/night) and their Activity timetable.
+- **Ads and the seven home-page photos** posted by the admin show on every account. Pictures are stored
+  once and served from their own cached links, so the home page stays small and fast on mobile data.
+- A crowd on one Wi-Fi network is fine: sign-ups/log-ins are limited per account name, not per network,
+  so one shared campus IP can't lock out a classroom (150 sign-ups from one IP were tested).
 
-## 3. Research — in-app answers, your own PowerPoint preview, zero setup
+Still saved only on the device that created it: Library courses (files, notes, links), PASCO items,
+course progress/certificates and study-timer history.
 
-The chat bubble in Library / PASCO / Online Courses is called **Research**. Nothing it
-does ever opens a new tab or sends students elsewhere — every answer is shown directly
-in the chat panel.
+**Important — change the admin login before launch.** The default (`Yo Lord!` / `#124#`) is visible in
+the public code. Sign in as admin → **Admin login** tab → set your own name and password. The dashboard
+shows a red warning until you do.
 
-**How it answers, in order:**
-1. **Built-in, zero-network replies** for common app questions (how do I create a
-   course, how do I get a certificate, greetings, thanks) — these are plain code in
-   `index.html`, not a network call of any kind. This is the one piece that is
-   genuinely, fully "ours" with no outside service involved at all.
-2. **DuckDuckGo's Instant Answer API** — a quick factual summary for recognized topics.
-3. **DuckDuckGo's related topics** — a short list when there's no single clean answer.
-4. **Wikipedia's search API** — real article titles and snippets shown as results in
-   the chat for broader topics.
+## 3. Search page (Google + YouTube, shown inside the site)
 
-Research prioritizes exactly what the student typed over whatever course/lesson they
-have open — course context is only blended in as a second attempt if the plain question
-finds nothing, so a oddly-named test course can no longer pollute real searches.
+**Search** is in the main menu, and a floating 🔍 button on Library, PASCO and Online Courses opens it too. Students type a question, choose **Google** or **YouTube**, and the answer
+appears *below the search bar, inside Study Partner* — videos play in an embedded frame, and recent searches
+are kept as chips. There are no new tabs for the search itself.
 
-**On being honest about "build your own AI":** DuckDuckGo and Wikipedia aren't AI chatbot
-vendors — they're free public reference lookups, the same category as a dictionary, with
-no account, no key, and nothing that can break a deploy or rack up a bill. A true
-conversational AI that can answer *any* phrasing or write custom explanations needs an
-actual language model, which only exists via a paid provider (Gemini, OpenAI,
-Anthropic) or an impractically large download running in the browser. There's no way
-around that technical reality — but nothing here needs one, and nothing here can fail
-the way the Gemini integration did.
+**YouTube — works immediately.** Results are videos that can be played in the page. Out of the box the server
+reads YouTube's public results page, which is best-effort (YouTube can change it). For a dependable setup add
+a free `YOUTUBE_API_KEY` in Vercel (Google Cloud Console → create a project → enable *YouTube Data API v3* →
+Credentials → API key). That gives roughly 100 different searches per day; every result is cached for an hour
+and shared by all students, so repeat searches cost nothing. With the key, only videos that allow embedding are
+listed. If a particular video still refuses to play in the frame, an "Open on YouTube" link is next to it.
 
-## 4. PowerPoint slides preview in-app
+**Google — needs one free setting.** Google does not allow its own results page to be shown inside another
+website (that is a Google rule, for every site). The official way is a free *Programmable Search Engine*, which
+shows Google's real results in a box inside your page:
+1. Go to **https://programmablesearchengine.google.com** → **Add** → choose **Search the entire web** → create it.
+2. Copy the **Search engine ID**.
+3. In Study Partner: sign in as admin → **Search** tab → paste it → **Save**. (Or set `GOOGLE_CSE_ID` in Vercel.)
+   No redeploy is needed; every student gets it within seconds.
 
-Uploaded `.pptx` files (Library materials and Online Course lesson slides) now open
-inside Study Partner instead of forcing a download — each slide's text is pulled out
-and shown as its own card, in order. Images, charts and exact visual layout aren't
-shown (that would need real file hosting plus Microsoft/Google's slide-rendering
-service, which this architecture doesn't have) — text only, but it opens right in the
-app.
+Until that is set, the Google tab shows quick results from Wikipedia and DuckDuckGo, also inside the page. The
+free engine shows a few Google ads. Links inside Google's results open the *other website* in a new tab, because
+most websites refuse to be displayed inside someone else's page.
 
-Older binary `.ppt` files (pre-2007 format) and `.doc`/`.docx` still download, since
-there is no free client-side reader for those formats — the app tells the student that
-clearly instead of staying silent about it.
-## 5. Admin login
+## 4. Slides and documents
+
+Everything opens inside Study Partner; nothing has to be downloaded to be read.
+
+| File | What students see |
+|---|---|
+| **PDF** | Every page, in-app |
+| **PowerPoint .pptx** | **Converted to pictures in the background right after upload** (the card shows "Preparing slides… 3/24", then "✓ Slides ready"), then opened like PDF pages — instant, and identical every time. Slides are drawn by a **built-in renderer** (theme colours and fonts, backgrounds, titles and bullets, numbering, pictures — including photos dropped into layout placeholders, pictures inside PowerPoint's compatibility wrappers, and picture backgrounds from the theme — with crop, charts (column, bar, line, area, pie), SmartArt, tables, shapes, lines, groups) that needs no download from the internet. A 60-slide lecture converts in about 7 seconds. Files uploaded before this update are converted the first time they are opened |
+| **Old .ppt (1997–2003)** | Best-effort in-app viewer from a third party (shows a small "Flyfish Viewer" mark). If it can't load, clear instructions. **Best practice: Save As .pptx before uploading** |
+| **Word .docx** | The document text, in-app |
+| **Old .doc** | Downloads. Save As .docx for in-app viewing |
+| **Links** | Google Drive / Slides / Docs and YouTube links embed in-app and work for any file type, including old .ppt (Drive: set sharing to "Anyone with the link") |
+
+**Picture conversion, in detail.** It runs on the student's own phone or computer while they keep using the app;
+nothing is sent to any server. The pictures are saved beside the file and are removed when the course is
+deleted. Before saving, the app checks that each picture really contains the slide — if a browser can't
+make pictures (or draws a blank one), nothing is saved and the slides are simply drawn live instead.
+Because the pictures live on that device, a student who opens the same course on another phone gets them
+built again on first open.
+
+How the .pptx viewer decides: saved pictures → live built-in renderer → a second viewer → a text view of every
+slide. The **Switch viewer** button cycles through them if a slide ever looks wrong.
+**Not drawn:** animations, video/audio, old EMF/WMF clip-art pictures and some special effects. Those show as a
+labelled box. For slides that rely on them, upload a PDF export, which opens exactly as designed.
+
+Files up to **40 MB** are accepted. They are stored in the browser (IndexedDB) of the device that uploaded
+them and survive reloads.
+
+## 5. PASCO fixes
+
+Uploading a file *and* pasting questions at the same time used to silently drop the
+pasted questions — both are now saved as separate items. The question parser is also
+far more forgiving now: the "Q:" prefix is optional, and "Answer:", "Ans:", or
+"Correct:" are all recognized (previously only an exact "Answer:" line worked).
+
+## 6. Admin login
 
 There's no visible "Admin" link anywhere in the app — sign in on the normal sign-up form
 using the special name/password (defaults: `Yo Lord!` / `#124#`).
@@ -81,6 +110,22 @@ You can change the admin name/password two ways:
 - **Via Vercel**, by setting `ADMIN_USER` and `ADMIN_PASS` as environment variables —
   this only sets the *starting* login before you've changed it from inside the app once;
   after your first in-app change, the in-app one takes over.
+
+## 7. Ads: timing, and running your own
+
+Every paid ad expires automatically based on the plan the business picked — 24 hours,
+48 hours, 3 days, 1 week, or 1 month — counted from the moment **you approve it**, not
+from when they paid. Once that time is up, it comes off the Home slideshow by itself;
+nothing needs to be done manually.
+
+In the admin dashboard's **Ads** tab you can also:
+- **Create an ad yourself** — runs immediately, no payment or approval step. Good for
+  your own promos or a business that paid you outside the app.
+- **End ad now** — stop a live ad early, before its time is up.
+- **Delete** — permanently remove an ad record (works on live or past ads).
+
+Ads are grouped into Pending approval / Live now (with time remaining shown) / History
+(ended or rejected), so you can always see what's running and what's finished.
 
 ## Notes
 - The Paystack **public** key is embedded in the front-end for the ad checkout — that's
